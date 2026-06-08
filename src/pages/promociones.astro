@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import PromoGrid from "../components/PromoGrid.astro";
+import { images, site } from "../data/site";
+---
+
+<BaseLayout
+  title={`Promociones - ${site.name}`}
+  description="Promociones especiales para tu estancia en Las Magdalenas Hotel Boutique."
+  canonicalPath="/promociones/"
+>
+  <Header />
+
+  <main>
+    <PageHero title="PROMOCIONES" image={images.promociones[0].image} />
+
+    <section class="section">
+      <div class="container-x">
+        <SectionIntro
+          lead="Aproveche al máximo su estancia en Xico con estas exclusivas promociones."
+        />
+        <PromoGrid />
+        <p class="max-w-[720px] my-8 mx-auto text-ink-soft text-[0.9rem] italic text-center">
+          *Aplican restricciones y vigencias en nuestras promociones. Por favor póngase en
+          contacto con nosotros. Será un placer informarle de nuestros paquetes y tarifas
+          especiales para individuales, parejas o grupos.
+        </p>
+        <a href="/contacto/" class="btn">CONTÁCTANOS</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

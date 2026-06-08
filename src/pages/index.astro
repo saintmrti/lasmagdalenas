@@ -1,11 +1,127 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import HeroSlider from "../components/HeroSlider.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import RoomGrid from "../components/RoomGrid.astro";
+import ImageMosaic from "../components/ImageMosaic.astro";
+import PromoGrid from "../components/PromoGrid.astro";
+import { homeContent, images, site } from "../data/site";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title={`${site.name} - ${site.tagline}`}
+  description="Hotel boutique en Xico, Veracruz, ubicado en una casona colonial del siglo XIX. Habitaciones, restaurante, eventos y experiencias en un Pueblo Mágico."
+  canonicalPath="/"
+>
+  <Header />
+
+  <main>
+    <HeroSlider slides={images.heroSlides} alt={site.name}>
+      <a
+        href={site.bookingUrl}
+        class="btn btn--inverse hero__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {homeContent.hero.cta}
+      </a>
+    </HeroSlider>
+
+    <section class="section">
+      <div class="container-x">
+        <SectionIntro
+          titleImage={images.hotelTitle}
+          title={homeContent.hotel.title}
+          lead={homeContent.hotel.description}
+        />
+        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7]">{homeContent.hotel.paragraph}</p>
+        <a href={homeContent.hotel.ctaHref} class="btn">{homeContent.hotel.cta}</a>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container-x">
+        <SectionIntro
+          titleText={homeContent.habitaciones.title}
+          lead={homeContent.habitaciones.description}
+        />
+        <RoomGrid />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-x">
+        <img
+          src={images.restLogo}
+          alt="El Veintidós Restaurante"
+          class="w-[200px] h-auto mx-auto mb-6"
+          loading="lazy"
+        />
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-[720px] mx-auto mb-8" aria-hidden="true">
+          {
+            images.restSlides.map((src) => (
+              <div
+                class="w-full aspect-video bg-cover bg-center"
+                style={`background-image:url(${src})`}
+              />
+            ))
+          }
+        </div>
+        <SectionIntro
+          titleText={homeContent.restaurante.title}
+          lead={homeContent.restaurante.description}
+        />
+        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7]">{homeContent.restaurante.paragraph}</p>
+        <ImageMosaic images={images.restMosaic} altPrefix="Restaurante" />
+        <a href={homeContent.restaurante.ctaHref} class="btn">
+          {homeContent.restaurante.cta}
+        </a>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container-x">
+        <img
+          src={images.eventoTitle}
+          alt="Eventos"
+          class="max-w-[240px] mx-auto mb-6"
+          loading="lazy"
+        />
+        <div
+          class="w-full max-w-[1100px] aspect-video bg-cover bg-center mx-auto mb-8"
+          style={`background-image:url(${images.eventoHome})`}
+          role="img"
+          aria-label="Eventos Las Magdalenas"
+        ></div>
+        <SectionIntro lead={homeContent.eventos.text} />
+        <a href={homeContent.eventos.ctaHref} class="btn">
+          {homeContent.eventos.cta}
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container-x">
+        <SectionIntro
+          titleText={homeContent.promociones.title}
+          lead={homeContent.promociones.intro}
+        />
+        <PromoGrid />
+        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft text-[0.9rem] italic">{homeContent.promociones.footnote}</p>
+        <a href={homeContent.promociones.ctaHref} class="btn">
+          {homeContent.promociones.cta}
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero__cta {
+    display: inline-block;
+  }
+</style>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  height?: string;
+}
+
+const { title, image, height = "60vh" } = Astro.props;
+---
+
+<section class="relative w-full min-h-[320px] overflow-hidden text-ink-inverse" style={`--page-hero-height:${height};height:var(--page-hero-height, 60vh);`}>
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style={`background-image:url(${image})`}
+    role="img"
+    aria-label={title}
+  ></div>
+  <div
+    class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.15)_0%,rgba(0,0,0,0.45)_100%)]"
+    aria-hidden="true"
+  ></div>
+  <div class="container-x relative z-[2] h-full flex items-center justify-center text-center">
+    <h1 class="font-display text-[clamp(2rem,5vw,3.5rem)] tracking-[0.12em] uppercase text-ink-inverse m-0">{title}</h1>
+  </div>
+</section>

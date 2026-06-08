@@ -1,0 +1,126 @@
+---
+import { navigation, site, images, galleryLink } from "../data/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-surface border-b border-line">
+  <div class="bg-surface-soft text-ink-soft text-sm border-b border-line">
+    <div class="container-x hidden md:flex md:justify-between md:items-center md:py-2">
+      <a href="/contacto/" class="hover:text-accent-dark transition-colors">¿Necesitas ayuda? {site.phone}</a>
+      <a href={galleryLink.href} class="hover:text-accent-dark transition-colors">{galleryLink.label}</a>
+      <span class="font-semibold tracking-[0.1em]" aria-label="Idioma">{site.language}</span>
+    </div>
+  </div>
+
+  <div class="container-x flex flex-col md:flex-row md:items-center md:justify-between md:gap-3 py-3.5 relative">
+    <a href="/" class="inline-flex items-center" aria-label={site.name}>
+      <img src={images.logo} alt={site.name} class="hidden md:block h-[70px] w-auto" />
+      <img src={images.logoMobile} alt={site.name} class="md:hidden h-14 w-auto" />
+    </a>
+
+    <button
+      class="md:hidden inline-flex flex-col justify-center gap-[5px] p-2 w-10 h-10 bg-transparent border-0"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      data-menu-toggle
+    >
+      <span class="block w-full h-0.5 bg-ink transition-transform duration-200"></span>
+      <span class="block w-full h-0.5 bg-ink transition-transform duration-200"></span>
+      <span class="block w-full h-0.5 bg-ink transition-transform duration-200"></span>
+    </button>
+
+    <nav
+      class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto bg-surface md:bg-transparent border-t md:border-0 border-line max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-[600px]"
+      data-nav
+    >
+      <ul class="list-none m-0 py-4 px-5 md:p-0 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 md:gap-y-1 md:gap-x-[18px]">
+        {
+          navigation.map((item) => {
+            const isActive = !item.external && item.href === currentPath;
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    "block py-2.5 md:py-1.5 text-ink text-[0.85rem] md:text-[0.78rem] tracking-[0.16em] uppercase font-semibold border-b md:border-0 border-line transition-colors hover:text-accent",
+                    isActive && "text-accent",
+                  ]}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+        <li class="mt-2 md:mt-0">
+          <a
+            href={site.bookingUrl}
+            class="btn btn--reserve"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            RESERVAR
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const nav = document.querySelector<HTMLElement>("[data-nav]");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = nav?.classList.toggle("is-open");
+    toggle.classList.toggle("is-open", Boolean(isOpen));
+    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+</script>
+
+<style>
+  .btn--reserve {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid currentColor;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn--reserve:hover,
+  .btn--reserve:focus {
+    background: var(--color-accent);
+    color: var(--color-ink-inverse);
+    border-color: var(--color-accent);
+  }
+
+  @media (min-width: 768px) {
+    .btn--reserve {
+      width: auto;
+      padding: 10px 24px;
+    }
+  }
+
+  [data-menu-toggle].is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  [data-menu-toggle].is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  [data-menu-toggle].is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+</style>

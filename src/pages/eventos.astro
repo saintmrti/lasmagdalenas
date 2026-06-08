@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import { images, site } from "../data/site";
+---
+
+<BaseLayout
+  title={`Eventos - ${site.name}`}
+  description="Celebra tu evento en Las Magdalenas Hotel Boutique, Xico, Veracruz."
+  canonicalPath="/eventos/"
+>
+  <Header />
+
+  <main>
+    <PageHero title="EVENTOS" image={images.eventoHome} />
+
+    <section class="section">
+      <div class="container-x">
+        <SectionIntro
+          titleImage={images.eventoTitle}
+          lead="Somos el marco perfecto para celebrar tu momento. Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas. Un hotel para para celebrar momentos irrepetibles."
+        />
+        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7] text-center">
+          Te ayudamos a planear bodas civiles, fiestas privadas, reuniones de trabajo y
+          celebraciones especiales en un ambiente colonial único.
+        </p>
+        <a href="/contacto/" class="btn">SOLICITA UNA COTIZACIÓN</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

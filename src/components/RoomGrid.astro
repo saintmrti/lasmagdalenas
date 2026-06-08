@@ -1,0 +1,26 @@
+---
+import { rooms } from "../data/site";
+import { site } from "../data/site";
+---
+
+<section class="mx-auto max-w-[1100px]">
+  <ul class="list-none mb-10 p-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-x-6 md:gap-y-8">
+    {
+      rooms.map((room) => (
+        <li class="text-center">
+          <img src={room.image} alt={room.name} class="w-full aspect-[4/3] object-cover mb-4" loading="lazy" />
+          <h3 class="font-display text-[1.1rem] tracking-[0.14em] uppercase text-accent-dark mb-1.5 mt-0">{room.name}</h3>
+          <p class="text-ink-soft text-[0.95rem] m-0">{room.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <a
+    href={site.bookingUrl}
+    class="btn text-center block md:inline-block"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    VER DETALLES Y RESERVAR
+  </a>
+</section>

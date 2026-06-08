@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import ImageMosaic from "../components/ImageMosaic.astro";
+import { images, site, social } from "../data/site";
+
+const restImages = [
+  "/assets/2017_07_slide_restaurante_1.jpg",
+  "/assets/2017_07_slide_restaurante_2.jpg",
+  "/assets/2017_07_slide_restaurante_3.jpg",
+  "/assets/2017_07_slide_restaurante_4-1.jpg",
+  "/assets/2017_07_slide_restaurante_10.jpg",
+  "/assets/2017_07_slide_restaurante_11.jpg",
+  "/assets/2017_07_slide_restaurante_12.jpg",
+  "/assets/2017_07_slide_restaurante_13.jpg",
+];
+---
+
+<BaseLayout
+  title={`Restaurante - ${site.name}`}
+  description="El Veintidós: restaurante en Xico, Veracruz. Platillos prehispánicos, tradicionales y españoles."
+  canonicalPath="/restaurante/"
+>
+  <Header />
+
+  <main>
+    <PageHero title="RESTAURANTE" image={restImages[0]} />
+
+    <section class="section">
+      <div class="container-x">
+        <img
+          src={images.restLogo}
+          alt="El Veintidós Restaurante"
+          class="w-[200px] h-auto mx-auto mb-6"
+          loading="lazy"
+        />
+        <SectionIntro
+          titleText="“RESCATANDO SABORES DEL PUEBLO”"
+          lead="Nuestro menú nace del sincretismo de la cultura indígena y española que se dio en nuestro pueblo. En el veintidós podrás encontrar platillos prehispánicos, tradicionales de xico y españoles."
+        />
+        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7] text-center">
+          En El Veintidós podrás deleitar platillos prehispánicos tradicionales de Xico y
+          españoles. Toda una experiencia gastronómica en la que se ocupan productos que se
+          cosechan y se producen en el pueblo.
+        </p>
+        <ImageMosaic images={restImages} altPrefix="Restaurante" />
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container-x">
+        <h2 class="font-display text-[1.1rem] tracking-[0.14em] uppercase text-accent-dark text-center mb-4 mt-0">SIGUENOS EN REDES</h2>
+        <ul class="list-none p-0 m-0 flex justify-center gap-6 uppercase tracking-[0.12em] text-[0.85rem]" aria-label="Redes del restaurante">
+          <li>
+            <a href={social.restaurantFacebook} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a href={social.restaurantInstagram} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href={social.restaurantTripadvisor} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">
+              TripAdvisor
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

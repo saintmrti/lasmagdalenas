@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8f5f1;
+  --color-surface-dark: #1d1d1d;
+  --color-ink: #2a2a2a;
+  --color-ink-soft: #5a5a5a;
+  --color-ink-inverse: #ffffff;
+  --color-accent: #8a6d3b;
+  --color-accent-dark: #5b4823;
+  --color-line: #e2dcd2;
+
+  --font-display: "Playfair Display", "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-ink);
+  }
+
+  p {
+    margin: 0 0 1em;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .section {
+    padding: 64px 0;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      padding: 96px 0;
+    }
+  }
+
+  .section--soft {
+    background-color: var(--color-surface-soft);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid currentColor;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-accent);
+      color: var(--color-ink-inverse);
+      border-color: var(--color-accent);
+    }
+  }
+
+  .btn--inverse {
+    color: var(--color-ink-inverse);
+    border-color: var(--color-ink-inverse);
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-ink-inverse);
+      color: var(--color-accent-dark);
+    }
+  }
+}
+
+@keyframes hero-fade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  33% { opacity: 1; }
+  38% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hero-dot {
+  0% { background: rgba(255, 255, 255, 0.4); }
+  5% { background: rgba(255, 255, 255, 1); }
+  33% { background: rgba(255, 255, 255, 1); }
+  38% { background: rgba(255, 255, 255, 0.4); }
+  100% { background: rgba(255, 255, 255, 0.4); }
+}

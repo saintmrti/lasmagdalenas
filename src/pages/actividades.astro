@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import { site } from "../data/site";
+
+const activityImages = [
+  "/assets/2016_09_actividades_fondo.jpg",
+  "/assets/2016_09_actividades_fondo1.jpg",
+  "/assets/2016_09_jardin_fondo.jpg",
+  "/assets/2016_09_cafeteria_fondo.jpg",
+  "/assets/2017_07_xico-3-768x515.jpg",
+];
+---
+
+<BaseLayout
+  title={`Actividades - ${site.name}`}
+  description="Actividades y experiencias en Xico, Pueblo Mágico de Veracruz."
+  canonicalPath="/actividades/"
+>
+  <Header />
+
+  <main>
+    <PageHero title="ACTIVIDADES" image={activityImages[0]} />
+
+    <section class="section">
+      <div class="container-x">
+        <SectionIntro
+          lead="Xico es un Pueblo Mágico rodeado de naturaleza, tradición y gastronomía. Disfruta de actividades al aire libre, caminatas por el centro histórico, cafetales y experiencias gastronómicas."
+        />
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {activityImages.map((src) => <img src={src} alt="Actividades" class="w-full aspect-[4/3] object-cover" loading="lazy" />)}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
