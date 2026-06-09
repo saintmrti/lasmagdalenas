@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionIntro from "../components/SectionIntro.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import StickyTabs from "../components/StickyTabs.astro";
 import { images, site } from "../data/site";
+import { eventSpaces } from "../data/eventSpaces";
+
+const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 ---
 
 <BaseLayout
@@ -12,25 +15,55 @@ import { images, site } from "../data/site";
   description="Celebra tu evento en Las Magdalenas Hotel Boutique, Xico, Veracruz."
   canonicalPath="/eventos/"
 >
-  <Header />
-
   <main>
-    <PageHero title="EVENTOS" image={images.eventoHome} />
+    <PageHero title="" image={images.eventoHome} height="70vh" />
 
     <section class="section">
       <div class="container-x">
-        <SectionIntro
-          titleImage={images.eventoTitle}
-          lead="Somos el marco perfecto para celebrar tu momento. Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas. Un hotel para para celebrar momentos irrepetibles."
+        <img
+          src={images.eventoTitle}
+          alt="Eventos"
+          class="max-w-[240px] mx-auto mb-6"
+          loading="lazy"
         />
-        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7] text-center">
-          Te ayudamos a planear bodas civiles, fiestas privadas, reuniones de trabajo y
-          celebraciones especiales en un ambiente colonial único.
-        </p>
-        <a href="/contacto/" class="btn">SOLICITA UNA COTIZACIÓN</a>
+        <SectionDivider />
+        <SectionIntro
+          lead="Somos el marco perfecto para celebrar tu momento. Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas."
+        />
+      </div>
+    </section>
+
+    <StickyTabs tabs={eventTabs} />
+
+    <section class="section">
+      <div class="container-x">
+        {
+          eventSpaces.map((space) => (
+            <div id={space.id} data-tab-section class="mb-20 scroll-mt-24">
+              <h2 class="font-display text-[1.8rem] tracking-[0.1em] uppercase text-accent-dark text-center mb-6 mt-0">{space.title}</h2>
+              <p class="max-w-[720px] mx-auto mb-4 text-ink-soft leading-[1.7] text-center">{space.description}</p>
+
+              {space.capacity && (
+                <p class="font-bold text-ink text-center uppercase tracking-[0.14em] text-[0.9rem] mb-6">{space.capacity}</p>
+              )}
+
+              {!space.unavailable && space.ctaLabel && space.ctaHref && (
+                <a href={space.ctaHref} class="btn mb-8">{space.ctaLabel}</a>
+              )}
+
+              {space.images.length > 0 && (
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-[900px] mx-auto mt-8">
+                  {
+                    space.images.map((src, i) => (
+                      <img src={src} alt={`${space.title} ${i + 1}`} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+                    ))
+                  }
+                </div>
+              )}
+            </div>
+          ))
+        }
       </div>
     </section>
   </main>
-
-  <Footer />
 </BaseLayout>

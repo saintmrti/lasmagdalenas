@@ -1,41 +1,43 @@
 ---
-import { navigation, site, images, galleryLink } from "../data/site";
+import { navigation, site, images } from "../data/site";
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-surface border-b border-line">
-  <div class="bg-surface-soft text-ink-soft text-sm border-b border-line">
-    <div class="container-x hidden md:flex md:justify-between md:items-center md:py-2">
-      <a href="/contacto/" class="hover:text-accent-dark transition-colors">¿Necesitas ayuda? {site.phone}</a>
-      <a href={galleryLink.href} class="hover:text-accent-dark transition-colors">{galleryLink.label}</a>
-      <span class="font-semibold tracking-[0.1em]" aria-label="Idioma">{site.language}</span>
-    </div>
-  </div>
-
-  <div class="container-x flex flex-col md:flex-row md:items-center md:justify-between md:gap-3 py-3.5 relative">
+<header class="site-header" data-header>
+  <div class="container-x flex items-center justify-between gap-3 py-3.5 relative">
     <a href="/" class="inline-flex items-center" aria-label={site.name}>
-      <img src={images.logo} alt={site.name} class="hidden md:block h-[70px] w-auto" />
-      <img src={images.logoMobile} alt={site.name} class="md:hidden h-14 w-auto" />
+      <img
+        src={images.logo}
+        alt={site.name}
+        class="logo-default h-[70px] w-auto"
+        data-logo-default
+      />
+      <img
+        src={images.logoSticky}
+        alt={site.name}
+        class="logo-sticky h-[70px] w-auto hidden"
+        data-logo-sticky
+      />
     </a>
 
     <button
-      class="md:hidden inline-flex flex-col justify-center gap-[5px] p-2 w-10 h-10 bg-transparent border-0"
+      class="md:hidden inline-flex flex-col justify-center gap-1.5 p-2 w-10 h-10 bg-transparent border-0"
       type="button"
       aria-label="Abrir menú"
       aria-expanded="false"
       data-menu-toggle
     >
-      <span class="block w-full h-0.5 bg-ink transition-transform duration-200"></span>
-      <span class="block w-full h-0.5 bg-ink transition-transform duration-200"></span>
-      <span class="block w-full h-0.5 bg-ink transition-transform duration-200"></span>
+      <span class="hamburger-line block w-full h-0.5 transition-transform duration-200"></span>
+      <span class="hamburger-line block w-full h-0.5 transition-transform duration-200"></span>
+      <span class="hamburger-line block w-full h-0.5 transition-transform duration-200"></span>
     </button>
 
     <nav
-      class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto bg-surface md:bg-transparent border-t md:border-0 border-line max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-[600px]"
+      class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto border-t md:border-0 max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-[600px] bg-black/90 md:bg-transparent"
       data-nav
     >
-      <ul class="list-none m-0 py-4 px-5 md:p-0 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 md:gap-y-1 md:gap-x-[18px]">
+      <ul class="list-none m-0 py-4 px-5 md:p-0 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 md:gap-y-1 md:gap-x-5">
         {
           navigation.map((item) => {
             const isActive = !item.external && item.href === currentPath;
@@ -44,7 +46,7 @@ const currentPath = Astro.url.pathname;
                 <a
                   href={item.href}
                   class:list={[
-                    "block py-2.5 md:py-1.5 text-ink text-[0.85rem] md:text-[0.78rem] tracking-[0.16em] uppercase font-semibold border-b md:border-0 border-line transition-colors hover:text-accent",
+                    "nav-link block py-2.5 md:py-1.5 text-[0.85rem] md:text-[0.78rem] tracking-[0.16em] uppercase font-bold border-b md:border-0 border-white/10 transition-colors",
                     isActive && "text-accent",
                   ]}
                   target={item.external ? "_blank" : undefined}
@@ -59,7 +61,7 @@ const currentPath = Astro.url.pathname;
         <li class="mt-2 md:mt-0">
           <a
             href={site.bookingUrl}
-            class="btn btn--reserve"
+            class="btn-reserve"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -72,55 +74,115 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const nav = document.querySelector<HTMLElement>("[data-nav]");
+  // const logoDefault = document.querySelector<HTMLImageElement>("[data-logo-default]");
+  // const logoSticky = document.querySelector<HTMLImageElement>("[data-logo-sticky]");
 
   toggle?.addEventListener("click", () => {
     const isOpen = nav?.classList.toggle("is-open");
     toggle.classList.toggle("is-open", Boolean(isOpen));
     toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
   });
+
+  if (header) {
+    const sentinel = document.createElement("div");
+    sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;";
+    header.parentElement?.insertBefore(sentinel, header.nextSibling);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const scrolled = !entry.isIntersecting;
+        header.classList.toggle("is-sticky", scrolled);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+  }
 </script>
 
 <style>
-  .btn--reserve {
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: transparent;
+    transition: background-color 0.3s ease;
+  }
+
+  .site-header.is-sticky {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-link {
+    color: var(--color-ink-inverse);
+  }
+
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .btn-reserve {
     display: inline-block;
     padding: 14px 32px;
-    border: 1px solid currentColor;
+    border: 1px solid var(--color-ink-inverse);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--color-ink);
+    font-weight: 700;
+    color: var(--color-ink-inverse);
     background: transparent;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     width: 100%;
     text-align: center;
   }
 
-  .btn--reserve:hover,
-  .btn--reserve:focus {
+  .btn-reserve:hover {
     background: var(--color-accent);
-    color: var(--color-ink-inverse);
     border-color: var(--color-accent);
   }
 
   @media (min-width: 768px) {
-    .btn--reserve {
+    .btn-reserve {
       width: auto;
       padding: 10px 24px;
     }
   }
 
-  [data-menu-toggle].is-open span:nth-child(1) {
+  .hamburger-line {
+    background: var(--color-ink-inverse);
+  }
+
+  [data-menu-toggle].is-open .hamburger-line:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
 
-  [data-menu-toggle].is-open span:nth-child(2) {
+  [data-menu-toggle].is-open .hamburger-line:nth-child(2) {
     opacity: 0;
   }
 
-  [data-menu-toggle].is-open span:nth-child(3) {
+  [data-menu-toggle].is-open .hamburger-line:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .logo-default,
+  .logo-sticky {
+    display: none;
+  }
+
+  .site-header .logo-default {
+    display: block;
+  }
+
+  .site-header.is-sticky .logo-default {
+    display: none;
+  }
+
+  .site-header.is-sticky .logo-sticky {
+    display: block;
   }
 </style>

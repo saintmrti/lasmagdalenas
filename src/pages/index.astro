@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import RoomGrid from "../components/RoomGrid.astro";
@@ -15,8 +13,6 @@ import { homeContent, images, site } from "../data/site";
   description="Hotel boutique en Xico, Veracruz, ubicado en una casona colonial del siglo XIX. Habitaciones, restaurante, eventos y experiencias en un Pueblo Mágico."
   canonicalPath="/"
 >
-  <Header />
-
   <main>
     <HeroSlider slides={images.heroSlides} alt={site.name}>
       <a
@@ -33,7 +29,7 @@ import { homeContent, images, site } from "../data/site";
       <div class="container-x">
         <SectionIntro
           titleImage={images.hotelTitle}
-          title={homeContent.hotel.title}
+          titleText={homeContent.hotel.title}
           lead={homeContent.hotel.description}
         />
         <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7]">{homeContent.hotel.paragraph}</p>
@@ -116,8 +112,6 @@ import { homeContent, images, site } from "../data/site";
       </div>
     </section>
   </main>
-
-  <Footer />
 </BaseLayout>
 
 <style>

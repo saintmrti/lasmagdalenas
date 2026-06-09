@@ -3,9 +3,10 @@ interface Props {
   slides: string[];
   alt?: string;
   height?: string;
+  decorated?: boolean;
 }
 
-const { slides, alt = "", height = "80vh" } = Astro.props;
+const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
 ---
 
 <section class="hero-slider" style={`--hero-height:${height};`}>
@@ -22,7 +23,15 @@ const { slides, alt = "", height = "80vh" } = Astro.props;
   }
   <div class="hero-slider__overlay" aria-hidden="true"></div>
   <div class="hero-slider__content">
-    <slot />
+    {decorated ? (
+      <div class="hero-slider__decorated">
+        <span class="hero-slider__line"></span>
+        <slot />
+        <span class="hero-slider__line"></span>
+      </div>
+    ) : (
+      <slot />
+    )}
   </div>
   <div class="hero-slider__dots" aria-hidden="true">
     {slides.map((_, i) => <span class:list={["hero-slider__dot", i === 0 && "is-active"]} />)}
@@ -33,10 +42,11 @@ const { slides, alt = "", height = "80vh" } = Astro.props;
   .hero-slider {
     position: relative;
     width: 100%;
-    height: var(--hero-height, 80vh);
+    height: var(--hero-height, 100vh);
     min-height: 480px;
     overflow: hidden;
     background: #000;
+    margin-top: -90px;
   }
 
   .hero-slider__slide {
@@ -79,10 +89,29 @@ const { slides, alt = "", height = "80vh" } = Astro.props;
     z-index: 2;
     height: 100%;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
-    padding: 0 20px 56px;
+    padding: 0 20px;
     text-align: center;
+  }
+
+  .hero-slider__decorated {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .hero-slider__line {
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (min-width: 768px) {
+    .hero-slider__line {
+      width: 120px;
+    }
   }
 
   .hero-slider__dots {

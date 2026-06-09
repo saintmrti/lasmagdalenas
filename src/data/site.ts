@@ -40,7 +40,7 @@ export const social = {
 export const images = {
   logo: "/assets/2017_05_logo_2.png",
   logoMobile: "/assets/2017_07_logo_moviles@2x.png",
-  logoSticky: "/assets/2017_05_logo_2.png",
+  logoSticky: "/assets/2017_06_logo_sticky2.png",
   logoFooter: "/assets/2017_05_logo_footer.png",
   distintivoM: "/assets/2017_05_distintivoM_logo-e1496109923179.png",
   distintivoMAlt: "/assets/2017_05_distintivoM_logo-e1496109880667.png",

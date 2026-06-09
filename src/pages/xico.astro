@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import { site } from "../data/site";
@@ -21,8 +19,6 @@ const xicoImages = [
   description="Xico, Pueblo Mágico de Veracruz. Tradiciones, gastronomía y naturaleza."
   canonicalPath="/xico/"
 >
-  <Header />
-
   <main>
     <PageHero title="XICO" image={xicoImages[0]} />
 
@@ -37,6 +33,4 @@ const xicoImages = [
       </div>
     </section>
   </main>
-
-  <Footer />
 </BaseLayout>

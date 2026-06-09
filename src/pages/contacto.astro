@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site";
 ---
@@ -11,8 +9,6 @@ import { site } from "../data/site";
   description={`Contáctanos: ${site.phone} - ${site.email}`}
   canonicalPath="/contacto/"
 >
-  <Header />
-
   <main>
     <PageHero title="CONTACTO" image="/assets/2016_09_habitaciones-768x1155.jpg" />
 
@@ -55,6 +51,4 @@ import { site } from "../data/site";
       </div>
     </section>
   </main>
-
-  <Footer />
 </BaseLayout>
