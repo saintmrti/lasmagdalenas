@@ -26,13 +26,13 @@ const activityImages = [
         <SectionIntro
           lead="Xico es un Pueblo Mágico rodeado de naturaleza, tradición y gastronomía. Disfruta de actividades al aire libre, caminatas por el centro histórico, cafetales y experiencias gastronómicas."
         />
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-20">
           {
             activityImages.map((src) => (
               <img
                 src={src}
                 alt="Actividades"
-                class="w-full aspect-[4/3] object-cover"
+                class="w-full aspect-4/3 object-cover"
                 loading="lazy"
               />
             ))
