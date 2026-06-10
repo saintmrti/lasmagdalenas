@@ -6,15 +6,15 @@
   --color-surface-dark: #1d1d1d;
   --color-ink: #4a4a4a;
   --color-ink-soft: #8a8a8a;
+  --color-ink-dark: #543f3f;
   --color-ink-inverse: #ffffff;
   --color-accent: #e7ad44;
   --color-accent-dark: #b88a2c;
   --color-burgundy: #72305f;
   --color-line: #e2dcd2;
 
-  --font-display:
-    "Playfair Display", "Cormorant Garamond", "Times New Roman", serif;
-  --font-body: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Old Standard TT", "Times New Roman", serif;
+  --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
 }
 
 @layer base {
@@ -51,13 +51,8 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.02em;
     color: var(--color-ink);
-  }
-
-  p {
-    margin: 0 0 1em;
+    font-weight: 700;
   }
 
   button {

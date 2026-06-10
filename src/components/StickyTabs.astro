@@ -103,7 +103,10 @@ const { tabs, target = "[data-tab-section]" } = Astro.props;
     letter-spacing: 0.12em;
     color: var(--color-ink-soft);
     border: 1px solid transparent;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    transition:
+      color 0.2s,
+      border-color 0.2s,
+      background 0.2s;
   }
 
   .sticky-tabs__link:hover {

@@ -28,7 +28,11 @@ const xicoImages = [
           lead="Xico es un Pueblo Mágico rodeado de montañas, cafetales y tradiciones. Sus calles empedradas, su gastronomía y su gente hacen de este lugar un destino único para descansar y reconectar."
         />
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {xicoImages.map((src) => <img src={src} alt="Xico" class="w-full aspect-[4/3] object-cover" loading="lazy" />)}
+          {
+            xicoImages.map((src) => (
+              <img src={src} alt="Xico" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+            ))
+          }
         </div>
       </div>
     </section>

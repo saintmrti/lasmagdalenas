@@ -20,12 +20,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 
     <section class="section">
       <div class="container-x">
-        <img
-          src={images.eventoTitle}
-          alt="Eventos"
-          class="max-w-[240px] mx-auto mb-6"
-          loading="lazy"
-        />
+        <img src={images.eventoTitle} alt="Eventos" class="max-w-60 mx-auto mb-6" loading="lazy" />
         <SectionDivider />
         <SectionIntro
           lead="Somos el marco perfecto para celebrar tu momento. Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas."
@@ -40,24 +35,35 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
         {
           eventSpaces.map((space) => (
             <div id={space.id} data-tab-section class="mb-20 scroll-mt-24">
-              <h2 class="font-display text-[1.8rem] tracking-[0.1em] uppercase text-accent-dark text-center mb-6 mt-0">{space.title}</h2>
-              <p class="max-w-[720px] mx-auto mb-4 text-ink-soft leading-[1.7] text-center">{space.description}</p>
+              <h2 class="font-display text-3xl tracking-[0.1em] uppercase text-accent-dark text-center mb-6 mt-0">
+                {space.title}
+              </h2>
+              <p class="max-w-3xl mx-auto mb-4 text-ink-soft leading-[1.7] text-center">
+                {space.description}
+              </p>
 
               {space.capacity && (
-                <p class="font-bold text-ink text-center uppercase tracking-[0.14em] text-[0.9rem] mb-6">{space.capacity}</p>
+                <p class="font-bold text-ink text-center uppercase tracking-[0.14em] text-sm mb-6">
+                  {space.capacity}
+                </p>
               )}
 
               {!space.unavailable && space.ctaLabel && space.ctaHref && (
-                <a href={space.ctaHref} class="btn mb-8">{space.ctaLabel}</a>
+                <a href={space.ctaHref} class="btn mb-8">
+                  {space.ctaLabel}
+                </a>
               )}
 
               {space.images.length > 0 && (
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-[900px] mx-auto mt-8">
-                  {
-                    space.images.map((src, i) => (
-                      <img src={src} alt={`${space.title} ${i + 1}`} class="w-full aspect-[4/3] object-cover" loading="lazy" />
-                    ))
-                  }
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto mt-8">
+                  {space.images.map((src, i) => (
+                    <img
+                      src={src}
+                      alt={`${space.title} ${i + 1}`}
+                      class="w-full aspect-[4/3] object-cover"
+                      loading="lazy"
+                    />
+                  ))}
                 </div>
               )}
             </div>

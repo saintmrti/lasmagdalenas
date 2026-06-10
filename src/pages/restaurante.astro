@@ -48,18 +48,23 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
         <img
           src={images.restLogo}
           alt="El Veintidós Restaurante"
-          class="w-[200px] h-auto mx-auto mb-6"
+          class="w-48 h-auto mx-auto mb-6"
           loading="lazy"
         />
         <SectionDivider />
         <SectionIntro
-          titleText="&ldquo;RESCATANDO SABORES DEL PUEBLO&rdquo;"
+          titleText="“RESCATANDO SABORES DEL PUEBLO”"
           lead="Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos, tradicionales de Xico y españoles preparados con productos que se cosechan y se producen en el pueblo."
         />
-        <div class="grid grid-cols-2 gap-4 max-w-[900px] mx-auto mb-12">
+        <div class="grid grid-cols-2 gap-4 max-w-4xl mx-auto mb-12">
           {
             platillos.map((src, i) => (
-              <img src={src} alt={`Platillo ${i + 1}`} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+              <img
+                src={src}
+                alt={`Platillo ${i + 1}`}
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
             ))
           }
         </div>
@@ -68,7 +73,11 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
 
     <section class="section section--soft" id="menu-section">
       <div class="container-x">
-        <h2 class="font-display text-[1.8rem] tracking-[0.12em] uppercase text-accent-dark text-center mb-2 mt-0">Menú</h2>
+        <h2
+          class="font-display text-3xl tracking-[0.12em] uppercase text-accent-dark text-center mb-2 mt-0"
+        >
+          Menú
+        </h2>
         <SectionDivider />
       </div>
 
@@ -78,31 +87,35 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
         {
           menuSections.map((section) => (
             <div id={section.id} data-tab-section class="mb-16 scroll-mt-24">
-              <h3 class="font-display text-[1.4rem] tracking-[0.1em] uppercase text-accent-dark text-center mb-8 mt-0">{section.label}</h3>
-              {
-                section.subsections.map((sub) => (
-                  <div class="mb-8">
-                    {sub.title && (
-                      <h4 class="font-display text-[1.1rem] font-bold text-ink text-center mb-4 mt-0">{sub.title}</h4>
-                    )}
-                    <ul class="list-none p-0 m-0 max-w-[700px] mx-auto">
-                      {
-                        sub.items.map((item) => (
-                          <li class="flex justify-between items-baseline gap-4 py-2 border-b border-line/50 last:border-0">
-                            <div class="flex-1">
-                              <span class="font-semibold text-ink">{item.name}</span>
-                              {item.description && (
-                                <span class="block text-ink-soft text-sm mt-0.5">{item.description}</span>
-                              )}
-                            </div>
-                            <span class="font-semibold text-accent-dark whitespace-nowrap">{item.price}</span>
-                          </li>
-                        ))
-                      }
-                    </ul>
-                  </div>
-                ))
-              }
+              <h3 class="font-display text-xl tracking-[0.1em] uppercase text-accent-dark text-center mb-8 mt-0">
+                {section.label}
+              </h3>
+              {section.subsections.map((sub) => (
+                <div class="mb-8">
+                  {sub.title && (
+                    <h4 class="font-display text-lg font-bold text-ink text-center mb-4 mt-0">
+                      {sub.title}
+                    </h4>
+                  )}
+                  <ul class="list-none p-0 m-0 max-w-2xl mx-auto">
+                    {sub.items.map((item) => (
+                      <li class="flex justify-between items-baseline gap-4 py-2 border-b border-line/50 last:border-0">
+                        <div class="flex-1">
+                          <span class="font-semibold text-ink">{item.name}</span>
+                          {item.description && (
+                            <span class="block text-ink-soft text-sm mt-0.5">
+                              {item.description}
+                            </span>
+                          )}
+                        </div>
+                        <span class="font-semibold text-accent-dark whitespace-nowrap">
+                          {item.price}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
               {section.note && (
                 <p class="text-ink-soft text-sm italic text-center mt-4">{section.note}</p>
               )}
@@ -114,9 +127,12 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
 
     <section class="section">
       <div class="container-x text-center">
-        <h2 class="font-display text-[2.5rem] tracking-[0.08em] text-ink mb-2 mt-0">Buen Provecho</h2>
+        <h2 class="font-display text-4xl tracking-[0.08em] text-ink mb-2 mt-0">Buen Provecho</h2>
         <p class="text-ink-soft text-lg mb-1">Reservaciones:</p>
-        <a href={`tel:${site.phoneTel}`} class="font-display text-[1.5rem] text-accent hover:text-accent-dark transition-colors">
+        <a
+          href={`tel:${site.phoneTel}`}
+          class="font-display text-2xl text-accent hover:text-accent-dark transition-colors"
+        >
           +52 (228) 8130314
         </a>
       </div>
@@ -127,17 +143,26 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
         <img
           src={cafeteriaLogo}
           alt="Flor de Café - Cafetería & Pastelería"
-          class="w-[180px] h-auto mx-auto mb-6"
+          class="w-44 h-auto mx-auto mb-6"
           loading="lazy"
         />
-        <p class="font-display text-[1.3rem] text-ink-soft italic text-center mb-8">Un café es siempre una buena idea.</p>
-        <p class="max-w-[720px] mx-auto mb-8 text-ink-soft leading-[1.7] text-center">
-          Su ambiente acogedor y la belleza del lugar hacen de Flor de Café, un espacio ideal para disfrutar un buen café en compañía de tu pareja, amigos o familiares. Comparte tu momento con un delicioso postre o pastel elaborados en casa.
+        <p class="font-display text-xl text-ink-soft italic text-center mb-8">
+          Un café es siempre una buena idea.
         </p>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-[900px] mx-auto">
+        <p class="max-w-3xl mx-auto mb-8 text-ink-soft leading-[1.7] text-center">
+          Su ambiente acogedor y la belleza del lugar hacen de Flor de Café, un espacio ideal para
+          disfrutar un buen café en compañía de tu pareja, amigos o familiares. Comparte tu momento
+          con un delicioso postre o pastel elaborados en casa.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
           {
             cafeteriaSlides.map((src, i) => (
-              <img src={src} alt={`Cafetería ${i + 1}`} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+              <img
+                src={src}
+                alt={`Cafetería ${i + 1}`}
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
             ))
           }
         </div>
@@ -146,20 +171,42 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
 
     <section class="section">
       <div class="container-x">
-        <h2 class="font-display text-[1.1rem] tracking-[0.14em] uppercase text-accent-dark text-center mb-4 mt-0">SIGUENOS EN REDES</h2>
-        <ul class="list-none p-0 m-0 flex justify-center gap-6 uppercase tracking-[0.12em] text-[0.85rem]" aria-label="Redes del restaurante">
+        <h2
+          class="font-display text-lg tracking-[0.14em] uppercase text-accent-dark text-center mb-4 mt-0"
+        >
+          SIGUENOS EN REDES
+        </h2>
+        <ul
+          class="list-none p-0 m-0 flex justify-center gap-6 uppercase tracking-[0.12em] text-sm"
+          aria-label="Redes del restaurante"
+        >
           <li>
-            <a href={social.restaurantFacebook} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">
+            <a
+              href={social.restaurantFacebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-accent-dark transition-colors"
+            >
               Facebook
             </a>
           </li>
           <li>
-            <a href={social.restaurantInstagram} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">
+            <a
+              href={social.restaurantInstagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-accent-dark transition-colors"
+            >
               Instagram
             </a>
           </li>
           <li>
-            <a href={social.restaurantTripadvisor} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">
+            <a
+              href={social.restaurantTripadvisor}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-accent-dark transition-colors"
+            >
               TripAdvisor
             </a>
           </li>

@@ -49,10 +49,10 @@ const servicios = [
         <SectionDivider />
         <SectionIntro
           titleImage={images.hotelTitle}
-          title="Magnífica casona estilo colonial construida en el siglo XIX"
+          titleText="Magnífica casona estilo colonial construida en el siglo XIX"
           lead="Las Magdalenas Hotel Boutique emerge en una magnífica casona estilo colonial construida en el Siglo XIX, considerada ya, un monumento histórico. La exquisitez de su ambiente, es ideal para los huéspedes que desean una estancia llena de historia, descanso y servicio personalizado."
         />
-        <p class="max-w-[720px] mx-auto text-ink-soft leading-[1.7] text-center">
+        <p class="max-w-3xl mx-auto text-ink-soft leading-[1.7] text-center">
           Estamos ubicados en el Centro Histórico de Xico, Veracruz. Lo que permite a nuestros
           huéspedes caminar y disfrutar de los sitios culturales, naturales y gastronómicos más
           importantes de nuestro Pueblo Mágico.
@@ -62,8 +62,12 @@ const servicios = [
 
     <section class="section section--soft">
       <div class="container-x">
-        <h2 class="font-display text-[1.5rem] tracking-[0.12em] uppercase text-accent-dark text-center mb-8 mt-0">SERVICIOS</h2>
-        <ul class="list-none p-0 m-0 max-w-[600px] mx-auto text-left">
+        <h2
+          class="font-display text-2xl tracking-[0.12em] uppercase text-accent-dark text-center mb-8 mt-0"
+        >
+          SERVICIOS
+        </h2>
+        <ul class="list-none p-0 m-0 max-w-xl mx-auto text-left">
           {
             servicios.map((servicio) => (
               <li class="flex items-start gap-3 py-2 border-b border-line last:border-0">
@@ -90,9 +94,17 @@ const servicios = [
 
     <section class="section section--soft">
       <div class="container-x">
-        <h2 class="font-display text-[1.5rem] tracking-[0.12em] uppercase text-accent-dark text-center mb-8 mt-0">GALERÍA DEL HOTEL</h2>
+        <h2
+          class="font-display text-2xl tracking-[0.12em] uppercase text-accent-dark text-center mb-8 mt-0"
+        >
+          GALERÍA DEL HOTEL
+        </h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {hotelGallery.map((src) => <img src={src} alt="Hotel" class="w-full aspect-[4/3] object-cover" loading="lazy" />)}
+          {
+            hotelGallery.map((src) => (
+              <img src={src} alt="Hotel" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+            ))
+          }
         </div>
       </div>
     </section>

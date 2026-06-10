@@ -43,8 +43,7 @@ export const eventSpaces: EventSpace[] = [
   {
     id: "jardin",
     title: "JARDÍN SANTA CRUZ",
-    description:
-      "Lo sentimos por el momento no contamos con disponibilidad de este espacio.",
+    description: "Lo sentimos por el momento no contamos con disponibilidad de este espacio.",
     capacity: "",
     images: [],
     unavailable: true,

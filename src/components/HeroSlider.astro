@@ -23,15 +23,17 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
   }
   <div class="hero-slider__overlay" aria-hidden="true"></div>
   <div class="hero-slider__content">
-    {decorated ? (
-      <div class="hero-slider__decorated">
-        <span class="hero-slider__line"></span>
+    {
+      decorated ? (
+        <div class="hero-slider__decorated">
+          <span class="hero-slider__line" />
+          <slot />
+          <span class="hero-slider__line" />
+        </div>
+      ) : (
         <slot />
-        <span class="hero-slider__line"></span>
-      </div>
-    ) : (
-      <slot />
-    )}
+      )
+    }
   </div>
   <div class="hero-slider__dots" aria-hidden="true">
     {slides.map((_, i) => <span class:list={["hero-slider__dot", i === 0 && "is-active"]} />)}
@@ -77,11 +79,7 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
   .hero-slider__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.35) 100%);
   }
 
   .hero-slider__content {

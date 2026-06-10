@@ -14,37 +14,71 @@ import { site } from "../data/site";
 
     <section class="section">
       <div class="container-x">
-        <div class="max-w-[640px] mx-auto mb-12 text-center">
+        <div class="max-w-2xl mx-auto mb-12 text-center">
           <h2 class="font-display text-2xl text-accent-dark mb-4 mt-0">{site.name}</h2>
           <p class="text-ink-soft mb-2">{site.address}</p>
           <p class="text-ink-soft mb-2">
-            <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-dark transition-colors">VER MAPA</a>
+            <a
+              href={site.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-accent-dark transition-colors">VER MAPA</a
+            >
           </p>
           <p class="text-ink-soft mb-2">
-            Tel: <a href={`tel:${site.phoneTel}`} class="text-accent hover:text-accent-dark transition-colors">{site.phone}</a>
+            Tel: <a
+              href={`tel:${site.phoneTel}`}
+              class="text-accent hover:text-accent-dark transition-colors">{site.phone}</a
+            >
           </p>
           <p class="text-ink-soft mb-2">
-            Email: <a href={`mailto:${site.email}`} class="text-accent hover:text-accent-dark transition-colors">{site.email}</a>
+            Email: <a
+              href={`mailto:${site.email}`}
+              class="text-accent hover:text-accent-dark transition-colors">{site.email}</a
+            >
           </p>
         </div>
 
-        <form class="max-w-[480px] mx-auto flex flex-col gap-4" aria-label="Formulario de contacto">
-          <h3 class="font-display text-xl tracking-[0.12em] uppercase text-accent-dark text-center mb-2 mt-0">Envíanos un mensaje</h3>
+        <form class="max-w-xl mx-auto flex flex-col gap-4" aria-label="Formulario de contacto">
+          <h3
+            class="font-display text-xl tracking-[0.12em] uppercase text-accent-dark text-center mb-2 mt-0"
+          >
+            Envíanos un mensaje
+          </h3>
           <label class="flex flex-col gap-1.5">
-            <span class="text-[0.8rem] uppercase tracking-[0.1em] text-ink-soft">Nombre</span>
-            <input type="text" name="name" required class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent" />
+            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Nombre</span>
+            <input
+              type="text"
+              name="name"
+              required
+              class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent"
+            />
           </label>
           <label class="flex flex-col gap-1.5">
-            <span class="text-[0.8rem] uppercase tracking-[0.1em] text-ink-soft">Email</span>
-            <input type="email" name="email" required class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent" />
+            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Email</span>
+            <input
+              type="email"
+              name="email"
+              required
+              class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent"
+            />
           </label>
           <label class="flex flex-col gap-1.5">
-            <span class="text-[0.8rem] uppercase tracking-[0.1em] text-ink-soft">Teléfono</span>
-            <input type="tel" name="phone" class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent" />
+            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Teléfono</span>
+            <input
+              type="tel"
+              name="phone"
+              class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent"
+            />
           </label>
           <label class="flex flex-col gap-1.5">
-            <span class="text-[0.8rem] uppercase tracking-[0.1em] text-ink-soft">Mensaje</span>
-            <textarea name="message" rows="5" required class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent"></textarea>
+            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Mensaje</span>
+            <textarea
+              name="message"
+              rows="5"
+              required
+              class="font-body p-2.5 border border-line bg-surface text-ink focus:outline-2 focus:outline-accent"
+            ></textarea>
           </label>
           <button type="submit" class="btn self-center">ENVIAR</button>
         </form>

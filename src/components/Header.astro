@@ -37,7 +37,9 @@ const currentPath = Astro.url.pathname;
       class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto border-t md:border-0 max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-[600px] bg-black/90 md:bg-transparent"
       data-nav
     >
-      <ul class="list-none m-0 py-4 px-5 md:p-0 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 md:gap-y-1 md:gap-x-5">
+      <ul
+        class="list-none m-0 py-4 px-5 md:p-0 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 md:gap-y-1 md:gap-x-5"
+      >
         {
           navigation.map((item) => {
             const isActive = !item.external && item.href === currentPath;
@@ -46,7 +48,7 @@ const currentPath = Astro.url.pathname;
                 <a
                   href={item.href}
                   class:list={[
-                    "nav-link block py-2.5 md:py-1.5 text-[0.85rem] md:text-[0.78rem] tracking-[0.16em] uppercase font-bold border-b md:border-0 border-white/10 transition-colors",
+                    "nav-link block py-2.5 md:py-1.5 text-sm md:text-xs tracking-[0.16em] uppercase font-bold border-b md:border-0 border-white/10 transition-colors",
                     isActive && "text-accent",
                   ]}
                   target={item.external ? "_blank" : undefined}
@@ -59,12 +61,7 @@ const currentPath = Astro.url.pathname;
           })
         }
         <li class="mt-2 md:mt-0">
-          <a
-            href={site.bookingUrl}
-            class="btn-reserve"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={site.bookingUrl} class="btn-reserve" target="_blank" rel="noopener noreferrer">
             RESERVAR
           </a>
         </li>
@@ -88,7 +85,8 @@ const currentPath = Astro.url.pathname;
 
   if (header) {
     const sentinel = document.createElement("div");
-    sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;";
+    sentinel.style.cssText =
+      "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;";
     header.parentElement?.insertBefore(sentinel, header.nextSibling);
 
     const observer = new IntersectionObserver(
@@ -136,7 +134,10 @@ const currentPath = Astro.url.pathname;
     font-weight: 700;
     color: var(--color-ink-inverse);
     background: transparent;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
     width: 100%;
     text-align: center;
   }
