@@ -10,9 +10,15 @@ const { titleImage, titleText, lead, align = "center" } = Astro.props;
 const alignClass = align === "left" ? "text-left" : "text-center";
 ---
 
-<header class:list={["mx-auto mb-10", alignClass]}>
-  {titleImage && <img src={titleImage} alt="" class="max-w-[320px] mx-auto mb-6" loading="lazy" />}
-  {titleText && <h2 class="font-display text-[1.6rem] md:text-[2rem] tracking-[0.08em] uppercase text-accent-dark mb-5 mt-0">{titleText}</h2>}
-  {lead && <p class="max-w-[720px] mx-auto mb-4 text-ink-soft leading-[1.7]">{lead}</p>}
+<header class:list={["max-w-3xl mx-auto", alignClass]}>
+  {titleImage && <img src={titleImage} alt="" class="max-w-40 mx-auto mb-6" loading="lazy" />}
+  {
+    titleText && (
+      <h2 class="font-display text-3xl md:text-4xl leading-tight font-normal tracking-tighter text-ink-dark mt-5 mb-2.5">
+        {titleText}
+      </h2>
+    )
+  }
+  {lead && <p class="mx-auto text-ink-soft leading-[1.7]">{lead}</p>}
   <slot />
 </header>

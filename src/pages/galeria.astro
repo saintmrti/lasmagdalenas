@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site";
 
@@ -41,7 +39,7 @@ const galleryImages = [
   "/assets/2017_07_slidehome_21.jpg",
   "/assets/2016_09_jardin_fondo.jpg",
   "/assets/2016_09_cafeteria_fondo.jpg",
-  "/assets/2016_09_hotel-slider-1.jpg",
+  "/assets/2016_09_hotel-slider-1-870x500.jpg",
 ];
 ---
 
@@ -50,19 +48,24 @@ const galleryImages = [
   description="Galería de imágenes de Las Magdalenas Hotel Boutique."
   canonicalPath="/galeria/"
 >
-  <Header />
-
   <main>
     <PageHero title="GALERÍA" image={galleryImages[0]} />
 
     <section class="section">
       <div class="container-x">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4">
-          {galleryImages.map((src) => <img src={src} alt="Galería" class="w-full aspect-square object-cover" loading="lazy" />)}
+          {
+            galleryImages.map((src) => (
+              <img
+                src={src}
+                alt="Galería"
+                class="w-full aspect-square object-cover"
+                loading="lazy"
+              />
+            ))
+          }
         </div>
       </div>
     </section>
   </main>
-
-  <Footer />
 </BaseLayout>
