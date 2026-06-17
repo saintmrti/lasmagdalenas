@@ -16,7 +16,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
   canonicalPath="/eventos/"
 >
   <main>
-    <PageHero title="" image={images.eventoHome} height="70vh" />
+    <PageHero image={images.eventoHome} height="70vh" />
 
     <section class="section events-intro">
       <div class="container-x">
@@ -48,7 +48,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
             >
               <div class="event-space__content">
                 <p class="event-space__eyebrow">Espacio {index + 1}</p>
-                <h2 class="font-display text-3xl tracking-[0.1em] uppercase text-accent-dark text-center mb-6 mt-0">
+                <h2 class="font-display text-3xl uppercase text-accent-dark text-center mb-6 mt-0">
                   {space.title}
                 </h2>
                 <p class="max-w-3xl mx-auto mb-4 text-ink-soft leading-[1.7] text-center">
@@ -95,7 +95,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
     max-width: 52rem;
     margin: 0 auto;
     padding: 3rem 1.5rem;
-    background: linear-gradient(rgba(29, 29, 29, 0.44), rgba(29, 29, 29, 0.44)), #72305f;
+    background: linear-gradient(rgba(29, 29, 29, 0.44), rgba(29, 29, 29, 0.44)), #404040;
     box-shadow: 0 2rem 4rem rgba(29, 29, 29, 0.18);
   }
 
@@ -104,7 +104,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
     position: absolute;
     inset: 1rem;
     pointer-events: none;
-    border: 1px solid rgba(231, 173, 68, 0.36);
+    border: 1px solid white;
   }
 
   .events-intro__card :global(p) {
@@ -132,7 +132,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 
   .event-space__eyebrow {
     margin: 0 0 0.75rem;
-    color: #72305f;
+    color: #404040;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.18em;

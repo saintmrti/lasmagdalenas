@@ -18,17 +18,17 @@ export const navigation = [
   { label: "HABITACIONES", href: site.bookingUrl, external: true },
   { label: "RESTAURANTE", href: "/restaurante/" },
   { label: "EVENTOS", href: "/eventos/" },
-  { label: "ACTIVIDADES", href: "/actividades/" },
+  // { label: "ACTIVIDADES", href: "/actividades/" },
   { label: "PROMOCIONES", href: "/promociones/" },
   { label: "CONTACTO", href: "/contacto/" },
-  { label: "XICO", href: "/xico/" },
+  // { label: "XICO", href: "/xico/" },
 ];
 
 export const galleryLink = { label: "Galería", href: "/galeria/" };
 
 export const social = {
   facebook: "https://www.facebook.com/lasmagdalenashotelboutique",
-  instagram: "https://www.instagram.com/lasmagdalenas.hotelboutique/",
+  instagram: "https://www.instagram.com/lasmagdalenashotel/",
   tripadvisor:
     "https://www.tripadvisor.com.mx/Hotel_Review-g1915759-d4025983-Reviews-Las_Magdalenas_Boutique_Hotel-Xico_Central_Mexico_and_Gulf_Coast.html",
   restaurantFacebook: "https://www.facebook.com/elveintidosrestaurante/",

@@ -5,22 +5,10 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="site-header" data-header>
-  <div class="container-x flex items-center justify-between gap-3 py-3.5 relative">
+  <div class="container-x flex items-center justify-between gap-3 py-1 relative">
     <a href="/" class="inline-flex items-center" aria-label={site.name}>
-      <img
-        src={images.logo}
-        alt={site.name}
-        class="logo-default h-[70px] w-auto"
-        data-logo-default
-      />
-      <img
-        src={images.logoSticky}
-        alt={site.name}
-        class="logo-sticky h-[70px] w-auto hidden"
-        data-logo-sticky
-      />
+      <img src={images.logo} alt={site.name} class="h-24 w-auto md:h-32" />
     </a>
-
     <button
       class="md:hidden inline-flex flex-col justify-center gap-1.5 p-2 w-10 h-10 bg-transparent border-0"
       type="button"
@@ -34,7 +22,7 @@ const currentPath = Astro.url.pathname;
     </button>
 
     <nav
-      class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto border-t md:border-0 max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-[600px] bg-black/90 md:bg-transparent"
+      class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto border-t md:border-0 max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-150 bg-black/90 md:bg-transparent"
       data-nav
     >
       <ul
@@ -48,7 +36,7 @@ const currentPath = Astro.url.pathname;
                 <a
                   href={item.href}
                   class:list={[
-                    "nav-link block py-2.5 md:py-1.5 text-sm md:text-xs tracking-[0.16em] uppercase font-bold border-b md:border-0 border-white/10 transition-colors",
+                    "nav-link block py-2.5 md:py-1.5 text-base md:text-sm uppercase border-b md:border-0 border-white/10 transition-colors",
                     isActive && "text-accent",
                   ]}
                   target={item.external ? "_blank" : undefined}
@@ -74,8 +62,6 @@ const currentPath = Astro.url.pathname;
   const header = document.querySelector<HTMLElement>("[data-header]");
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const nav = document.querySelector<HTMLElement>("[data-nav]");
-  // const logoDefault = document.querySelector<HTMLImageElement>("[data-logo-default]");
-  // const logoSticky = document.querySelector<HTMLImageElement>("[data-logo-sticky]");
 
   toggle?.addEventListener("click", () => {
     const isOpen = nav?.classList.toggle("is-open");
@@ -107,13 +93,19 @@ const currentPath = Astro.url.pathname;
     left: 0;
     right: 0;
     z-index: 50;
-    background: transparent;
-    transition: background-color 0.3s ease;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease;
   }
 
   .site-header.is-sticky {
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
+    transform: translateY(-100%);
+  }
+
+  @media (max-width: 767px) {
+    .site-header.is-sticky {
+      transform: translateY(0);
+    }
   }
 
   .nav-link {
@@ -127,13 +119,10 @@ const currentPath = Astro.url.pathname;
   .btn-reserve {
     display: inline-block;
     padding: 14px 32px;
-    border: 1px solid var(--color-ink-inverse);
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.78rem;
-    font-weight: 700;
+    font-size: 0.875rem;
     color: var(--color-ink-inverse);
-    background: transparent;
+    background-color: #c04a40;
     transition:
       background 0.2s,
       color 0.2s,
@@ -143,14 +132,13 @@ const currentPath = Astro.url.pathname;
   }
 
   .btn-reserve:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background-color: #85898d;
   }
 
   @media (min-width: 768px) {
     .btn-reserve {
       width: auto;
-      padding: 10px 24px;
+      padding: 13px 30px;
     }
   }
 
@@ -168,22 +156,5 @@ const currentPath = Astro.url.pathname;
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
-  }
-
-  .logo-default,
-  .logo-sticky {
-    display: none;
-  }
-
-  .site-header .logo-default {
-    display: block;
-  }
-
-  .site-header.is-sticky .logo-default {
-    display: none;
-  }
-
-  .site-header.is-sticky .logo-sticky {
-    display: block;
   }
 </style>
