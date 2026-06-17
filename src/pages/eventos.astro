@@ -37,7 +37,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 
     <StickyTabs tabs={eventTabs} />
 
-    <section class="section">
+    <section class="section events-spaces">
       <div class="container-x">
         {
           eventSpaces.map((space, index) => (
@@ -117,6 +117,10 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
     max-width: 68rem;
     margin: 0 auto 5rem;
     scroll-margin-top: 6rem;
+  }
+
+  .events-spaces {
+    padding-top: 2rem;
   }
 
   .event-space:last-child {
