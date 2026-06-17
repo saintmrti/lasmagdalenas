@@ -156,7 +156,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 
   .event-space__gallery {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 
@@ -170,7 +170,7 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
   }
 
   .event-space__image--1 {
-    grid-row: span 2;
+    grid-row: auto;
   }
 
   .event-space--unavailable {
@@ -211,6 +211,14 @@ const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 
     .event-space__image {
       min-height: 13rem;
+    }
+
+    .event-space__gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .event-space__image--1 {
+      grid-row: span 2;
     }
 
     .event-space--unavailable {
