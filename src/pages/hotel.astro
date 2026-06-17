@@ -13,11 +13,11 @@ const hotelSlides = [
 ];
 
 const hotelGallery = [
-  "/assets/2017_07_slide_hotel_1-1.jpg",
+  // "/assets/2017_07_slide_hotel_1-1.jpg",
   "/assets/2017_07_slide_hotel_2-1.jpg",
   "/assets/2017_07_slide_hotel_3-1.jpg",
   "/assets/2017_07_slide_hotel_4.jpg",
-  "/assets/2017_07_slide_hotel_9.jpg",
+  // "/assets/2017_07_slide_hotel_9.jpg",
   "/assets/2017_07_slide_hotel_10.jpg",
 ];
 
@@ -138,7 +138,7 @@ const servicios = [
 
   .hotel-services__eyebrow {
     margin: 0 0 0.75rem;
-    color: #72305f;
+    color: #c04a40;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -215,7 +215,7 @@ const servicios = [
 
   .hotel-gallery__eyebrow {
     margin: 0 0 0.75rem;
-    color: #72305f;
+    color: #c04a40;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -224,10 +224,8 @@ const servicios = [
   }
 
   .hotel-gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 9rem;
-    gap: 0.75rem;
+    column-count: 1;
+    column-gap: 0.9rem;
     max-width: 68rem;
     margin: 0 auto;
   }
@@ -235,20 +233,22 @@ const servicios = [
   .hotel-gallery__item {
     position: relative;
     overflow: hidden;
-    margin: 0;
+    break-inside: avoid;
+    margin: 0 0 0.9rem;
     background: #1d1d1d;
     box-shadow: 0 1.25rem 2.5rem rgba(84, 63, 63, 0.12);
   }
 
   .hotel-gallery__item--1 {
-    grid-column: span 2;
-    grid-row: span 2;
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .hotel-gallery__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.45s ease;
   }
 
@@ -262,7 +262,7 @@ const servicios = [
     margin: 0 auto;
     padding: 3rem 1.5rem;
     text-align: center;
-    background: linear-gradient(rgba(29, 29, 29, 0.44), rgba(29, 29, 29, 0.44)), #72305f;
+    background: linear-gradient(rgba(29, 29, 29, 0.44), rgba(29, 29, 29, 0.44)), #c04a40;
     box-shadow: 0 2rem 4rem rgba(29, 29, 29, 0.24);
   }
 
@@ -313,46 +313,12 @@ const servicios = [
     }
 
     .hotel-gallery__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-auto-rows: 10rem;
-      gap: 1rem;
-    }
-
-    .hotel-gallery__item--1 {
-      grid-column: span 2;
-      grid-row: span 2;
+      column-count: 2;
+      column-gap: 1rem;
     }
 
     .hotel-cta {
       padding: 4rem 3rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .hotel-gallery__grid {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      grid-auto-rows: 9rem;
-    }
-
-    .hotel-gallery__item--1 {
-      grid-column: span 2;
-      grid-row: span 3;
-    }
-
-    .hotel-gallery__item--2,
-    .hotel-gallery__item--3 {
-      grid-column: span 2;
-    }
-
-    .hotel-gallery__item--4 {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .hotel-gallery__item--5,
-    .hotel-gallery__item--6,
-    .hotel-gallery__item--7 {
-      grid-column: span 2;
     }
   }
 </style>
