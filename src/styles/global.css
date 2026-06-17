@@ -4,12 +4,12 @@
   --color-surface: #ffffff;
   --color-surface-soft: #f7f4f2;
   --color-surface-dark: #1d1d1d;
-  --color-ink: #4a4a4a;
+  --color-ink: #2a2a2a;
   --color-ink-soft: #8a8a8a;
   --color-ink-dark: #543f3f;
   --color-ink-inverse: #ffffff;
-  --color-accent: #e7ad44;
-  --color-accent-dark: #b88a2c;
+  --color-accent: #c04a40;
+  --color-accent-dark: #9a3b33;
   --color-burgundy: #72305f;
   --color-line: #e2dcd2;
 
@@ -52,7 +52,7 @@
   h4 {
     font-family: var(--font-display);
     color: var(--color-ink);
-    font-weight: 700;
+    font-weight: 400;
   }
 
   button {
@@ -89,9 +89,7 @@
     padding: 14px 32px;
     border: 1px solid currentColor;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-size: 14px;
     color: var(--color-ink);
     background: transparent;
     transition:
@@ -112,8 +110,8 @@
 
     &:hover,
     &:focus {
-      background-color: var(--color-ink-inverse);
-      color: var(--color-accent-dark);
+      background-color: var(--color-accent);
+      color: var(--color-ink-inverse);
     }
   }
 }

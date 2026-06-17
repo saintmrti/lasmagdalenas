@@ -13,17 +13,7 @@ import { homeContent, images, site } from "../data/site";
   canonicalPath="/"
 >
   <main>
-    <HeroSlider slides={images.heroSlides} alt={site.name}>
-      <a
-        href={site.bookingUrl}
-        class="btn btn--inverse hero__cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {homeContent.hero.cta}
-      </a>
-    </HeroSlider>
-
+    <HeroSlider slides={images.heroSlides} alt={site.name} height="70vh" />
     <section class="section">
       <div class="container-x">
         <SectionIntro
@@ -48,7 +38,7 @@ import { homeContent, images, site } from "../data/site";
       </div>
     </section>
 
-    <section class="section restaurant-feature">
+    <section class="section bg-white">
       <div class="container-x">
         <div class="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div class="restaurant-feature__copy">
@@ -104,7 +94,7 @@ import { homeContent, images, site } from "../data/site";
               loading="lazy"
             />
             <SectionIntro lead={homeContent.eventos.text} />
-            <a href={homeContent.eventos.ctaHref} class="btn btn--inverse">
+            <a href={homeContent.eventos.ctaHref} class="btn btn--inverse mt-6">
               {homeContent.eventos.cta}
             </a>
           </div>
@@ -132,37 +122,14 @@ import { homeContent, images, site } from "../data/site";
 
 <style>
   .hero__cta {
-    display: inline-block;
-  }
-
-  .restaurant-feature {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 20% 0%, rgba(231, 173, 68, 0.16), transparent 32rem),
-      linear-gradient(180deg, #fff 0%, #f7f4f2 100%);
-  }
-
-  .restaurant-feature::before {
-    content: "";
-    position: absolute;
-    inset: 2rem;
-    pointer-events: none;
-    border: 1px solid rgba(231, 173, 68, 0.22);
-  }
-
-  .restaurant-feature__copy {
-    position: relative;
-    z-index: 1;
+    bottom: 2rem;
+    left: 50%;
   }
 
   .restaurant-feature__logo-card {
     width: fit-content;
     margin: 0 auto 1.5rem;
     padding: 1.5rem 1.75rem;
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid rgba(114, 48, 95, 0.14);
-    box-shadow: 0 1.5rem 3rem rgba(84, 63, 63, 0.1);
   }
 
   .restaurant-feature__gallery {
@@ -194,7 +161,7 @@ import { homeContent, images, site } from "../data/site";
     overflow: hidden;
     max-width: 72rem;
     margin: 0 auto;
-    background: #72305f;
+    background: #404040;
     box-shadow: 0 2rem 4rem rgba(29, 29, 29, 0.24);
   }
 
@@ -208,7 +175,7 @@ import { homeContent, images, site } from "../data/site";
     position: relative;
     padding: 3rem 1.5rem;
     color: #fff;
-    background: linear-gradient(rgba(29, 29, 29, 0.36), rgba(29, 29, 29, 0.36)), #72305f;
+    background: linear-gradient(rgba(29, 29, 29, 0.36), rgba(29, 29, 29, 0.36)), #404040;
   }
 
   .events-feature__content::before {
@@ -216,7 +183,7 @@ import { homeContent, images, site } from "../data/site";
     position: absolute;
     inset: 1rem;
     pointer-events: none;
-    border: 1px solid rgba(231, 173, 68, 0.36);
+    border: 1px solid white;
   }
 
   .events-feature__content :global(p) {

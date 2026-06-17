@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
+import PageTitle from "../components/PageTitle.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import PromoGrid from "../components/PromoGrid.astro";
-import { images, site } from "../data/site";
+import { site } from "../data/site";
 ---
 
 <BaseLayout
@@ -12,7 +12,7 @@ import { images, site } from "../data/site";
   canonicalPath="/promociones/"
 >
   <main>
-    <PageHero title="PROMOCIONES" image={images.promociones[0].image} />
+    <PageTitle title="PROMOCIONES" />
 
     <section class="section">
       <div class="container-x">
