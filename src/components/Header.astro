@@ -70,19 +70,23 @@ const currentPath = Astro.url.pathname;
   });
 
   if (header) {
-    const sentinel = document.createElement("div");
-    sentinel.style.cssText =
-      "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;";
-    header.parentElement?.insertBefore(sentinel, header.nextSibling);
+    let lastScrollY = window.scrollY;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const scrolled = !entry.isIntersecting;
-        header.classList.toggle("is-sticky", scrolled);
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+          header.classList.add("is-hidden");
+        } else if (currentScrollY < lastScrollY) {
+          header.classList.remove("is-hidden");
+        }
+
+        lastScrollY = currentScrollY;
       },
-      { threshold: 0 }
+      { passive: true }
     );
-    observer.observe(sentinel);
   }
 </script>
 
@@ -98,14 +102,8 @@ const currentPath = Astro.url.pathname;
     transition: transform 0.3s ease;
   }
 
-  .site-header.is-sticky {
+  .site-header.is-hidden {
     transform: translateY(-100%);
-  }
-
-  @media (max-width: 767px) {
-    .site-header.is-sticky {
-      transform: translateY(0);
-    }
   }
 
   .nav-link {
