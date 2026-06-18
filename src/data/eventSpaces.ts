@@ -20,6 +20,7 @@ export const eventSpaces: EventSpace[] = [
       "/assets/2017_07_slide_corredor_1.jpg",
       "/assets/2017_07_slide_corredor_2.jpg",
       "/assets/2017_07_slide_corredor_3.jpg",
+      "/assets/2017_07_slide_corredor_4.jpg",
     ],
     ctaLabel: "Solicitar Cotización",
     ctaHref: "/contacto/",
@@ -32,7 +33,7 @@ export const eventSpaces: EventSpace[] = [
     capacity: "CAPACIDAD PARA 70 INVITADOS",
     images: [
       "/assets/2017_07_slide_patio_7.jpg",
-      // "/assets/2017_07_slide_patio_8.jpg",
+      "/assets/2017_07_slide_patio_8.jpg",
       // "/assets/2017_07_slide_patio_9.jpg",
       "/assets/2017_07_slide_patio_10.jpg",
       "/assets/2017_07_slide_patio_11.jpg",
