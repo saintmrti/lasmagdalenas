@@ -43,12 +43,13 @@ const galleryImages = [
 ---
 
 <BaseLayout
-  title={`Actividades - ${site.name}`}
-  description="Descubre las actividades y experiencias en Xico, Pueblo Mágico de Veracruz: recorridos históricos, experiencia del café y paseos a caballo."
+  title={`Actividades y Experiencias en Xico, Veracruz | ${site.name}`}
+  description="Actividades y experiencias en Xico, Pueblo Mágico de Veracruz: recorridos históricos, experiencia del café cosecha a la taza y paseos a caballo por cafetales."
   canonicalPath="/actividades/"
 >
   <main>
     <PageHero title="ACTIVIDADES" image="/assets/2016_09_actividades_fondo.jpg" />
+    <h1 class="sr-only">Actividades y Experiencias en Xico, Veracruz</h1>
 
     <section class="section">
       <div class="container-x">
@@ -126,7 +127,7 @@ const galleryImages = [
               <figure class={`activities-gallery__item activities-gallery__item--${i + 1}`}>
                 <img
                   src={src}
-                  alt={`Experiencia ${i + 1}`}
+                  alt={`Experiencias en Xico, Veracruz - ${i + 1}`}
                   class="activities-gallery__image"
                   loading="lazy"
                 />

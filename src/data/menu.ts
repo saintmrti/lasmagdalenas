@@ -45,8 +45,7 @@ export const menuSections: MenuSection[] = [
         items: [
           {
             name: "Huevos rancheros",
-            description:
-              "Fritos, montados en tortilla con frijoles y jamón, bañados en salsa roja",
+            description: "Fritos, montados en tortilla con frijoles y jamón, bañados en salsa roja",
             price: "$95",
           },
           {
@@ -83,8 +82,7 @@ export const menuSections: MenuSection[] = [
           },
           {
             name: "Omelette",
-            description:
-              "Relleno de tocino o jamón o chorizo o champiñones o queso manchego",
+            description: "Relleno de tocino o jamón o chorizo o champiñones o queso manchego",
             price: "$90",
           },
           {
@@ -240,8 +238,7 @@ export const menuSections: MenuSection[] = [
           },
           {
             name: "Tortilla española Doña Roció",
-            description:
-              "Con chorizo español. Receta de la familia. (15 min)",
+            description: "Con chorizo español. Receta de la familia. (15 min)",
             price: "$170",
           },
           {
@@ -372,8 +369,7 @@ export const menuSections: MenuSection[] = [
           },
           {
             name: "Enfrijoladas veracruzanas",
-            description:
-              "Rellenas de pollo o huevo, preparadas con aguacate, chorizo y crema",
+            description: "Rellenas de pollo o huevo, preparadas con aguacate, chorizo y crema",
             price: "$125",
           },
           {
@@ -389,8 +385,7 @@ export const menuSections: MenuSection[] = [
           },
           {
             name: "Enchiladas mayordomo",
-            description:
-              "Rellenas de pollo, bañadas en salsa roja o verde y gratinadas con queso",
+            description: "Rellenas de pollo, bañadas en salsa roja o verde y gratinadas con queso",
             price: "$125",
           },
         ],

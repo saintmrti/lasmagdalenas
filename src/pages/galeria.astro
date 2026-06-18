@@ -44,12 +44,13 @@ const galleryImages = [
 ---
 
 <BaseLayout
-  title={`Galería - ${site.name}`}
-  description="Galería de imágenes de Las Magdalenas Hotel Boutique."
+  title={`Galería | ${site.name}`}
+  description="Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: habitaciones, restaurante, eventos, jardines y cafetería de un Pueblo Mágico."
   canonicalPath="/galeria/"
 >
   <main>
     <PageHero title="GALERÍA" image={galleryImages[0]} />
+    <h1 class="sr-only">Galería de Las Magdalenas Hotel Boutique</h1>
 
     <section class="section">
       <div class="container-x">
@@ -58,7 +59,7 @@ const galleryImages = [
             galleryImages.map((src) => (
               <img
                 src={src}
-                alt="Galería"
+                alt={`Las Magdalenas Hotel Boutique en Xico, Veracruz - ${src.split("/").pop()}`}
                 class="w-full aspect-square object-cover"
                 loading="lazy"
               />

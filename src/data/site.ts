@@ -11,6 +11,14 @@ export const site = {
   bookingUrl:
     "https://app.thebookingbutton.com/properties/%20lasmagdalenashotelboutiquedirect?check_in_date=07-07-2017&check_out_date=08-07-2017&number_adults=2",
   language: "ES",
+  url: "https://lasmagdalenas.com",
+  geo: {
+    latitude: 19.4211439,
+    longitude: -97.0088023,
+    region: "Veracruz",
+    country: "MX",
+  },
+  socialImage: "/assets/2017_07_slidehome_19.jpg",
 };
 
 export const navigation = [

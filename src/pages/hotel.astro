@@ -32,14 +32,50 @@ const servicios = [
   { icon: "✈️", text: "Traslado al aeropuerto*" },
   { icon: "🚌", text: "Traslado a central de autobuses de Xalapa*" },
 ];
+
+const hotelLd = {
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  name: site.name,
+  description:
+    "Hotel boutique en Xico, Veracruz, ubicado en una casona colonial del siglo XIX. Hospedaje con habitaciones, restaurante y eventos en un Pueblo Mágico.",
+  url: `${site.url}/hotel/`,
+  image: new URL(images.habitacionDeluxe, site.url).toString(),
+  telephone: site.phoneTel,
+  email: site.email,
+  priceRange: "$$",
+  starRating: { "@type": "Rating", ratingValue: "4" },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hidalgo 123, Colonia Centro",
+    addressLocality: "Xico",
+    addressRegion: "Veracruz",
+    postalCode: "91240",
+    addressCountry: "MX",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  amenityFeature: [
+    { "@type": "LocationFeatureSpecification", name: "Restaurante" },
+    { "@type": "LocationFeatureSpecification", name: "Cava & Bar" },
+    { "@type": "LocationFeatureSpecification", name: "Cafetería" },
+    { "@type": "LocationFeatureSpecification", name: "Wi-Fi" },
+    { "@type": "LocationFeatureSpecification", name: "Estacionamiento" },
+  ],
+};
 ---
 
 <BaseLayout
-  title={`Hotel - ${site.name}`}
-  description="Las Magdalenas Hotel Boutique: una casona colonial del siglo XIX en Xico, Veracruz."
+  title={`Hotel Boutique en Xico, Veracruz | ${site.name}`}
+  description="Hotel boutique en Xico, Veracruz: hospedaje en una casona colonial del siglo XIX. Habitaciones con vigones de madera, restaurante, cafetería y servicios. Hoteles y hospedaje en Xico, Pueblo Mágico."
   canonicalPath="/hotel/"
+  jsonLd={[hotelLd]}
 >
   <main>
+    <h1 class="sr-only">Hotel Boutique en Xico, Veracruz</h1>
     <HeroSlider slides={hotelSlides} alt="Hotel Las Magdalenas" height="70vh" />
 
     <section class="section">
