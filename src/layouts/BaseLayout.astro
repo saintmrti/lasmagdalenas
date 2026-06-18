@@ -2,20 +2,58 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { site, social, images } from "../data/site";
 
 interface Props {
   title: string;
   description?: string;
   canonicalPath?: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title,
   description = "Hotel boutique en Xico, Veracruz, ubicado en una casona colonial del siglo XIX. Habitaciones, restaurante, eventos y experiencias en un Pueblo Mágico.",
   canonicalPath = "/",
+  image = site.socialImage,
+  noindex = false,
+  jsonLd = [],
 } = Astro.props;
 
-const canonical = new URL(canonicalPath, Astro.site ?? "https://lasmagdalenas.com/").toString();
+const baseUrl = (Astro.site ?? site.url).toString().replace(/\/$/, "");
+const canonical = new URL(canonicalPath, baseUrl).toString();
+const ogImage = new URL(image, baseUrl).toString();
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: baseUrl,
+  logo: new URL(images.logo, baseUrl).toString(),
+  telephone: site.phoneTel,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hidalgo 123, Colonia Centro",
+    addressLocality: "Xico",
+    addressRegion: "Veracruz",
+    postalCode: "91240",
+    addressCountry: "MX",
+  },
+  sameAs: [social.facebook, social.instagram, social.tripadvisor],
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  url: baseUrl,
+  inLanguage: "es-MX",
+};
+
+const allLd = [organizationLd, websiteLd, ...jsonLd];
 ---
 
 <!doctype html>
@@ -25,7 +63,15 @@ const canonical = new URL(canonicalPath, Astro.site ?? "https://lasmagdalenas.co
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"}
+    />
     <meta name="theme-color" content="#ffffff" />
+    <meta name="geo.region" content="MX-VER" />
+    <meta name="geo.placename" content="Xico, Veracruz" />
+    <meta name="geo.position" content={`${site.geo.latitude};${site.geo.longitude}`} />
+    <meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +80,19 @@ const canonical = new URL(canonicalPath, Astro.site ?? "https://lasmagdalenas.co
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_MX" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(allLd)} />
   </head>
   <body>
     <Header />

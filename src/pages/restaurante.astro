@@ -33,14 +33,43 @@ const cafeteriaSlides = [
 const cafeteriaLogo = "/assets/2017_06_cafeteria_logo@2x-253x300.png";
 
 const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
+
+const restaurantLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: "El Veintidós Restaurante & Cava",
+  description:
+    "Restaurante en Xico, Veracruz. Platillos prehispánicos, tradicionales de Xico y españoles. Desayunos, comida y cena en un Pueblo Mágico.",
+  url: `${site.url}/restaurante/`,
+  image: new URL(images.restSlides[0], site.url).toString(),
+  telephone: site.phoneTel,
+  servesCuisine: ["Prehispánica", "Tradicional de Xico", "Española"],
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hidalgo 123, Colonia Centro",
+    addressLocality: "Xico",
+    addressRegion: "Veracruz",
+    postalCode: "91240",
+    addressCountry: "MX",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+  acceptsReservations: "True",
+};
 ---
 
 <BaseLayout
-  title={`El Veintidós - Restaurante & Cava - Xico, Pueblo Mágico de Veracruz`}
-  description="El Veintidós: restaurante en Xico, Veracruz. Platillos prehispánicos, tradicionales y españoles."
+  title={`El Veintidós | Restaurante en Xico, Veracruz`}
+  description="Restaurante en Xico, Veracruz: desayunos, comida y cena con platillos prehispánicos, tradicionales de Xico y españoles. Reserva en El Veintidós Restaurante & Cava, Pueblo Mágico."
   canonicalPath="/restaurante/"
+  jsonLd={[restaurantLd]}
 >
   <main>
+    <h1 class="sr-only">El Veintidós - Restaurante en Xico, Veracruz</h1>
     <HeroSlider slides={restSlides} alt="El Veintidós Restaurante" height="70vh" />
 
     <section class="section bg-white">
@@ -61,7 +90,7 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
             platillos.map((src, i) => (
               <img
                 src={src}
-                alt={`Platillo ${i + 1}`}
+                alt={`Platillo de El Veintidós Restaurante en Xico, Veracruz - ${i + 1}`}
                 class="w-full aspect-[4/3] object-cover"
                 loading="lazy"
               />
@@ -165,7 +194,7 @@ const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
               cafeteriaSlides.map((src, i) => (
                 <img
                   src={src}
-                  alt={`Cafetería ${i + 1}`}
+                  alt={`Flor de Café, cafetería en Xico, Veracruz - ${i + 1}`}
                   class={`cafe-feature__image cafe-feature__image--${i + 1}`}
                   loading="lazy"
                 />

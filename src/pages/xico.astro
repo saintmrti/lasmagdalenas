@@ -55,12 +55,13 @@ const introImages = [
 ---
 
 <BaseLayout
-  title={`Xico, Pueblo Mágico - ${site.name}`}
-  description="Xico, Pueblo Mágico de Veracruz: tradiciones, gastronomía, fiestas y naturaleza en las faldas del Cofre de Perote."
+  title={`Xico, Pueblo Mágico de Veracruz | ${site.name}`}
+  description="Xico, Pueblo Mágico de Veracruz: historia, gastronomía, fiestas y tradiciones en las faldas del Cofre de Perote. Descubre qué hacer y dónde hospedarte en Xico, Veracruz."
   canonicalPath="/xico/"
 >
   <main>
     <PageTitle title="XICO" />
+    <h1 class="sr-only">Xico, Pueblo Mágico de Veracruz</h1>
 
     <section class="section xico-intro">
       <div class="container-x">
@@ -82,7 +83,12 @@ const introImages = [
             {
               introImages.map((src, i) => (
                 <figure class={`xico-intro__item xico-intro__item--${i + 1}`}>
-                  <img src={src} alt={`Xico ${i + 1}`} class="xico-intro__image" loading="lazy" />
+                  <img
+                    src={src}
+                    alt={`Xico, Pueblo Mágico de Veracruz - ${i + 1}`}
+                    class="xico-intro__image"
+                    loading="lazy"
+                  />
                 </figure>
               ))
             }

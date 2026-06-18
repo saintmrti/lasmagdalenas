@@ -5,14 +5,43 @@ import SectionIntro from "../components/SectionIntro.astro";
 import RoomGrid from "../components/RoomGrid.astro";
 import PromoGrid from "../components/PromoGrid.astro";
 import { homeContent, images, site } from "../data/site";
+
+const hotelLd = {
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  name: site.name,
+  description:
+    "Hotel boutique en Xico, Veracruz, ubicado en una casona colonial del siglo XIX. Habitaciones, restaurante, eventos y experiencias en un Pueblo Mágico.",
+  url: site.url,
+  image: new URL(site.socialImage, site.url).toString(),
+  telephone: site.phoneTel,
+  email: site.email,
+  priceRange: "$$",
+  starRating: { "@type": "Rating", ratingValue: "4" },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hidalgo 123, Colonia Centro",
+    addressLocality: "Xico",
+    addressRegion: "Veracruz",
+    postalCode: "91240",
+    addressCountry: "MX",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.latitude,
+    longitude: site.geo.longitude,
+  },
+};
 ---
 
 <BaseLayout
-  title={`${site.name} - ${site.tagline}`}
-  description="Hotel boutique en Xico, Veracruz, ubicado en una casona colonial del siglo XIX. Habitaciones, restaurante, eventos y experiencias en un Pueblo Mágico."
+  title={`${site.name} | Hotel Boutique en Xico, Veracruz`}
+  description="Hotel boutique en Xico, Veracruz. Hospedaje en una casona colonial del siglo XIX con habitaciones, restaurante, eventos y experiencias en un Pueblo Mágico. Hoteles y hospedaje en Xico, Veracruz."
   canonicalPath="/"
+  jsonLd={[hotelLd]}
 >
   <main>
+    <h1 class="sr-only">Las Magdalenas Hotel Boutique en Xico, Veracruz</h1>
     <HeroSlider slides={images.heroSlides} alt={site.name} height="70vh" />
     <section class="section">
       <div class="container-x">

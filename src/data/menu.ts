@@ -23,82 +23,183 @@ export const menuSections: MenuSection[] = [
     note: "Se sirven hasta las 12:00 hrs.",
     subsections: [
       {
-        title: "Frutas y Cereales",
+        title: "Frutas",
         items: [
-          { name: "Cereal", price: "$35" },
           {
-            name: "Plato de frutas surtidas",
-            description: "Papaya, melón y manzana",
-            price: "$45",
+            name: "Plato de fruta surtidas",
+            description: "De temporada",
+            price: "$65",
           },
+          { name: "Plato de fruta con granola y yogurt", price: "$75" },
         ],
       },
       {
         title: "Hot Cakes",
         items: [
-          { name: "Con mantequilla y mermelada", price: "$40" },
-          { name: "Con jamón o tocino", price: "$48" },
+          { name: "Con mantequilla y mermelada", price: "$85" },
+          { name: "Con jamón o tocino", price: "$95" },
         ],
       },
       {
         title: "Huevos",
         items: [
           {
-            name: "Huevos al gusto",
-            description: "Rancheros, a la mexicana, divorciados o al albañil",
-            price: "$56",
+            name: "Huevos rancheros",
+            description: "Fritos, montados en tortilla con frijoles y jamón, bañados en salsa roja",
+            price: "$95",
           },
-          { name: "Motuleños", price: "$70" },
+          {
+            name: "Motuleños",
+            description:
+              "Fritos, montados en tortilla con frijoles, plátano macho y jamón, bañados en salsa roja",
+            price: "$110",
+          },
           {
             name: "Huevos xiqueños",
             description:
               "Fritos montados en una gran picada con frijoles bañados en salsa roja y verde",
-            price: "$65",
+            price: "$90",
           },
-          { name: "Huevos tirados", price: "$56" },
           {
-            name: "Huevos al plato",
-            description: "Cocidos al horno acompañados de cebolla y rajas de chile",
-            price: "$60",
+            name: "Huevos al albañil",
+            description: "Caldosos en salsa verde con cebolla desflemada y queso de rancho",
+            price: "$90",
           },
-          { name: "Huevos light", description: "2 claras al gusto", price: "$56" },
+          {
+            name: "Huevos tirados",
+            description: "Revueltos con frijoles refritos",
+            price: "$85",
+          },
+          {
+            name: "Huevos light",
+            description: "3 claras al gusto",
+            price: "$85",
+          },
+          {
+            name: "Huevos revueltos",
+            description: "A la mexicana o con jamón",
+            price: "$90",
+          },
           {
             name: "Omelette",
-            description: "Relleno de tocino, jamón, chorizo, champiñones o queso",
-            price: "$60",
+            description: "Relleno de tocino o jamón o chorizo o champiñones o queso manchego",
+            price: "$90",
+          },
+          {
+            name: "Omelette mixto",
+            description: "2 ingredientes",
+            price: "$95",
           },
           {
             name: "Omelette montañés",
-            description: "Relleno de espinacas y queso de cabra",
-            price: "$60",
+            description: "Relleno de espinacas con queso de cabra",
+            price: "$95",
           },
-          {
-            name: "Omelette prehispánico",
-            description: "Relleno de huitlacoche bañado en una salsa de quesos",
-            price: "$70",
-          },
-          {
-            name: "Huevos mestizos",
-            description:
-              "Pochados y montados en una cama de pan tradicional con una loncha de jamón serrano o chorizo español, bañados con una crema de queso parmesano",
-            price: "$70",
-          },
-          { name: "Cecina con Chilaquiles rojos o verdes", price: "$85" },
         ],
       },
       {
-        title: "Bebidas",
+        title: "Del Pueblo",
         items: [
-          { name: "Jugo de naranja", price: "$25" },
-          { name: "Jugo de zanahoria", price: "$25" },
-          { name: "Chocomilk", price: "$25" },
+          {
+            name: "Chilaquiles rojos o verdes",
+            description: "Con pollo o huevo",
+            price: "$125",
+          },
+          {
+            name: "Enfrijoladas",
+            description: "Rellenas de pollo o huevo",
+            price: "$105",
+          },
+          {
+            name: "Enatadas",
+            description: "Rellenas de huevo",
+            price: "$120",
+          },
+          {
+            name: "Chile relleno de picadillo",
+            description: "Guarnición de frijoles",
+            price: "$80",
+          },
+          {
+            name: "Longaniza en salsa de la casa",
+            description: "Guarnición de frijoles",
+            price: "$110",
+          },
+          {
+            name: "Quesadillas",
+            description: "3 piezas. Tortilla de harina o maíz",
+            price: "$90",
+          },
+          { name: "Cecina con chilaquiles rojos o verdes", price: "$195" },
+          { name: "Cecina con 3 picaditas", price: "$190" },
+        ],
+      },
+      {
+        title: "Jugos",
+        items: [
+          { name: "Naranja", price: "$45" },
+          { name: "Zanahoria", price: "$45" },
         ],
       },
       {
         title: "Pan de Xico",
         items: [
-          { name: "Pieza", price: "$14" },
-          { name: "Canasta con 3 piezas", price: "$39" },
+          { name: "Pieza", price: "$23" },
+          { name: "Canasta con 3 piezas", price: "$60" },
+          { name: "Galletas tradicionales", description: "Orden", price: "$45" },
+        ],
+      },
+      {
+        title: "Calientes",
+        items: [
+          { name: "Café americano", price: "$30" },
+          { name: "Café americano doble carga", price: "$45" },
+          { name: "Café expresso", price: "$30" },
+          { name: "Café expresso doble", price: "$45" },
+          { name: "Café expresso cortado", price: "$35" },
+          { name: "Café expresso doble cortado", price: "$45" },
+          { name: "Café lechero", price: "$45" },
+          { name: "Café capuchino", price: "$45" },
+          { name: "Café latte", price: "$45" },
+          { name: "Chocolate", price: "$50" },
+          {
+            name: "Té",
+            description: "Pregunta por nuestra variedad",
+            price: "$30",
+          },
+          { name: "Chocomilk", price: "$50" },
+        ],
+      },
+      {
+        title: "Bebidas",
+        items: [
+          { name: "Soda italiana con perlas", price: "$55" },
+          { name: "Refrescos", price: "$35" },
+          { name: "Botella de agua", price: "$25" },
+          { name: "Cerveza", price: "$45" },
+          { name: "Chelada", price: "$55" },
+          { name: "Michelada", price: "$55" },
+          { name: "Michelada roja", price: "$70" },
+          {
+            name: "Copa de vino",
+            description: "De la casa",
+            price: "$70",
+          },
+          { name: "Clamato con vodka", price: "$75" },
+        ],
+      },
+      {
+        title: "Digestivos",
+        items: [
+          {
+            name: "Carajillo",
+            description: "Expresso con licor del 43",
+            price: "$130",
+          },
+          { name: "Baileys", price: "$95" },
+          { name: "Sambuca negro", price: "$90" },
+          { name: "Anís Chinchón dulce / seco", price: "$75" },
+          { name: "Licor del 43", price: "$100" },
         ],
       },
     ],
@@ -111,15 +212,49 @@ export const menuSections: MenuSection[] = [
         title: "Entradas",
         items: [
           {
+            name: "Montaditos de pantomate de la casa",
+            description: "Con queso manchego y chistorra. 3 piezas",
+            price: "$85",
+          },
+          {
+            name: "Montaditos de pera",
+            description: "Con quesos suaves. 3 piezas",
+            price: "$85",
+          },
+          {
             name: "Queso asado al acuyo",
             description: "Acompañado de cebolla morada y chiles toreados",
-            price: "$48",
+            price: "$105",
           },
-          { name: "Chile capeado relleno de queso", price: "$35" },
           {
-            name: "Tacos de fideo seco",
-            description: "3 piezas. Preparados con crema, queso y aguacate",
-            price: "$45",
+            name: "Chistorra al ajillo",
+            description: "Acompañada de pan horneado",
+            price: "$145",
+          },
+          {
+            name: "Queso provoleta al horno",
+            description: "Acompañado de pan horneado",
+            price: "$165",
+          },
+          {
+            name: "Tortilla española Doña Roció",
+            description: "Con chorizo español. Receta de la familia. (15 min)",
+            price: "$170",
+          },
+          {
+            name: "Chorizo español a la sidra",
+            description: "Acompañada de pan horneado",
+            price: "$155",
+          },
+          {
+            name: "Plato mixto",
+            description: "Con embutidos y quesos, acompañado de aceituna",
+            price: "$360",
+          },
+          { name: "Queso fundido natural", price: "$120" },
+          {
+            name: "Queso fundido con chistorra o champiñones",
+            price: "$160",
           },
         ],
       },
@@ -129,16 +264,21 @@ export const menuSections: MenuSection[] = [
           {
             name: "Xonequi",
             description:
-              "Caldo prehispánico sazonado con la hoja silvestre del Xonequi y bolitas de masa",
-            price: "$49",
+              "Caldo prehispánico sazonado con la hoja silvestre del xonequi y bolitas de masa",
+            price: "$85",
           },
-          { name: "Sopa Azteca", price: "$49" },
           {
-            name: "Chileatole de Elote",
+            name: "Sopa Azteca",
             description:
-              "A base de tres leches, elote desgranado y trozos de queso. Ligeramente dulce",
-            price: "$55",
+              "Sopa tradicional mexicana, acompañada de tortilla, aguacate, crema y queso",
+            price: "$85",
           },
+          {
+            name: "Chileatole de elote",
+            description: "A base de leches, elote desgranado y trozos de queso",
+            price: "$90",
+          },
+          { name: "Consomé con pollo", price: "$75" },
         ],
       },
       {
@@ -147,14 +287,20 @@ export const menuSections: MenuSection[] = [
           {
             name: "Ensalada danzante",
             description:
-              "Espinacas con trozos de mango, manzana, almendra fileteada, tocino, crutones y aderezo de moras silvestres",
-            price: "$70",
+              "Espinaca y lechuga con trozos de mango, manzana, almendras, tocino, crutones y aderezo de moras silvestres",
+            price: "$125",
           },
           {
             name: "Ensalada del huerto",
             description:
-              "Lechuga orejona, lechuga romana, espinacas, trozos de manzana, arándanos, queso de cabra y una vinagreta de nuez",
-            price: "$70",
+              "Lechuga, espinaca, trozos de manzana, arándano, queso de cabra y una vinagreta de nuez",
+            price: "$125",
+          },
+          {
+            name: "Ensalada del corral",
+            description:
+              "Lechuga, pechuga de pollo a la plancha, queso de cabra, crutones y almendras",
+            price: "$135",
           },
         ],
       },
@@ -162,206 +308,487 @@ export const menuSections: MenuSection[] = [
         title: "Platillos del Pueblo",
         items: [
           {
-            name: "Pollo con mole",
-            description: "Pierna y muslo, guarnición de arroz y frijoles",
-            price: "$110",
+            name: "Enmoladas",
+            description: "Rellenas de pollo",
+            price: "$120",
+          },
+          {
+            name: "Enatadas",
+            description: "Rellenas de pollo",
+            price: "$120",
           },
           {
             name: "Chile relleno de picadillo",
-            description:
-              "Guarnición de arroz. Chile relleno de dos carnes, manzana, almendra, aceitunas, alcaparras y pasitas",
-            price: "$45",
+            description: "Guarnición de arroz y frijoles",
+            price: "$80",
           },
-          { name: "Chile relleno de picadillo en caldillo", price: "$50" },
-          { name: "Enmoladas", description: "Rellenas de pollo", price: "$70" },
-          { name: "Ennatadas", description: "Rellenas de pollo", price: "$70" },
-          { name: "Longaniza en Salsa", description: "Guarnición de frijoles", price: "$80" },
+          {
+            name: "Longaniza en salsa de la casa",
+            description: "Guarnición de frijoles",
+            price: "$150",
+          },
+          {
+            name: "Chile relleno de picadillo en caldillo",
+            description: "Caldo sazonado con aceitunas y plátano macho",
+            price: "$130",
+          },
+          {
+            name: "Pollo con mole",
+            description: "Pierna y muslo, guarnición de arroz y frijoles",
+            price: "$160",
+          },
           {
             name: "Cecina real",
-            description: "Acompañada de 2 enchiladas, frijoles y ensalada",
-            price: "$120",
+            description: "Acompañada de 2 picadas, frijoles y ensalada",
+            price: "$210",
           },
           {
             name: "Plato parroquia",
-            description:
-              "Para 2 personas. Cecina, 4 enmoladas, 2 Chiles Rellenos, arroz y frijoles",
-            price: "$210",
+            description: "Cecina, 2 enmoladas, 1 chile relleno, arroz y frijoles",
+            price: "$270",
           },
-        ],
-      },
-      {
-        title: "Pescados",
-        items: [
-          { name: "Trucha al acuyo", price: "$110" },
-          { name: "Trucha chilpaya", description: "Salsa ligeramente picante", price: "$110" },
-          {
-            name: "Trucha al totomoxtle",
-            description: "Bañada y rellena en salsa de huitlacoche",
-            price: "$120",
-          },
-        ],
-      },
-      {
-        title: "Carnes y Aves",
-        items: [
-          {
-            name: "Arrachera",
-            description: "Acompañada de 2 enchiladas, ensalada verde y cebollinas",
-            price: "$130",
-          },
-          { name: "Milanesa de Pollo", description: "Guarnición de ensalada rusa", price: "$90" },
-          {
-            name: "Pechuga florentina",
-            description:
-              "Filete relleno de espinacas, gratinado con queso sobre una cama de crema de chipotle",
-            price: "$110",
-          },
-          { name: "Pechuga de pollo Cordon Blue en salsa de mango", price: "$110" },
-          {
-            name: "Club sándwich 22",
-            description: "Pechuga a la plancha, tocino, guarnición de ensalada rusa",
-            price: "$75",
-          },
-        ],
-      },
-      {
-        title: "Tapas y Maduros",
-        items: [
-          { name: "Montaditos (2 piezas) — Pantomate y queso manchego", price: "$25" },
-          { name: "Montaditos (2 piezas) — Pantomate, queso manchego y chistorra", price: "$35" },
-          { name: "Quesos suaves y durazno con miel", price: "$30" },
-          { name: "Quesos suaves y pera", price: "$30" },
-          { name: "Queso Brie montado en una mermelada de moras", price: "$35" },
-          {
-            name: "Tortilla española Doña Roció",
-            description: "Con chorizo español, receta de la familia",
-            price: "$75",
-          },
-          { name: "Plato de carnes frías", description: "4 embutidos y aceitunas", price: "$280" },
-          { name: "Plato de quesos", description: "4 quesos y aceitunas", price: "$210" },
-          { name: "Plato mixto", description: "2 embutidos, 2 quesos y aceitunas", price: "$250" },
-        ],
-      },
-      {
-        title: "Fundidos",
-        items: [
-          { name: "Queso provoleta al horno", description: "200gr", price: "$80" },
-          { name: "Queso Brie con chorizo español al horno", price: "$90" },
-          {
-            name: "Fondue de la casa",
-            description: "A base de queso Gouda. Para 2 o 3 personas",
-            price: "$190",
-          },
-          { name: "Queso fundido natural", price: "$60" },
         ],
       },
       {
         title: "Muy Mexicanos",
         items: [
           {
-            name: "Chilaquiles rojos o verdes",
-            description: "Rellenos de pollo o huevo",
-            price: "$60",
+            name: "Enfrijoladas",
+            description: "Rellenas de pollo o huevo",
+            price: "$105",
           },
-          { name: "Enfrijoladas", description: "Rellenas de pollo o huevo", price: "$60" },
+          {
+            name: "Tacos de cecina con longaniza",
+            description: "3 piezas",
+            price: "$150",
+          },
+          {
+            name: "Tacos de cecina con longaniza con queso",
+            description: "3 piezas",
+            price: "$175",
+          },
           {
             name: "Enfrijoladas veracruzanas",
-            description: "Rellenas de pollo o huevo, preparadas con aguacate y trozos de chorizo",
-            price: "$68",
+            description: "Rellenas de pollo o huevo, preparadas con aguacate, chorizo y crema",
+            price: "$125",
           },
           {
-            name: "Picada Mayor",
+            name: "Picada mayor",
             description:
               "Preparada con frijoles, pollo, salsa roja o verde, queso, crema y aguacate",
-            price: "$49",
+            price: "$110",
           },
-          { name: "Tacos dorados de pollo preparados", price: "$60" },
-          { name: "Tacos de cecina con longaniza", price: "$80" },
+          {
+            name: "Tacos dorados de pollo preparados",
+            description: "4 piezas",
+            price: "$110",
+          },
           {
             name: "Enchiladas mayordomo",
-            description:
-              "Rellenas con pollo, bañadas con salsa roja o verde. Gratinadas con queso manchego",
-            price: "$65",
+            description: "Rellenas de pollo, bañadas en salsa roja o verde y gratinadas con queso",
+            price: "$125",
           },
-          { name: "Molletes sencillos", price: "$40" },
+        ],
+      },
+      {
+        title: "Aves",
+        items: [
+          {
+            name: "Milanesa de pollo",
+            description: "Guarnición ensalada verde o papas",
+            price: "$170",
+          },
+          {
+            name: "Pechuga asada",
+            description: "Guarnición ensalada verde",
+            price: "$160",
+          },
+          {
+            name: "Pechuga florentina",
+            description:
+              "Filete relleno de espinacas, gratinado sobre una cama de crema de chipotle",
+            price: "$190",
+          },
+          {
+            name: "Pechuga cordon bleu en salsa de mango",
+            price: "$190",
+          },
+        ],
+      },
+      {
+        title: "Para los Niños",
+        items: [
+          {
+            name: "Nuggets de pollo",
+            description: "6 piezas",
+            price: "$90",
+          },
+          {
+            name: "Quesadillas",
+            description: "En tortilla de harina o maíz. 3 piezas",
+            price: "$90",
+          },
         ],
       },
       {
         title: "Para acompañar",
         items: [
-          { name: "Frijoles refritos", price: "$20" },
-          { name: "Arroz", price: "$20" },
+          { name: "Frijoles refritos", price: "$45" },
+          { name: "Papas a la francesa", price: "$55" },
+          { name: "Arroz", price: "$45" },
+          { name: "Arroz con huevo o plátano", price: "$60" },
         ],
       },
-    ],
-  },
-  {
-    id: "postres",
-    label: "Postres",
-    subsections: [
       {
-        title: "",
+        title: "Postres",
         items: [
-          { name: "Tamal canario", price: "$30" },
-          { name: "Plátanos flameados", description: "Con helado de vainilla", price: "$56" },
+          { name: "Tamal canario", price: "$60" },
           {
-            name: "Fondant de chocolate",
-            description: "Con helado de vainilla. Tiempo de preparación: 15 min",
-            price: "$60",
+            name: "Fresas jubilee",
+            description: "Con helado de vainilla",
+            price: "$95",
           },
-          { name: "Crepa de cajeta", description: "Con helado de vainilla", price: "$49" },
-          { name: "Crepa fantasía", description: "Con helado de vainilla", price: "$49" },
-          { name: "Pan de elote", description: "Con helado de vainilla", price: "$49" },
-          { name: "Torreja", description: "Con helado de vainilla", price: "$49" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "bebidas",
-    label: "Bebidas",
-    subsections: [
-      {
-        title: "Sin alcohol",
-        items: [
-          { name: "Limonada o Naranjada", price: "$28" },
-          { name: "Horchata", price: "$30" },
-          { name: "Soda Italiana con perlas", price: "$35" },
-          { name: "Refrescos", price: "$23" },
-          { name: "Botella de agua", price: "$20" },
-        ],
-      },
-      {
-        title: "Cerveza",
-        items: [
-          { name: "Cerveza", price: "$30" },
-          { name: "Chelada", price: "$35" },
-          { name: "Michelada", price: "$38" },
-          { name: "Michelada roja", price: "$45" },
+          {
+            name: "Plátanos flameados",
+            description: "Con helado de vainilla",
+            price: "$95",
+          },
+          {
+            name: "Pan de elote",
+            description: "Con helado de vainilla",
+            price: "$80",
+          },
+          {
+            name: "Torreja",
+            description: "Con helado de vainilla",
+            price: "$80",
+          },
+          {
+            name: "Plátanos fritos",
+            description: "Con crema",
+            price: "$70",
+          },
+          { name: "Rebanadas de pastel", price: "$60" },
         ],
       },
       {
-        title: "Digestivos",
+        title: "Bebidas",
         items: [
-          { name: "Mora o Verde de Xico", price: "$30" },
-          { name: "Torito de cacahuate", price: "$35" },
-          { name: "Carajillo", price: "$80" },
-          { name: "Baileys", price: "$70" },
-          { name: "Sambuca negro", price: "$70" },
-          { name: "Anís Chinchón", description: "Dulce o seco", price: "$70" },
-          { name: "Licor del 43", price: "$75" },
+          { name: "Agua fresca de temporada", price: "$30" },
+          {
+            name: "Limonada o naranjada",
+            description: "Mineral",
+            price: "$35",
+          },
+          { name: "Horchata", price: "$35" },
+          { name: "Soda italiana con perlas", price: "$55" },
+          { name: "Refrescos", price: "$35" },
+          { name: "Botella de agua", price: "$25" },
+          { name: "Cerveza", price: "$45" },
+          {
+            name: "Chelada",
+            description: "Con limón y sal",
+            price: "$55",
+          },
+          {
+            name: "Michelada",
+            description: "Con salsas, limón y sal",
+            price: "$55",
+          },
+          {
+            name: "Michelada roja",
+            description: "Con clamato",
+            price: "$70",
+          },
+          { name: "Clamato con vodka", price: "$75" },
+          {
+            name: "Copa de vino",
+            description: "De la casa",
+            price: "$70",
+          },
         ],
       },
       {
         title: "De Flor de Café",
         items: [
-          { name: "Café americano", price: "$18" },
-          { name: "Café expresso", price: "$18" },
-          { name: "Café capuccino", price: "$28" },
-          { name: "Café latte", price: "$30" },
-          { name: "Chocolate", price: "$30" },
-          { name: "Té", description: "Pregunta por nuestra variedad", price: "$23" },
-          { name: "Chai latte", price: "$35" },
+          { name: "Café americano", price: "$30" },
+          { name: "Café americano doble carga", price: "$45" },
+          { name: "Café expresso", price: "$30" },
+          { name: "Café expresso doble", price: "$45" },
+          { name: "Café expresso cortado", price: "$35" },
+          { name: "Café expresso doble cortado", price: "$45" },
+          { name: "Café lechero", price: "$45" },
+          { name: "Café capuchino", price: "$45" },
+          { name: "Café latte", price: "$45" },
+          { name: "Chocolate", price: "$50" },
+          {
+            name: "Té",
+            description: "Pregunta por nuestra variedad",
+            price: "$30",
+          },
+          { name: "Chocomilk", price: "$50" },
+        ],
+      },
+      {
+        title: "Digestivos",
+        items: [
+          { name: "Mora", price: "$40" },
+          { name: "Verde", price: "$40" },
+          { name: "Torito de cacahuate", price: "$50" },
+          { name: "Torito de café", price: "$50" },
+          {
+            name: "Carajillo",
+            description: "Expresso y licor del 43",
+            price: "$130",
+          },
+          { name: "Baileys", price: "$95" },
+          { name: "Sambuca negro", price: "$90" },
+          { name: "Anís dulce o seco o campechano", price: "$75" },
+          { name: "Licor del 43", price: "$100" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "cava",
+    label: "Cava",
+    subsections: [
+      {
+        title: "Vinos Blancos",
+        items: [
+          {
+            name: "L.A. Cetto Blanc de Zinfandel",
+            description: "Valle de Guadalupe. México",
+            price: "$360",
+          },
+          {
+            name: "Gran Hacienda Santa Rita Chardonnay",
+            description: "Valle Central. Chile",
+            price: "$375",
+          },
+          {
+            name: "Diamante Bodegas Franco Españolas",
+            description: "Viura y Malvaña. Rioja. España",
+            price: "$450",
+          },
+        ],
+      },
+      {
+        title: "Vinos Tintos",
+        items: [
+          {
+            name: "Finca Vieja Tempranillo",
+            description: "Crianza. Castilla La Mancha. España",
+            price: "$380",
+          },
+          {
+            name: "Baron de Ley",
+            description: "Tempranillo, Graciano, Maturana. Reserva. Rioja. España",
+            price: "$490",
+          },
+          {
+            name: "Puerto Nuevo Cabernet Malbec",
+            description: "Valle de Guadalupe. México",
+            price: "$360",
+          },
+        ],
+      },
+      {
+        title: "Copa de Vino",
+        items: [
+          {
+            name: "De la casa",
+            price: "$70",
+          },
+        ],
+      },
+      {
+        title: "Ron · Copa 2 oz.",
+        items: [
+          { name: "Bacardi Blanco", price: "$70" },
+          { name: "Havana 7 años", price: "$120" },
+        ],
+      },
+      {
+        title: "Vodka",
+        items: [
+          { name: "Stolichnaya", price: "$80" },
+          { name: "Absolut Azul", price: "$75" },
+        ],
+      },
+      {
+        title: "Whiskey",
+        items: [
+          { name: "Black & White", price: "$70" },
+          { name: "Buchanans 12 años", price: "$135" },
+        ],
+      },
+      {
+        title: "Tequila",
+        items: [
+          { name: "Jose Cuervo Tradicional Reposado", price: "$85" },
+          { name: "Maestro Tequilero Dobel Diamante", price: "$145" },
+        ],
+      },
+      {
+        title: "Brandy",
+        items: [
+          { name: "Magno", price: "$85" },
+          { name: "Torres 10", price: "$95" },
+        ],
+      },
+      {
+        title: "Mezcal",
+        items: [
+          {
+            name: "Santín Espadín Joven",
+            description: "Oaxaca",
+            price: "$95",
+          },
+        ],
+      },
+      {
+        title: "Licores y Cremas",
+        items: [
+          {
+            name: "Anís",
+            description: "Dulce o seco o campechano",
+            price: "$75",
+          },
+          { name: "Baileys", price: "$95" },
+          { name: "Sambuca negro", price: "$90" },
+          { name: "Licor del 43", price: "$100" },
+        ],
+      },
+      {
+        title: "Cervezas",
+        items: [
+          { name: "Cerveza", price: "$45" },
+          {
+            name: "Chelada",
+            description: "Limón y sal",
+            price: "$55",
+          },
+          {
+            name: "Michelada",
+            description: "Salsas, limón y sal",
+            price: "$55",
+          },
+          {
+            name: "Michelada roja",
+            description: "Con clamato",
+            price: "$70",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "cafeteria",
+    label: "Cafetería",
+    subsections: [
+      {
+        title: "Calientes",
+        items: [
+          { name: "Café americano", price: "$30" },
+          { name: "Café americano doble carga", price: "$45" },
+          { name: "Café expresso", price: "$30" },
+          { name: "Café expresso doble", price: "$45" },
+          { name: "Café expresso cortado", price: "$35" },
+          { name: "Café expresso doble cortado", price: "$45" },
+          { name: "Café lechero", price: "$45" },
+          { name: "Café capuchino", price: "$45" },
+          {
+            name: "Café capuchino especial",
+            description: "Cajeta, menta, crema irlandesa, caramelo",
+            price: "$50",
+          },
+          { name: "Chocolate", price: "$50" },
+          {
+            name: "Té",
+            description: "Pregunte por nuestra variedad de tés",
+            price: "$30",
+          },
+        ],
+      },
+      {
+        title: "Fríos",
+        items: [
+          { name: "Frapuccino", price: "$60" },
+          { name: "Frapuccino Oreo", price: "$70" },
+          { name: "Frapuccino de cajeta", price: "$65" },
+          {
+            name: "Frapuccino moka",
+            description: "Chocolate",
+            price: "$65",
+          },
+          {
+            name: "Latte frío",
+            description: "En hielo",
+            price: "$60",
+          },
+          { name: "Té frío", price: "$55" },
+        ],
+      },
+      {
+        title: "Bebidas",
+        items: [
+          { name: "Soda italiana con perlas", price: "$55" },
+          { name: "Botella de agua", price: "$25" },
+          { name: "Refrescos", price: "$35" },
+        ],
+      },
+      {
+        title: "Pan & Postres",
+        items: [
+          { name: "Galletas tradicionales", description: "Orden", price: "$45" },
+          { name: "Tamal canario", price: "$60" },
+          { name: "Rebanada de pastel", price: "$60" },
+          { name: "Pan de Xico pieza", price: "$23" },
+          { name: "Canasta con 3 piezas", price: "$60" },
+        ],
+      },
+      {
+        title: "Digestivos & Cervezas",
+        items: [
+          { name: "Mora", price: "$40" },
+          { name: "Verde", price: "$40" },
+          { name: "Torito de cacahuate", price: "$50" },
+          { name: "Torito de café", price: "$50" },
+          {
+            name: "Carajillo",
+            description: "Expresso con licor del 43",
+            price: "$130",
+          },
+          { name: "Baileys", price: "$95" },
+          { name: "Sambuca negro", price: "$90" },
+          {
+            name: "Anís",
+            description: "Dulce o seco o campechano",
+            price: "$75",
+          },
+          { name: "Licor del 43", price: "$100" },
+          {
+            name: "Copa de vino",
+            description: "De la casa",
+            price: "$70",
+          },
+          { name: "Cerveza", price: "$45" },
+          {
+            name: "Chelada",
+            description: "Limón y sal",
+            price: "$55",
+          },
+          {
+            name: "Michelada",
+            description: "Salsas, limón y sal",
+            price: "$55",
+          },
+          {
+            name: "Michelada roja",
+            description: "Con clamato",
+            price: "$70",
+          },
         ],
       },
     ],
