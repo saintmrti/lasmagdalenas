@@ -1,10 +1,10 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import RoomGrid from "../components/RoomGrid.astro";
-import SectionIntro from "../components/SectionIntro.astro";
 import SectionDivider from "../components/SectionDivider.astro";
+import SectionIntro from "../components/SectionIntro.astro";
 import { images, site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const hotelSlides = [
   "/assets/2017_07_slide_hotel_1-1.jpg",
@@ -128,7 +128,7 @@ const hotelLd = {
       </div>
     </section>
 
-    <section class="section hotel-gallery">
+    <section class="mb-10">
       <div class="container-x">
         <div class="hotel-gallery__header">
           <p class="hotel-gallery__eyebrow">Las Magdalenas</p>
@@ -212,6 +212,7 @@ const hotelLd = {
     color: #4a4a4a;
     font-size: 0.875rem;
     line-height: 1.4;
+    text-align: left;
   }
 
   .hotel-services__note {
@@ -222,13 +223,13 @@ const hotelLd = {
     text-align: center;
   }
 
-  .hotel-gallery {
+  /* .hotel-gallery {
     position: relative;
     overflow: hidden;
     background:
       radial-gradient(circle at 15% 10%, rgba(231, 173, 68, 0.18), transparent 28rem),
       linear-gradient(180deg, #f7f4f2 0%, #fff 100%);
-  }
+  } */
 
   .hotel-gallery::before {
     content: "";
@@ -332,16 +333,12 @@ const hotelLd = {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .hotel-services__item:nth-child(odd) {
+    .hotel-services__item {
       border-right: 1px solid rgba(226, 220, 210, 0.5);
     }
 
     .hotel-services__item:nth-child(3n) {
       border-right: 0;
-    }
-
-    .hotel-services__item:nth-child(3n + 1) {
-      border-right: 1px solid rgba(226, 220, 210, 0.5);
     }
 
     .hotel-gallery__header {

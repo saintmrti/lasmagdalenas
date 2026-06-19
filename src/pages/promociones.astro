@@ -3,13 +3,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageTitle from "../components/PageTitle.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import PromoGrid from "../components/PromoGrid.astro";
-import { site } from "../data/site";
+import { promotions, site } from "../data/site";
+
+const baseUrl = site.url;
+
+const offersLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Promociones y paquetes",
+  itemListElement: promotions.map((promo, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Offer",
+      name: promo.title,
+      description: promo.text,
+      url: `${baseUrl}/promociones/`,
+      image: promo.image.startsWith("http") ? promo.image : `${baseUrl}${promo.image}`,
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title={`Promociones y Paquetes | ${site.name}`}
   description="Promociones especiales para tu estancia en Xico, Veracruz. Paquetes de hospedaje, reuniones, eventos y ocasiones especiales en Las Magdalenas Hotel Boutique."
   canonicalPath="/promociones/"
+  jsonLd={[offersLd]}
 >
   <main>
     <PageTitle title="PROMOCIONES" />

@@ -3,12 +3,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import PageTitle from "../components/PageTitle.astro";
 import { site } from "../data/site";
+
+const contactPageLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: `Contacto y reservaciones | ${site.name}`,
+  description:
+    "Contacta a Las Magdalenas Hotel Boutique en Xico, Veracruz. Reservaciones de hospedaje, restaurante y eventos.",
+  url: `${site.url}/contacto/`,
+  mainEntity: {
+    "@type": "Hotel",
+    name: site.name,
+    telephone: site.phoneTel,
+    email: site.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Hidalgo 123, Colonia Centro",
+      addressLocality: "Xico",
+      addressRegion: "Veracruz",
+      postalCode: "91240",
+      addressCountry: "MX",
+    },
+  },
+};
 ---
 
 <BaseLayout
   title={`Contacto y Reservaciones | ${site.name}`}
   description={`Contacta a Las Magdalenas Hotel Boutique en Xico, Veracruz. Teléfono: ${site.phone}. Reservaciones de hospedaje, restaurante y eventos.`}
   canonicalPath="/contacto/"
+  jsonLd={[contactPageLd]}
 >
   <main>
     <PageHero image="/assets/2016_09_jardin_fondo.jpg" height="70vh" />

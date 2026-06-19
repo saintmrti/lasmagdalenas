@@ -8,12 +8,41 @@ import { images, site } from "../data/site";
 import { eventSpaces } from "../data/eventSpaces";
 
 const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
+
+const baseUrl = site.url;
+
+const eventVenueLd = {
+  "@context": "https://schema.org",
+  "@type": "EventVenue",
+  name: `${site.name} - Bodas y Eventos`,
+  description:
+    "Bodas y eventos en Xico, Veracruz. Celebra tu boda, reunión o ocasión especial en una casona colonial del siglo XIX.",
+  url: `${baseUrl}/eventos/`,
+  image: `${baseUrl}${images.eventoHome}`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hidalgo 123, Colonia Centro",
+    addressLocality: "Xico",
+    addressRegion: "Veracruz",
+    postalCode: "91240",
+    addressCountry: "MX",
+  },
+  containsPlace: eventSpaces.map((space) => ({
+    "@type": "Place",
+    name: space.title,
+    description: space.description,
+    maximumAttendeeCapacity: space.capacity
+      ? parseInt(space.capacity.replace(/\D/g, ""), 10) || undefined
+      : undefined,
+  })),
+};
 ---
 
 <BaseLayout
   title={`Bodas y Eventos en Xico, Veracruz | ${site.name}`}
   description="Bodas y eventos en Xico, Veracruz. Celebra tu boda, reunión o ocasión especial en una casona colonial del siglo XIX. Espacios únicos en Las Magdalenas Hotel Boutique, Pueblo Mágico."
   canonicalPath="/eventos/"
+  jsonLd={[eventVenueLd]}
 >
   <main>
     <h1 class="sr-only">Bodas y Eventos en Xico, Veracruz</h1>

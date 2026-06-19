@@ -6,8 +6,7 @@ export const site = {
   phoneTel: "+522288130314",
   email: "info@lasmagdalenas.com.mx",
   address: "Hidalgo 123, Colonia Centro C.P. 91240 Xico, Veracruz",
-  mapsUrl:
-    "https://www.google.com.mx/maps/place/Las+Magdalenas+Hotel+Boutique/@19.4211439,-97.0088023,17z",
+  mapsUrl: "https://maps.app.goo.gl/V9ytfaAmKwYfrfGn7",
   bookingUrl:
     "https://app.thebookingbutton.com/properties/%20lasmagdalenashotelboutiquedirect?check_in_date=07-07-2017&check_out_date=08-07-2017&number_adults=2",
   language: "ES",

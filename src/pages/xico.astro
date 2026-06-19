@@ -52,12 +52,33 @@ const introImages = [
   "/assets/2017_07_slide_tradiciones_1.jpg",
   "/assets/2017_07_slide_tradiciones_2.jpg",
 ];
+
+const touristDestinationLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  name: "Xico, Pueblo Mágico de Veracruz",
+  description:
+    "Xico, Pueblo Mágico de Veracruz: historia, gastronomía, fiestas y tradiciones en las faldas del Cofre de Perote.",
+  url: `${site.url}/xico/`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Xico",
+    addressRegion: "Veracruz",
+    addressCountry: "MX",
+  },
+  containsPlace: xicoSections.map((section) => ({
+    "@type": "TouristAttraction",
+    name: section.title,
+    description: section.description,
+  })),
+};
 ---
 
 <BaseLayout
   title={`Xico, Pueblo Mágico de Veracruz | ${site.name}`}
   description="Xico, Pueblo Mágico de Veracruz: historia, gastronomía, fiestas y tradiciones en las faldas del Cofre de Perote. Descubre qué hacer y dónde hospedarte en Xico, Veracruz."
   canonicalPath="/xico/"
+  jsonLd={[touristDestinationLd]}
 >
   <main>
     <PageTitle title="XICO" />

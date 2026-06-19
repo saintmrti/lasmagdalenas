@@ -41,12 +41,23 @@ const galleryImages = [
   "/assets/2016_09_cafeteria_fondo.jpg",
   "/assets/2016_09_hotel-slider-1-870x500.jpg",
 ];
+
+const imageGalleryLd = {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  name: `Galería | ${site.name}`,
+  description:
+    "Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: habitaciones, restaurante, eventos, jardines y cafetería.",
+  url: `${site.url}/galeria/`,
+  image: galleryImages.map((src) => (src.startsWith("http") ? src : `${site.url}${src}`)),
+};
 ---
 
 <BaseLayout
   title={`Galería | ${site.name}`}
   description="Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: habitaciones, restaurante, eventos, jardines y cafetería de un Pueblo Mágico."
   canonicalPath="/galeria/"
+  jsonLd={[imageGalleryLd]}
 >
   <main>
     <PageHero title="GALERÍA" image={galleryImages[0]} />
