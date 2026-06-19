@@ -40,12 +40,29 @@ const galleryImages = [
   "/assets/2017_07_slide_jardin_2.jpg",
   "/assets/2017_07_slide_jardin_3.jpg",
 ];
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Actividades y experiencias en Xico",
+  itemListElement: activities.map((activity, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "TouristAttraction",
+      name: activity.title,
+      description: activity.description,
+      image: activity.image.startsWith("http") ? activity.image : `${site.url}${activity.image}`,
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title={`Actividades y Experiencias en Xico, Veracruz | ${site.name}`}
   description="Actividades y experiencias en Xico, Pueblo Mágico de Veracruz: recorridos históricos, experiencia del café cosecha a la taza y paseos a caballo por cafetales."
   canonicalPath="/actividades/"
+  jsonLd={[itemListLd]}
 >
   <main>
     <PageHero title="ACTIVIDADES" image="/assets/2016_09_actividades_fondo.jpg" />
