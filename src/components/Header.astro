@@ -5,10 +5,15 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="site-header" data-header>
-  <div class="container-x flex items-center justify-between gap-3 py-1 relative">
+  <div class="container-x flex items-center justify-between py-2 relative">
     <a href="/" class="inline-flex items-center" aria-label={site.name}>
-      <img src={images.logo} alt={site.name} class="h-24 w-auto md:h-32" />
+      <img src={images.logo} alt={site.name} class="h-28 w-auto md:h-32" />
     </a>
+    <!-- <div class="w-full h-32 flex items-center justify-center">
+      <a href="/" class="inline-flex items-center" aria-label={site.name}>
+        <img src={images.logo} alt={site.name} class="h-32 w-auto md:h-36" />
+      </a>
+    </div> -->
     <button
       class="md:hidden inline-flex flex-col justify-center gap-1.5 p-2 w-10 h-10 bg-transparent border-0"
       type="button"

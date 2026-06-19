@@ -45,7 +45,7 @@ export const social = {
 };
 
 export const images = {
-  logo: "/assets/2017_05_logo_2.png",
+  logo: "/assets/logo_principal.png",
   logoMobile: "/assets/2017_07_logo_moviles@2x.png",
   logoSticky: "/assets/2017_06_logo_sticky2.png",
   logoFooter: "/assets/2017_05_logo_footer.png",
