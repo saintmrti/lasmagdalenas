@@ -26,9 +26,9 @@ export const navigation = [
   { label: "RESTAURANTE", href: "/restaurante/" },
   { label: "EVENTOS", href: "/eventos/" },
   // { label: "ACTIVIDADES", href: "/actividades/" },
-  { label: "PROMOCIONES", href: "/promociones/" },
-  { label: "CONTACTO", href: "/contacto/" },
+  // { label: "PROMOCIONES", href: "/promociones/" },
   // { label: "XICO", href: "/xico/" },
+  { label: "CONTACTO", href: "/contacto/" },
 ];
 
 export const galleryLink = { label: "Galería", href: "/galeria/" };
@@ -45,8 +45,9 @@ export const social = {
 };
 
 export const images = {
-  logo: "/assets/logo_principal.png",
-  logoMobile: "/assets/2017_07_logo_moviles@2x.png",
+  logo: "/assets/2017_05_logo_2.png",
+  logoPrincipal: "/assets/logo_principal.png",
+  logoMobile: "/assets/logo_mobile.png",
   logoSticky: "/assets/2017_06_logo_sticky2.png",
   logoFooter: "/assets/2017_05_logo_footer.png",
   distintivoM: "/assets/2017_05_distintivoM_logo-e1496109923179.png",
