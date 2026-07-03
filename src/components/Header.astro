@@ -1,49 +1,90 @@
 ---
 import { navigation, site, images } from "../data/site";
 
-const currentPath = Astro.url.pathname;
+const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
+const currentPath = normalizePath(Astro.url.pathname);
 ---
 
 <header class="site-header" data-header>
-  <div class="container-x flex items-center justify-between py-2 relative">
-    <a href="/" class="inline-flex items-center" aria-label={site.name}>
-      <img src={images.logo} alt={site.name} class="h-28 w-auto md:h-32" />
+  <div class="desktop-header" aria-label="Navegación principal">
+    <a href="/" class="desktop-logo" aria-label={site.name}>
+      <img src={images.logoPrincipal} alt={site.name} />
     </a>
-    <!-- <div class="w-full h-32 flex items-center justify-center">
-      <a href="/" class="inline-flex items-center" aria-label={site.name}>
-        <img src={images.logo} alt={site.name} class="h-32 w-auto md:h-36" />
-      </a>
-    </div> -->
+
+    <div class="desktop-content">
+      <div class="desktop-topbar">
+        <a href={`tel:${site.phoneTel}`} class="desktop-help">
+          ¿Necesitas ayuda? {site.phone}
+        </a>
+        <a href="/hotel/#galeria-hotel" class="desktop-gallery">Galería</a>
+      </div>
+
+      <div class="desktop-navrow">
+        <nav>
+          <ul class="desktop-nav-list">
+            <span class="nav-indicator" data-nav-indicator></span>
+            {
+              navigation.map((item) => {
+                const isActive = !item.external && normalizePath(item.href) === currentPath;
+                return (
+                  <li>
+                    <a
+                      href={item.href}
+                      class:list={["nav-link", isActive && "is-active"]}
+                      aria-current={isActive ? "page" : undefined}
+                      data-nav-link
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </nav>
+        <a href={site.bookingUrl} class="btn-reserve" target="_blank" rel="noopener noreferrer">
+          RESERVAR
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-header">
     <button
-      class="md:hidden inline-flex flex-col justify-center gap-1.5 p-2 w-10 h-10 bg-transparent border-0"
+      class="menu-toggle"
       type="button"
       aria-label="Abrir menú"
       aria-expanded="false"
       data-menu-toggle
     >
-      <span class="hamburger-line block w-full h-0.5 transition-transform duration-200"></span>
-      <span class="hamburger-line block w-full h-0.5 transition-transform duration-200"></span>
-      <span class="hamburger-line block w-full h-0.5 transition-transform duration-200"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
     </button>
 
-    <nav
-      class="absolute md:static top-full left-0 right-0 md:left-auto md:right-auto border-t md:border-0 max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300 [&.is-open]:max-h-150 bg-black/90 md:bg-transparent"
-      data-nav
-    >
-      <ul
-        class="list-none m-0 py-4 px-5 md:p-0 flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 md:gap-y-1 md:gap-x-5"
-      >
+    <a href="/" class="mobile-logo" aria-label={site.name}>
+      <img src={images.logoMobile} alt={site.name} />
+    </a>
+  </div>
+
+  <aside class="mobile-menu" data-nav>
+    <button class="mobile-menu__close" type="button" aria-label="Cerrar menú" data-menu-close>
+      ×
+    </button>
+
+    <nav>
+      <ul class="mobile-menu__list">
         {
           navigation.map((item) => {
-            const isActive = !item.external && item.href === currentPath;
+            const isActive = !item.external && normalizePath(item.href) === currentPath;
             return (
               <li>
                 <a
                   href={item.href}
-                  class:list={[
-                    "nav-link block py-2.5 md:py-1.5 text-base md:text-sm uppercase border-b md:border-0 border-white/10 transition-colors",
-                    isActive && "text-accent",
-                  ]}
+                  class:list={["mobile-menu__link", isActive && "is-active"]}
+                  aria-current={isActive ? "page" : undefined}
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noopener noreferrer" : undefined}
                 >
@@ -53,25 +94,39 @@ const currentPath = Astro.url.pathname;
             );
           })
         }
-        <li class="mt-2 md:mt-0">
+        <li>
+          <a href="/hotel/#galeria-hotel" class="mobile-menu__link">GALERÍA</a>
+        </li>
+        <li class="pt-6">
           <a href={site.bookingUrl} class="btn-reserve" target="_blank" rel="noopener noreferrer">
             RESERVAR
           </a>
         </li>
       </ul>
     </nav>
-  </div>
+  </aside>
 </header>
 
 <script>
   const header = document.querySelector<HTMLElement>("[data-header]");
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const nav = document.querySelector<HTMLElement>("[data-nav]");
+  const close = document.querySelector<HTMLButtonElement>("[data-menu-close]");
+
+  const setMenuOpen = (isOpen: boolean) => {
+    nav?.classList.toggle("is-open", isOpen);
+    toggle?.classList.toggle("is-open", isOpen);
+    toggle?.setAttribute("aria-expanded", String(isOpen));
+  };
 
   toggle?.addEventListener("click", () => {
-    const isOpen = nav?.classList.toggle("is-open");
-    toggle.classList.toggle("is-open", Boolean(isOpen));
-    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    setMenuOpen(!nav?.classList.contains("is-open"));
+  });
+
+  close?.addEventListener("click", () => setMenuOpen(false));
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
   });
 
   if (header) {
@@ -93,6 +148,39 @@ const currentPath = Astro.url.pathname;
       { passive: true }
     );
   }
+
+  const navList = document.querySelector<HTMLElement>(".desktop-nav-list");
+  const indicator = document.querySelector<HTMLElement>("[data-nav-indicator]");
+
+  const moveIndicatorTo = (link: HTMLElement) => {
+    if (!navList || !indicator) return;
+    indicator.style.opacity = "1";
+    const listRect = navList.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    indicator.style.width = `${linkRect.width}px`;
+    indicator.style.transform = `translateX(${linkRect.left - listRect.left}px)`;
+  };
+
+  const positionIndicator = () => {
+    if (!navList || !indicator) return;
+    const activeLink = navList.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!activeLink) {
+      indicator.style.opacity = "0";
+      return;
+    }
+    moveIndicatorTo(activeLink);
+  };
+
+  navList?.querySelectorAll<HTMLElement>("[data-nav-link]").forEach((link) => {
+    link.addEventListener("mouseenter", () => moveIndicatorTo(link));
+    link.addEventListener("focus", () => moveIndicatorTo(link));
+  });
+
+  navList?.addEventListener("mouseleave", positionIndicator);
+
+  positionIndicator();
+  window.addEventListener("load", positionIndicator);
+  window.addEventListener("resize", positionIndicator);
 </script>
 
 <style>
@@ -102,8 +190,6 @@ const currentPath = Astro.url.pathname;
     left: 0;
     right: 0;
     z-index: 50;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
     transition: transform 0.3s ease;
   }
 
@@ -111,46 +197,45 @@ const currentPath = Astro.url.pathname;
     transform: translateY(-100%);
   }
 
-  .nav-link {
-    color: var(--color-ink-inverse);
+  .desktop-header {
+    display: none;
   }
 
-  .nav-link:hover {
-    color: var(--color-accent);
+  .mobile-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
   }
 
-  .btn-reserve {
-    display: inline-block;
-    padding: 14px 32px;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    color: var(--color-ink-inverse);
-    background-color: #c04a40;
-    transition:
-      background 0.2s,
-      color 0.2s,
-      border-color 0.2s;
-    width: 100%;
-    text-align: center;
-  }
-
-  .btn-reserve:hover {
-    background-color: #85898d;
-  }
-
-  @media (min-width: 768px) {
-    .btn-reserve {
-      width: auto;
-      padding: 13px 30px;
-    }
+  .menu-toggle {
+    position: absolute;
+    left: 1.75rem;
+    top: 50%;
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
   }
 
   .hamburger-line {
+    display: block;
+    width: 2.5rem;
+    height: 0.25rem;
     background: var(--color-ink-inverse);
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
   }
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(11px) rotate(45deg);
   }
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(2) {
@@ -158,6 +243,198 @@ const currentPath = Astro.url.pathname;
   }
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-11px) rotate(-45deg);
+  }
+
+  .mobile-logo img {
+    width: 600px;
+    height: auto;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(27rem, 68vw);
+    height: 100vh;
+    padding: 5.5rem 2rem 2rem;
+    background: #96999a;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-menu.is-open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu__close {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.75rem;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 200;
+    line-height: 1;
+  }
+
+  .mobile-menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-menu__link {
+    display: block;
+    color: #fff;
+    font-size: 1.45rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding-left: 1rem;
+    border-left: 3px solid transparent;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .mobile-menu__link.is-active {
+    border-left-color: var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .nav-link {
+    display: block;
+    color: var(--color-ink-inverse);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 0.75rem 0;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link.is-active {
+    color: var(--color-accent);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    top: 0;
+    height: 2px;
+    background: var(--color-accent);
+    opacity: 0;
+    transition:
+      transform 0.3s ease,
+      width 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .nav-link:hover,
+  .desktop-help:hover,
+  .desktop-gallery:hover,
+  .mobile-menu__link:hover {
+    color: var(--color-accent);
+  }
+
+  .btn-reserve {
+    display: inline-block;
+    width: 100%;
+    padding: 14px 32px;
+    color: var(--color-ink-inverse);
+    background-color: #c04a40;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .btn-reserve:hover {
+    background-color: #85898d;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-header,
+    .mobile-menu {
+      display: none;
+    }
+
+    .desktop-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+
+    .desktop-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    .desktop-logo img {
+      width: 12rem;
+      height: auto;
+    }
+
+    .desktop-content {
+      display: grid;
+      grid-template-rows: 4.8rem 1fr;
+      background: rgba(4, 5, 10, 0.4);
+    }
+
+    .desktop-topbar {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .desktop-help {
+      flex: 1;
+      padding-left: 5rem;
+      color: inherit;
+      font-size: 13px;
+    }
+
+    .desktop-gallery {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      padding: 0 2.65rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.42);
+      border-right: 1px solid rgba(255, 255, 255, 0.42);
+      color: inherit;
+      font-size: 13px;
+    }
+
+    .desktop-navrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0 2.5rem 0 5rem;
+    }
+
+    .desktop-nav-list {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1.65rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .btn-reserve {
+      width: auto;
+      padding: 10px 30px;
+    }
   }
 </style>

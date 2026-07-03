@@ -1,11 +1,11 @@
 ---
-import { promotions, images } from "../data/site";
+import { events, images } from "../data/site";
 ---
 
 <section class="mx-auto max-w-6xl">
   <ul class="list-none m-0 p-0 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
     {
-      promotions.map((promo) => (
+      events.map((promo) => (
         <li class="text-center">
           <img
             src={promo.image}
@@ -22,9 +22,9 @@ import { promotions, images } from "../data/site";
           <h3 class="font-display text-lg tracking-[0.14em] uppercase text-accent-dark mb-3 mt-0">
             {promo.title}
           </h3>
-          <p class="text-ink-soft max-w-lg mx-auto mb-2 leading-relaxed">{promo.text}</p>
+          <p class="text-ink-soft max-w-lg mx-auto mb-2">{promo.text}</p>
           {promo.extra && (
-            <p class="text-ink-soft max-w-lg mx-auto mb-2 leading-relaxed">{promo.extra}</p>
+            <p class="text-ink-soft max-w-lg mx-auto mb-2">{promo.extra}</p>
           )}
         </li>
       ))

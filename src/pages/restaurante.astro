@@ -70,7 +70,7 @@ const restaurantLd = {
 >
   <main>
     <h1 class="sr-only">El Veintidós - Restaurante en Xico, Veracruz</h1>
-    <HeroSlider slides={restSlides} alt="El Veintidós Restaurante" height="70vh" />
+    <HeroSlider slides={restSlides} alt="El Veintidós Restaurante" height="60vh" />
 
     <section class="section bg-white">
       <div class="container-x">
@@ -145,9 +145,7 @@ const restaurantLd = {
                   </ul>
                 </div>
               ))}
-              {section.note && (
-                <p class="text-ink-soft text-sm italic text-center mt-4">{section.note}</p>
-              )}
+              {section.note && <p class="text-ink-soft italic text-center mt-4">{section.note}</p>}
             </div>
           ))
         }
@@ -157,7 +155,7 @@ const restaurantLd = {
     <section class="section">
       <div class="container-x text-center">
         <h2 class="font-display text-4xl tracking-[0.08em] text-ink mb-2 mt-0">Buen Provecho</h2>
-        <p class="text-ink-soft text-lg mb-1">Reservaciones:</p>
+        <p class="text-ink-soft mb-1">Reservaciones:</p>
         <a
           href={`tel:${site.phoneTel}`}
           class="font-display text-2xl text-accent hover:text-accent-dark transition-colors"
@@ -182,7 +180,7 @@ const restaurantLd = {
             <p class="font-display text-2xl text-ink italic text-center mb-8">
               Un café es siempre una buena idea.
             </p>
-            <p class="max-w-3xl mx-auto mb-0 text-ink-soft leading-[1.7] text-center">
+            <p class="max-w-3xl mx-auto mb-0 text-ink-soft text-center">
               Su ambiente acogedor y la belleza del lugar hacen de Flor de Café, un espacio ideal
               para disfrutar un buen café en compañía de tu pareja, amigos o familiares. Comparte tu
               momento con un delicioso postre o pastel elaborados en casa.

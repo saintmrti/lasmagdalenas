@@ -1,13 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import SectionIntro from "../components/SectionIntro.astro";
 import SectionDivider from "../components/SectionDivider.astro";
-import StickyTabs from "../components/StickyTabs.astro";
 import { images, site } from "../data/site";
 import { eventSpaces } from "../data/eventSpaces";
-
-const eventTabs = eventSpaces.map((s) => ({ id: s.id, label: s.title }));
 
 const baseUrl = site.url;
 
@@ -44,54 +40,48 @@ const eventVenueLd = {
   canonicalPath="/eventos/"
   jsonLd={[eventVenueLd]}
 >
-  <main>
+  <main class="bg-[#2b2b2b]">
     <h1 class="sr-only">Bodas y Eventos en Xico, Veracruz</h1>
-    <PageHero image={images.eventoHome} height="70vh" />
+    <PageHero image={images.eventoHome} height="60vh" />
 
-    <section class="section events-intro">
-      <div class="container-x">
-        <div class="events-intro__card">
-          <img
-            src={images.eventoTitle}
-            alt="Eventos"
-            class="max-w-60 mx-auto mb-6"
-            loading="lazy"
-          />
-          <SectionDivider />
-          <SectionIntro
-            lead="Somos el marco perfecto para celebrar tu momento. Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas."
-          />
-        </div>
-      </div>
-    </section>
+    <section class="px-6 py-20 text-center">
+      <img
+        src={images.eventoTitle}
+        alt="Eventos"
+        class="mx-auto mb-4 h-auto w-48 md:w-56"
+        loading="lazy"
+      />
+      <SectionDivider />
 
-    <StickyTabs tabs={eventTabs} />
+      <p class="mx-auto max-w-3xl text-center text-white/75 mb-16">
+        Celebra tu boda, reunión o ocasión especial en una casona colonial del siglo XIX. Espacios
+        únicos en Las Magdalenas Hotel Boutique, Pueblo Mágico.
+      </p>
 
-    <section class="section pt-7">
       <div class="container-x">
         {
           eventSpaces.map((space, index) => (
             <div id={space.id} data-tab-section class="mb-16 scroll-mt-24 last:mb-0">
               <div class="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-                <div class="border border-[#e7ad44]/25 bg-surface-soft px-6 py-8 text-center md:px-8 md:py-12">
-                  <p class="mb-3 mt-0 text-xs font-semibold uppercase tracking-[0.18em] text-[#404040]">
+                <div class="border border-white/25 bg-[#4d4d4d] px-6 py-8 text-center md:px-8 md:py-12">
+                  <p class="mb-3 mt-0 text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
                     Espacio {index + 1}
                   </p>
-                  <h2 class="font-display text-3xl uppercase text-accent-dark text-center mb-6 mt-0">
+                  <h2 class="font-display text-3xl uppercase text-white text-center mb-6 mt-0">
                     {space.title}
                   </h2>
-                  <p class="mx-auto mb-4 max-w-3xl text-center leading-[1.7] text-ink-soft">
+                  <p class="mx-auto mb-4 max-w-3xl text-center text-white/75">
                     {space.description}
                   </p>
 
                   {space.capacity && (
-                    <p class="mb-6 mt-0 text-center text-sm font-bold uppercase tracking-[0.14em] text-[#4a4a4a]">
+                    <p class="mb-6 mt-0 text-center text-sm font-bold uppercase tracking-[0.14em] text-white/80">
                       {space.capacity}
                     </p>
                   )}
 
                   {space.ctaLabel && space.ctaHref && (
-                    <a href={space.ctaHref} class="btn">
+                    <a href={space.ctaHref} class="btn text-white">
                       {space.ctaLabel}
                     </a>
                   )}
@@ -103,7 +93,7 @@ const eventVenueLd = {
                       <img
                         src={src}
                         alt={`${space.title} ${imageIndex + 1}`}
-                        class="aspect-4/3 min-h-40 w-full object-cover shadow-[0_1.25rem_2.5rem_rgba(84,63,63,0.12)]"
+                        class="aspect-4/3 min-h-40 w-full object-cover shadow-[0_1.25rem_2.5rem_rgba(0,0,0,0.3)]"
                         loading="lazy"
                       />
                     ))}
@@ -117,37 +107,3 @@ const eventVenueLd = {
     </section>
   </main>
 </BaseLayout>
-
-<style>
-  .events-intro {
-    margin-top: -4rem;
-    background: linear-gradient(180deg, transparent 0%, #fff 4rem, #fff 100%);
-  }
-
-  .events-intro__card {
-    position: relative;
-    max-width: 52rem;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
-    background: linear-gradient(rgba(29, 29, 29, 0.44), rgba(29, 29, 29, 0.44)), #404040;
-    box-shadow: 0 2rem 4rem rgba(29, 29, 29, 0.18);
-  }
-
-  .events-intro__card::before {
-    content: "";
-    position: absolute;
-    inset: 1rem;
-    pointer-events: none;
-    border: 1px solid white;
-  }
-
-  .events-intro__card :global(p) {
-    color: rgba(255, 255, 255, 0.82);
-  }
-
-  @media (min-width: 768px) {
-    .events-intro__card {
-      padding: 4rem 3rem;
-    }
-  }
-</style>
