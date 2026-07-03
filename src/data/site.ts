@@ -25,9 +25,6 @@ export const navigation = [
   { label: "HABITACIONES", href: site.bookingUrl, external: true },
   { label: "RESTAURANTE", href: "/restaurante/" },
   { label: "EVENTOS", href: "/eventos/" },
-  // { label: "ACTIVIDADES", href: "/actividades/" },
-  // { label: "PROMOCIONES", href: "/promociones/" },
-  // { label: "XICO", href: "/xico/" },
   { label: "CONTACTO", href: "/contacto/" },
 ];
 
@@ -113,14 +110,14 @@ export const rooms = [
   },
 ];
 
-export const promotions = [
-  {
-    title: "HOTEL SEDE",
-    image: images.promociones[0].image,
-    text: "Tarifa Especial en función a las noches de estancia de tus invitados. Hospédalos bajo un ambiente de historia, comodidad y servicio personalizado.",
-  },
+export const events = [
   {
     title: "REUNIONES Y EVENTOS",
+    image: images.eventoHome,
+    text: "Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas. Un hotel para para celebrar momentos irrepetibles.",
+  },
+  {
+    title: "DESAYUNOS SOCIALES O DE NEGOCIOS",
     image: images.promociones[1].image,
     text: "Desayunos Sociales o de Negocios. Disfruta de la gastronomía Xiqueña a través de un exquisito Desayuno. Manejamos paquetes en función a tus necesidades.",
     extra:
@@ -166,16 +163,8 @@ export const homeContent = {
     ctaHref: "/restaurante/",
   },
   eventos: {
-    text: "Somos el marco perfecto para celebrar tu momento. Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas. Un hotel para para celebrar momentos irrepetibles.",
+    title: "Somos el marco perfecto para celebrar tu momento",
     cta: "MÁS INFORMACIÓN",
     ctaHref: "/eventos/",
-  },
-  promociones: {
-    title: "PROMOCIONES",
-    intro: "Aproveche al máximo su estancia en Xico con estas exclusivas promociones.",
-    footnote:
-      "*Aplican restricciones y vigencias en nuestras promociones. Por favor póngase en contacto con nosotros. Será un placer informarle de nuestros paquetes y tarifas especiales para individuales, parejas o grupos.",
-    cta: "VER TODAS LAS PROMOCIONES",
-    ctaHref: "/promociones/",
   },
 };

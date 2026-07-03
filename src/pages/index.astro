@@ -3,8 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import RoomGrid from "../components/RoomGrid.astro";
-import PromoGrid from "../components/PromoGrid.astro";
-import { homeContent, images, site } from "../data/site";
+import EventsRows from "../components/EventsRows.astro";
+import { homeContent, images, events, site } from "../data/site";
 
 const hotelLd = {
   "@context": "https://schema.org",
@@ -50,7 +50,7 @@ const hotelLd = {
           titleText={homeContent.hotel.title}
           lead={homeContent.hotel.description}
         />
-        <p class="max-w-3xl mx-auto mb-8 text-ink-soft leading-[1.7]">
+        <p class="max-w-2xl mx-auto mb-8 text-zinc-600 text-sm md:text-base">
           {homeContent.hotel.paragraph}
         </p>
         <a href={homeContent.hotel.ctaHref} class="btn">{homeContent.hotel.cta}</a>
@@ -67,83 +67,75 @@ const hotelLd = {
       </div>
     </section>
 
-    <section class="section bg-white">
-      <div class="container-x">
-        <div class="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div class="restaurant-feature__copy">
-            <div class="restaurant-feature__logo-card">
-              <img
-                src={images.restLogo}
-                alt="El Veintidós Restaurante"
-                class="w-52 h-auto mx-auto"
-                loading="lazy"
-              />
-            </div>
-            <SectionIntro
-              titleText={homeContent.restaurante.title}
-              lead={homeContent.restaurante.description}
-            />
-            <p class="max-w-3xl mx-auto mb-8 text-ink-soft leading-[1.7]">
-              {homeContent.restaurante.paragraph}
-            </p>
-            <a href={homeContent.restaurante.ctaHref} class="btn">
-              {homeContent.restaurante.cta}
-            </a>
-          </div>
+    <section class="bg-[#404040] px-6 py-20 text-center">
+      <img
+        src={images.eventoTitle}
+        alt={homeContent.eventos.title}
+        class="mx-auto mb-4 h-auto w-48 md:w-56"
+        loading="lazy"
+      />
 
-          <div class="restaurant-feature__gallery" aria-hidden="true">
+      <h3 class="mb-10 font-display text-2xl font-normal text-white md:text-3xl">
+        {homeContent.eventos.title}
+      </h3>
+
+      <EventsRows items={events} />
+
+      <a
+        href={homeContent.eventos.ctaHref}
+        class="btn border-white/40 text-white hover:bg-white hover:text-[#404040] hover:border-white"
+      >
+        {homeContent.eventos.cta}
+      </a>
+    </section>
+
+    <section class="section restaurant-feature">
+      <div class="container-x">
+        <div class="restaurant-feature__inner">
+          <div class="restaurant-feature__carousel">
             {
               images.restSlides.map((src, index) => (
-                <div
-                  class={`restaurant-feature__photo restaurant-feature__photo--${index + 1}`}
-                  style={`background-image:url(${src})`}
+                <img
+                  src={src}
+                  alt={`El Veintidós Restaurante ${index + 1}`}
+                  class:list={["restaurant-feature__slide", index === 0 && "is-active"]}
+                  loading="lazy"
                 />
               ))
             }
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="section events-feature">
-      <div class="container-x">
-        <div class="events-feature__card">
-          <div
-            class="events-feature__image"
-            style={`background-image:url(${images.eventoHome})`}
-            role="img"
-            aria-label="Eventos Las Magdalenas"
-          >
-          </div>
-          <div class="events-feature__content">
-            <img
-              src={images.eventoTitle}
-              alt="Eventos y Bodas"
-              class="max-w-60 mx-auto mb-6"
-              loading="lazy"
-            />
-            <SectionIntro lead={homeContent.eventos.text} />
-            <a href={homeContent.eventos.ctaHref} class="btn btn--inverse mt-6">
-              {homeContent.eventos.cta}
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+          <img
+            src={images.restLogo}
+            alt="El Veintidós Restaurante"
+            class="restaurant-feature__logo"
+            loading="lazy"
+          />
 
-    <section class="section">
-      <div class="container-x">
-        <SectionIntro
-          titleText={homeContent.promociones.title}
-          lead={homeContent.promociones.intro}
-        />
-        <PromoGrid />
-        <p class="max-w-3xl mx-auto mb-8 text-ink-soft text-sm italic">
-          {homeContent.promociones.footnote}
-        </p>
-        <a href={homeContent.promociones.ctaHref} class="btn">
-          {homeContent.promociones.cta}
-        </a>
+          <header class="restaurant-feature__header">
+            <h3
+              class="font-display text-2xl md:text-3xl font-normal tracking-tighter text-ink-dark mt-5 mb-2.5"
+            >
+              {homeContent.restaurante.title}
+            </h3>
+            <p>{homeContent.restaurante.description}</p>
+          </header>
+
+          <div class="restaurant-feature__row">
+            {
+              images.restSlides.map((src, index) => (
+                <img
+                  src={src}
+                  alt={`El Veintidós Restaurante ${index + 1}`}
+                  class="restaurant-feature__photo"
+                  loading="lazy"
+                />
+              ))
+            }
+          </div>
+
+          <a href={homeContent.restaurante.ctaHref} class="btn"> Ver Menú </a>
+        </div>
       </div>
     </section>
   </main>
@@ -155,89 +147,88 @@ const hotelLd = {
     left: 50%;
   }
 
-  .restaurant-feature__logo-card {
-    width: fit-content;
-    margin: 0 auto 1.5rem;
-    padding: 1.5rem 1.75rem;
-  }
-
-  .restaurant-feature__gallery {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-
-  .restaurant-feature__photo {
-    min-height: 10rem;
-    background-position: center;
-    background-size: cover;
-    box-shadow: 0 1.25rem 2.5rem rgba(84, 63, 63, 0.14);
-  }
-
-  .restaurant-feature__photo--1,
-  .restaurant-feature__photo--4 {
-    transform: translateY(1.25rem);
-  }
-
-  .events-feature {
-    background: #1d1d1d;
-  }
-
-  .events-feature__card {
-    display: grid;
-    overflow: hidden;
-    max-width: 72rem;
+  .restaurant-feature__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 64rem;
     margin: 0 auto;
-    background: #404040;
-    box-shadow: 0 2rem 4rem rgba(29, 29, 29, 0.24);
+    text-align: center;
   }
 
-  .events-feature__image {
-    min-height: 18rem;
-    background-position: center;
-    background-size: cover;
-  }
-
-  .events-feature__content {
+  .restaurant-feature__carousel {
     position: relative;
-    padding: 3rem 1.5rem;
-    color: #fff;
-    background: linear-gradient(rgba(29, 29, 29, 0.36), rgba(29, 29, 29, 0.36)), #404040;
+    width: 100%;
+    height: 14rem;
+    overflow: hidden;
   }
 
-  .events-feature__content::before {
-    content: "";
+  .restaurant-feature__slide {
     position: absolute;
-    inset: 1rem;
-    pointer-events: none;
-    border: 1px solid white;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: rest-fade 16s infinite;
   }
 
-  .events-feature__content :global(p) {
-    color: rgba(255, 255, 255, 0.82);
+  .restaurant-feature__slide:nth-child(2) {
+    animation-delay: 4s;
+  }
+
+  .restaurant-feature__slide:nth-child(3) {
+    animation-delay: 8s;
+  }
+
+  .restaurant-feature__slide:nth-child(4) {
+    animation-delay: 12s;
+  }
+
+  .restaurant-feature__logo {
+    max-width: 13rem;
+    height: auto;
+  }
+  .restaurant-feature__row {
+    display: none;
+  }
+
+  @keyframes rest-fade {
+    0% {
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   @media (min-width: 768px) {
+    .restaurant-feature__carousel {
+      display: none;
+    }
+
+    .restaurant-feature__row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 72rem;
+    }
+
     .restaurant-feature__photo {
-      min-height: 13rem;
-    }
-
-    .events-feature__card {
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: stretch;
-    }
-
-    .events-feature__image {
-      min-height: 30rem;
-    }
-
-    .events-feature__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 2.5rem;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
     }
   }
 </style>

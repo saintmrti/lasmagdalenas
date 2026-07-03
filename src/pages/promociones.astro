@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageTitle from "../components/PageTitle.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import PromoGrid from "../components/PromoGrid.astro";
-import { promotions, site } from "../data/site";
+import { events, site } from "../data/site";
 
 const baseUrl = site.url;
 
@@ -11,7 +11,7 @@ const offersLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Promociones y paquetes",
-  itemListElement: promotions.map((promo, index) => ({
+  itemListElement: events.map((promo, index) => ({
     "@type": "ListItem",
     position: index + 1,
     item: {
@@ -40,7 +40,7 @@ const offersLd = {
           lead="Aproveche al máximo su estancia en Xico con estas exclusivas promociones."
         />
         <PromoGrid />
-        <p class="max-w-3xl my-8 mx-auto text-ink-soft text-sm italic text-center">
+        <p class="max-w-3xl my-8 mx-auto text-ink-soft italic text-center">
           *Aplican restricciones y vigencias en nuestras promociones. Por favor póngase en contacto
           con nosotros. Será un placer informarle de nuestros paquetes y tarifas especiales para
           individuales, parejas o grupos.

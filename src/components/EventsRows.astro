@@ -1,0 +1,48 @@
+---
+interface EventItem {
+  title: string;
+  image: string;
+  text: string;
+  extra?: string;
+}
+
+interface Props {
+  items: EventItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="mx-auto mb-16 flex max-w-5xl flex-col gap-8 md:gap-0">
+  {
+    items.map((item, index) => (
+      <article
+        class:list={[
+          "group flex flex-col overflow-hidden bg-[#4d4d4d] md:flex-row md:items-stretch",
+          index % 2 !== 0 && "md:flex-row-reverse",
+        ]}
+      >
+        <div class="relative min-h-64 flex-[0_0_50%] overflow-hidden md:min-h-96">
+          <img
+            src={item.image}
+            alt={item.title}
+            class="h-full w-full object-cover transition-transform duration-600 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="flex flex-1 flex-col justify-center p-10 text-left md:p-14">
+          <p class="mb-3 text-xs font-semibold tracking-[0.3em] text-ink-soft">
+            {String(index + 1).padStart(2, "0")}
+          </p>
+          <h3 class="mb-4 font-display text-xl font-normal leading-tight text-white md:text-2xl">
+            {item.title}
+          </h3>
+          <span class="mb-5 block h-px w-10 bg-white/30" />
+          <p class="mb-4 leading-relaxed text-white/75">{item.text}</p>
+          {item.extra && <p class="italic leading-relaxed text-white/75">{item.extra}</p>}
+        </div>
+      </article>
+    ))
+  }
+</div>
