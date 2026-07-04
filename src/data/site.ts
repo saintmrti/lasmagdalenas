@@ -114,12 +114,12 @@ export const events = [
   {
     title: "REUNIONES Y EVENTOS",
     image: images.eventoHome,
-    text: "Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas. Un hotel para para celebrar momentos irrepetibles.",
+    text: "Haz de tu evento una experiencia llena de historia, elegancia y exclusividad bajo el encanto de Las Magdalenas. Un hotel para celebrar momentos irrepetibles.",
   },
   {
     title: "DESAYUNOS SOCIALES O DE NEGOCIOS",
     image: images.promociones[1].image,
-    text: "Desayunos Sociales o de Negocios. Disfruta de la gastronomía Xiqueña a través de un exquisito Desayuno. Manejamos paquetes en función a tus necesidades.",
+    text: "Disfruta de la gastronomía Xiqueña a través de un exquisito Desayuno. Manejamos paquetes en función a tus necesidades.",
     extra:
       "Coffee Break. Realiza tu junta de trabajo bajo una atmósfera llena de historia y tradición.",
   },
