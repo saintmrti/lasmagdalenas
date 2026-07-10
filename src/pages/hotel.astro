@@ -1,7 +1,6 @@
 ---
 import HeroSlider from "../components/HeroSlider.astro";
 import RoomGrid from "../components/RoomGrid.astro";
-import SectionDivider from "../components/SectionDivider.astro";
 import SectionIntro from "../components/SectionIntro.astro";
 import { images, site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -80,7 +79,6 @@ const hotelLd = {
 
     <section class="section">
       <div class="container-x">
-        <SectionDivider />
         <SectionIntro
           titleImage={images.hotelTitle}
           titleText="Magnífica casona estilo colonial construida en el siglo XIX"
@@ -96,13 +94,11 @@ const hotelLd = {
 
     <section class="section hotel-services">
       <div class="container-x">
-        <p class="hotel-services__eyebrow">Todo incluido</p>
         <h2
           class="font-display text-3xl md:text-4xl leading-tight font-normal tracking-tighter text-ink-dark text-center mb-3 mt-0"
         >
           Servicios
         </h2>
-        <SectionDivider />
         <div class="hotel-services__grid">
           {
             servicios.map((servicio) => (
@@ -119,7 +115,6 @@ const hotelLd = {
 
     <section class="section">
       <div class="container-x">
-        <SectionDivider />
         <SectionIntro
           titleText="HABITACIONES"
           lead="Nuestras acogedoras habitaciones cuentan con techos sostenidos por vigones de madera, muros de piedra y detalles contemporáneos que les dan calidez y confort."
@@ -137,7 +132,6 @@ const hotelLd = {
           >
             Galería del Hotel
           </h2>
-          <SectionDivider />
           <p class="max-w-3xl mx-auto text-ink-soft text-center">
             Rincones coloniales, detalles de época y habitaciones pensadas para descansar bajo el
             encanto de Xico.

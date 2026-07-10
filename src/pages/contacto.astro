@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import PageTitle from "../components/PageTitle.astro";
 import { site } from "../data/site";
 
 const contactPageLd = {
@@ -35,10 +34,14 @@ const contactPageLd = {
   jsonLd={[contactPageLd]}
 >
   <main>
-    <PageHero image="/assets/fondo-contacto.jpg" height="60vh" />
-    <PageTitle title="CONTACTO" />
+    <div class="hidden md:block">
+      <PageHero image="/assets/fondo-contacto.jpg" height="60vh" />
+    </div>
     <section class="section">
       <div class="container-x">
+        <div class="container-x text-center">
+          <h1 class="font-display text-4xl md:text-5xl text-ink mb-4 mt-10 md:mt-0">Contacto</h1>
+        </div>
         <div class="max-w-2xl mx-auto mb-12 text-center">
           <h2 class="font-display text-2xl text-accent-dark mb-4 mt-0">{site.name}</h2>
           <p class="text-ink-soft mb-2">{site.address}</p>
@@ -71,7 +74,7 @@ const contactPageLd = {
             Envíanos un mensaje
           </h3>
           <label class="flex flex-col gap-1.5">
-            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Nombre</span>
+            <span class="text-xs uppercase text-ink-soft">Nombre</span>
             <input
               type="text"
               name="name"
@@ -80,7 +83,7 @@ const contactPageLd = {
             />
           </label>
           <label class="flex flex-col gap-1.5">
-            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Email</span>
+            <span class="text-xs uppercase text-ink-soft">Email</span>
             <input
               type="email"
               name="email"
@@ -89,7 +92,7 @@ const contactPageLd = {
             />
           </label>
           <label class="flex flex-col gap-1.5">
-            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Teléfono</span>
+            <span class="text-xs uppercase text-ink-soft">Teléfono</span>
             <input
               type="tel"
               name="phone"
@@ -97,7 +100,7 @@ const contactPageLd = {
             />
           </label>
           <label class="flex flex-col gap-1.5">
-            <span class="text-xs uppercase tracking-[0.1em] text-ink-soft">Mensaje</span>
+            <span class="text-xs uppercase text-ink-soft">Mensaje</span>
             <textarea
               name="message"
               rows="5"

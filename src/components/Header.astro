@@ -146,7 +146,11 @@ const currentPath = normalizePath(Astro.url.pathname);
       () => {
         const currentScrollY = window.scrollY;
 
-        if (currentScrollY > lastScrollY && currentScrollY > 80 && !nav?.classList.contains("is-open")) {
+        if (
+          currentScrollY > lastScrollY &&
+          currentScrollY > 80 &&
+          !nav?.classList.contains("is-open")
+        ) {
           header.classList.add("is-hidden");
         } else if (currentScrollY < lastScrollY) {
           header.classList.remove("is-hidden");

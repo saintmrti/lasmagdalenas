@@ -11,7 +11,7 @@ const alignClass = align === "left" ? "text-left" : "text-center";
 ---
 
 <header class:list={["max-w-2xl mx-auto", alignClass]}>
-  {titleImage && <img src={titleImage} alt="" class="max-w-40 mx-auto mb-6" loading="lazy" />}
+  {titleImage && <img src={titleImage} alt="" class="max-w-40 mx-auto" loading="lazy" />}
   {
     titleText && (
       <h2 class="font-display text-4xl md:text-5xl tracking-tighter text-ink-dark mt-5 mb-2.5">
