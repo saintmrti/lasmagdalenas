@@ -59,9 +59,11 @@ const currentPath = normalizePath(Astro.url.pathname);
       aria-expanded="false"
       data-menu-toggle
     >
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+      <svg class="hamburger-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <line class="hamburger-line" x1="2" y1="6" x2="22" y2="6"></line>
+        <line class="hamburger-line" x1="2" y1="12" x2="22" y2="12"></line>
+        <line class="hamburger-line" x1="2" y1="18" x2="22" y2="18"></line>
+      </svg>
     </button>
 
     <a href="/" class="mobile-logo" aria-label={site.name}>
@@ -129,6 +131,13 @@ const currentPath = normalizePath(Astro.url.pathname);
     link.addEventListener("click", () => setMenuOpen(false));
   });
 
+  document.addEventListener("click", (event) => {
+    if (!nav?.classList.contains("is-open")) return;
+    const target = event.target as Node;
+    if (nav.contains(target) || toggle?.contains(target)) return;
+    setMenuOpen(false);
+  });
+
   if (header) {
     let lastScrollY = window.scrollY;
 
@@ -137,7 +146,7 @@ const currentPath = normalizePath(Astro.url.pathname);
       () => {
         const currentScrollY = window.scrollY;
 
-        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        if (currentScrollY > lastScrollY && currentScrollY > 80 && !nav?.classList.contains("is-open")) {
           header.classList.add("is-hidden");
         } else if (currentScrollY < lastScrollY) {
           header.classList.remove("is-hidden");
@@ -216,26 +225,30 @@ const currentPath = normalizePath(Astro.url.pathname);
     display: inline-flex;
     width: 3rem;
     height: 3rem;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 0.45rem;
     padding: 0;
     border: 0;
     background: transparent;
   }
 
+  .hamburger-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    stroke: var(--color-ink-inverse);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
   .hamburger-line {
-    display: block;
-    width: 2.5rem;
-    height: 0.25rem;
-    background: var(--color-ink-inverse);
     transition:
       transform 0.2s ease,
       opacity 0.2s ease;
+    transform-origin: center;
   }
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
+    transform: translateY(6px) rotate(45deg);
   }
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(2) {
@@ -243,7 +256,7 @@ const currentPath = normalizePath(Astro.url.pathname);
   }
 
   [data-menu-toggle].is-open .hamburger-line:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
+    transform: translateY(-6px) rotate(-45deg);
   }
 
   .mobile-logo img {
@@ -274,7 +287,7 @@ const currentPath = normalizePath(Astro.url.pathname);
     border: 0;
     background: transparent;
     color: #fff;
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 200;
     line-height: 1;
   }
@@ -282,7 +295,7 @@ const currentPath = normalizePath(Astro.url.pathname);
   .mobile-menu__list {
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -291,7 +304,7 @@ const currentPath = normalizePath(Astro.url.pathname);
   .mobile-menu__link {
     display: block;
     color: #fff;
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     font-weight: 300;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -300,6 +313,12 @@ const currentPath = normalizePath(Astro.url.pathname);
     transition:
       border-color 0.2s ease,
       color 0.2s ease;
+  }
+
+  @media (max-width: 640px) {
+    .mobile-menu__link {
+      font-size: 14px;
+    }
   }
 
   .mobile-menu__link.is-active {
@@ -319,14 +338,14 @@ const currentPath = normalizePath(Astro.url.pathname);
   }
 
   .nav-link.is-active {
-    color: var(--color-accent);
+    color: #babcbe;
   }
 
   .nav-indicator {
     position: absolute;
     top: 0;
     height: 2px;
-    background: var(--color-accent);
+    background: #babcbe;
     opacity: 0;
     transition:
       transform 0.3s ease,
@@ -338,7 +357,7 @@ const currentPath = normalizePath(Astro.url.pathname);
   .desktop-help:hover,
   .desktop-gallery:hover,
   .mobile-menu__link:hover {
-    color: var(--color-accent);
+    color: #babcbe;
   }
 
   .btn-reserve {
@@ -346,8 +365,8 @@ const currentPath = normalizePath(Astro.url.pathname);
     width: 100%;
     padding: 14px 32px;
     color: var(--color-ink-inverse);
-    background-color: #c04a40;
-    font-size: 13px;
+    background-color: var(--color-accent);
+    font-size: 14px;
     text-align: center;
     text-transform: uppercase;
     transition:

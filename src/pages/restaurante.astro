@@ -81,10 +81,23 @@ const restaurantLd = {
           loading="lazy"
         />
         <SectionDivider />
-        <SectionIntro
+        <header>
+          <h3
+            class="font-display text-2xl md:text-3xl font-normal tracking-tighter text-ink-dark mt-5 mb-2.5"
+          >
+            “RESCATANDO SABORES DEL PUEBLO”
+          </h3>
+          <p>
+            Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y
+            española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos,
+            tradicionales de Xico y españoles preparados con productos que se cosechan y se producen
+            en el pueblo.
+          </p>
+        </header>
+        <!-- <SectionIntro
           titleText="“RESCATANDO SABORES DEL PUEBLO”"
           lead="Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos, tradicionales de Xico y españoles preparados con productos que se cosechan y se producen en el pueblo."
-        />
+        /> -->
         <div class="grid grid-cols-2 gap-4 max-w-4xl mx-auto my-12">
           {
             platillos.map((src, i) => (
