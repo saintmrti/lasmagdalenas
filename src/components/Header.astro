@@ -308,7 +308,7 @@ const currentPath = normalizePath(Astro.url.pathname);
   .mobile-menu__link {
     display: block;
     color: #fff;
-    font-size: 1.25rem;
+    font-size: 13px;
     font-weight: 300;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -317,12 +317,6 @@ const currentPath = normalizePath(Astro.url.pathname);
     transition:
       border-color 0.2s ease,
       color 0.2s ease;
-  }
-
-  @media (max-width: 640px) {
-    .mobile-menu__link {
-      font-size: 14px;
-    }
   }
 
   .mobile-menu__link.is-active {
@@ -370,7 +364,7 @@ const currentPath = normalizePath(Astro.url.pathname);
     padding: 14px 32px;
     color: var(--color-ink-inverse);
     background-color: var(--color-accent);
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
     text-transform: uppercase;
     transition:

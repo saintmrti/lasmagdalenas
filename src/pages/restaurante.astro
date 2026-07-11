@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
+import SectionRestaurante from "../components/SectionRestaurante.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import StickyTabs from "../components/StickyTabs.astro";
 import { images, site, social } from "../data/site";
@@ -71,45 +72,12 @@ const restaurantLd = {
     <h1 class="sr-only">El Veintidós - Restaurante en Xico, Veracruz</h1>
     <HeroSlider slides={restSlides} alt="El Veintidós Restaurante" height="60vh" />
 
-    <section class="section bg-white">
-      <div class="container-x">
-        <img
-          src={images.restLogo}
-          alt="El Veintidós Restaurante"
-          class="w-48 h-auto mx-auto mb-6"
-          loading="lazy"
-        />
-        <header>
-          <h3
-            class="font-display text-2xl md:text-3xl font-normal tracking-tighter text-ink-dark mt-5 mb-2.5"
-          >
-            “RESCATANDO SABORES DEL PUEBLO”
-          </h3>
-          <p>
-            Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y
-            española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos,
-            tradicionales de Xico y españoles preparados con productos que se cosechan y se producen
-            en el pueblo.
-          </p>
-        </header>
-        <!-- <SectionIntro
-          titleText="“RESCATANDO SABORES DEL PUEBLO”"
-          lead="Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos, tradicionales de Xico y españoles preparados con productos que se cosechan y se producen en el pueblo."
-        /> -->
-        <div class="grid grid-cols-2 gap-4 max-w-4xl mx-auto my-12">
-          {
-            platillos.map((src, i) => (
-              <img
-                src={src}
-                alt={`Platillo de El Veintidós Restaurante en Xico, Veracruz - ${i + 1}`}
-                class="w-full aspect-[4/3] object-cover"
-                loading="lazy"
-              />
-            ))
-          }
-        </div>
-      </div>
-    </section>
+    <SectionRestaurante
+      logo={images.restLogo}
+      title={"RESCATANDO SABORES DEL PUEBLO"}
+      description="Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos, tradicionales de Xico y españoles preparados con productos que se cosechan y se producen en el pueblo."
+      images={platillos}
+    />
 
     <section class="section section--soft" id="menu-section">
       <div class="container-x">
@@ -127,7 +95,7 @@ const restaurantLd = {
         {
           menuSections.map((section) => (
             <div id={section.id} data-tab-section class="mb-16 scroll-mt-24">
-              <h3 class="font-display text-xl tracking-[0.1em] uppercase text-accent-dark text-center mb-8 mt-0">
+              <h3 class="font-display text-xl uppercase text-accent-dark text-center mb-8 mt-0">
                 {section.label}
               </h3>
               {section.subsections.map((sub) => (

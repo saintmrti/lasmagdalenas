@@ -1,0 +1,50 @@
+---
+interface Props {
+  logo: string;
+  title: string;
+  description: string;
+  images: string[];
+  cta?: string;
+  ctaHref?: string;
+}
+
+const { logo, title, description, images, cta, ctaHref } = Astro.props;
+---
+
+<section class="section">
+  <div class="container-x">
+    <div class="flex flex-col items-center gap-8 max-w-5xl mx-auto text-center">
+      <img src={logo} alt="" class="max-w-52 h-auto" loading="lazy" />
+
+      <header>
+        <h3
+          class="font-display text-2xl md:text-3xl font-normal tracking-tighter text-ink-dark mt-5 mb-2.5"
+        >
+          {title}
+        </h3>
+        <p class="font-light text-zinc-600">{description}</p>
+      </header>
+
+      <div class="flex flex-col gap-3 w-full md:grid md:grid-cols-4 md:gap-3">
+        {
+          images.map((src, index) => (
+            <img
+              src={src}
+              alt={`Restaurante ${index + 1}`}
+              class="w-full aspect-4/3 object-cover"
+              loading="lazy"
+            />
+          ))
+        }
+      </div>
+
+      {
+        cta && ctaHref && (
+          <a href={ctaHref} class="btn">
+            {cta}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

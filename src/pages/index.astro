@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
-import SectionIntro from "../components/SectionIntro.astro";
+import SectionHotel from "../components/SectionHotel.astro";
+import SectionRestaurante from "../components/SectionRestaurante.astro";
 import RoomGrid from "../components/RoomGrid.astro";
+import SectionIntro from "../components/SectionIntro.astro";
 import EventsRows from "../components/EventsRows.astro";
 import { homeContent, images, events, site } from "../data/site";
 
@@ -43,19 +45,9 @@ const hotelLd = {
   <main>
     <h1 class="sr-only">Las Magdalenas Hotel Boutique en Xico, Veracruz</h1>
     <HeroSlider slides={images.heroSlides} alt={site.name} height="70vh" />
-    <section class="section">
-      <div class="container-x">
-        <SectionIntro
-          titleImage={images.hotelTitle}
-          titleText={homeContent.hotel.title}
-          lead={homeContent.hotel.description}
-        />
-        <p class="max-w-2xl mx-auto mb-8 text-zinc-600 text-sm md:text-base">
-          {homeContent.hotel.paragraph}
-        </p>
-        <a href={homeContent.hotel.ctaHref} class="btn">{homeContent.hotel.cta}</a>
-      </div>
-    </section>
+    <SectionHotel>
+      <a href={homeContent.hotel.ctaHref} class="btn mt-8">{homeContent.hotel.cta}</a>
+    </SectionHotel>
 
     <section class="section section--soft">
       <div class="container-x">
@@ -86,55 +78,14 @@ const hotelLd = {
       </a>
     </section>
 
-    <section class="section restaurant-feature">
-      <div class="container-x">
-        <div class="restaurant-feature__inner">
-          <div class="restaurant-feature__carousel">
-            {
-              images.restSlides.map((src, index) => (
-                <img
-                  src={src}
-                  alt={`El Veintidós Restaurante ${index + 1}`}
-                  class:list={["restaurant-feature__slide", index === 0 && "is-active"]}
-                  loading="lazy"
-                />
-              ))
-            }
-          </div>
-
-          <img
-            src={images.restLogo}
-            alt="El Veintidós Restaurante"
-            class="restaurant-feature__logo"
-            loading="lazy"
-          />
-
-          <header>
-            <h3
-              class="font-display text-2xl md:text-3xl font-normal tracking-tighter text-ink-dark mt-5 mb-2.5"
-            >
-              {homeContent.restaurante.title}
-            </h3>
-            <p>{homeContent.restaurante.description}</p>
-          </header>
-
-          <div class="restaurant-feature__row">
-            {
-              images.restSlides.map((src, index) => (
-                <img
-                  src={src}
-                  alt={`El Veintidós Restaurante ${index + 1}`}
-                  class="restaurant-feature__photo"
-                  loading="lazy"
-                />
-              ))
-            }
-          </div>
-
-          <a href={homeContent.restaurante.ctaHref} class="btn"> Ver Menú </a>
-        </div>
-      </div>
-    </section>
+    <SectionRestaurante
+      logo={images.restLogo}
+      title={homeContent.restaurante.title}
+      description={homeContent.restaurante.description}
+      images={images.restSlides}
+      cta="Ver Menú"
+      ctaHref={homeContent.restaurante.ctaHref}
+    />
   </main>
 </BaseLayout>
 
@@ -142,90 +93,5 @@ const hotelLd = {
   .hero__cta {
     bottom: 2rem;
     left: 50%;
-  }
-
-  .restaurant-feature__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    max-width: 64rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .restaurant-feature__carousel {
-    position: relative;
-    width: 100%;
-    height: 14rem;
-    overflow: hidden;
-  }
-
-  .restaurant-feature__slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    animation: rest-fade 16s infinite;
-  }
-
-  .restaurant-feature__slide:nth-child(2) {
-    animation-delay: 4s;
-  }
-
-  .restaurant-feature__slide:nth-child(3) {
-    animation-delay: 8s;
-  }
-
-  .restaurant-feature__slide:nth-child(4) {
-    animation-delay: 12s;
-  }
-
-  .restaurant-feature__logo {
-    max-width: 13rem;
-    height: auto;
-  }
-  .restaurant-feature__row {
-    display: none;
-  }
-
-  @keyframes rest-fade {
-    0% {
-      opacity: 0;
-    }
-    5% {
-      opacity: 1;
-    }
-    25% {
-      opacity: 1;
-    }
-    30% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .restaurant-feature__carousel {
-      display: none;
-    }
-
-    .restaurant-feature__row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
-      width: 100%;
-      max-width: 72rem;
-    }
-
-    .restaurant-feature__photo {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
   }
 </style>

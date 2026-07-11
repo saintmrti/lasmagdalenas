@@ -1,8 +1,9 @@
 ---
 import HeroSlider from "../components/HeroSlider.astro";
+import SectionHotel from "../components/SectionHotel.astro";
 import RoomGrid from "../components/RoomGrid.astro";
 import SectionIntro from "../components/SectionIntro.astro";
-import { images, site } from "../data/site";
+import { homeContent, images, site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const hotelSlides = [
@@ -76,29 +77,10 @@ const hotelLd = {
   <main>
     <h1 class="sr-only">Hotel Boutique en Xico, Veracruz</h1>
     <HeroSlider slides={hotelSlides} alt="Hotel Las Magdalenas" height="60vh" />
-
-    <section class="section">
+    <SectionHotel />
+    <section class="section section--soft">
       <div class="container-x">
-        <SectionIntro
-          titleImage={images.hotelTitle}
-          titleText="Magnífica casona estilo colonial construida en el siglo XIX"
-          lead="Las Magdalenas Hotel Boutique emerge en una magnífica casona estilo colonial construida en el Siglo XIX, considerada ya, un monumento histórico. La exquisitez de su ambiente, es ideal para los huéspedes que desean una estancia llena de historia, descanso y servicio personalizado."
-        />
-        <p class="max-w-3xl mx-auto text-shadow-ink-soft text-center">
-          Estamos ubicados en el Centro Histórico de Xico, Veracruz. Lo que permite a nuestros
-          huéspedes caminar y disfrutar de los sitios culturales, naturales y gastronómicos más
-          importantes de nuestro Pueblo Mágico.
-        </p>
-      </div>
-    </section>
-
-    <section class="section hotel-services">
-      <div class="container-x">
-        <h2
-          class="font-display text-3xl md:text-4xl leading-tight font-normal tracking-tighter text-ink-dark text-center mb-3 mt-0"
-        >
-          Servicios
-        </h2>
+        <SectionIntro titleText="Servicios" />
         <div class="hotel-services__grid">
           {
             servicios.map((servicio) => (
@@ -109,15 +91,17 @@ const hotelLd = {
             ))
           }
         </div>
-        <p class="hotel-services__note">*Servicios con cargo extra.</p>
+      </div>
+      <div class="hotel-services__footer">
+        <p class="text-sm md:text-base text-ink-soft text-center">*Servicios con cargo extra.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container-x">
         <SectionIntro
-          titleText="HABITACIONES"
-          lead="Nuestras acogedoras habitaciones cuentan con techos sostenidos por vigones de madera, muros de piedra y detalles contemporáneos que les dan calidez y confort."
+          titleText={homeContent.habitaciones.title}
+          lead={homeContent.habitaciones.description}
         />
         <RoomGrid />
       </div>
@@ -159,62 +143,40 @@ const hotelLd = {
 
 <style>
   .hotel-services {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 85% 10%, rgba(114, 48, 95, 0.08), transparent 28rem),
-      linear-gradient(180deg, #f7f4f2 0%, #fff 40%, #f7f4f2 100%);
-  }
-
-  .hotel-services__eyebrow {
-    margin: 0 0 0.75rem;
-    color: #c04a40;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-align: center;
-    text-transform: uppercase;
+    padding-bottom: 0;
+    background: #fff;
   }
 
   .hotel-services__grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    max-width: 48rem;
-    margin: 0 auto;
+    gap: 1.5rem;
+    max-width: 50rem;
+    margin: 3rem auto 3rem;
   }
 
   .hotel-services__item {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(226, 220, 210, 0.5);
-  }
-
-  .hotel-services__item:nth-child(odd) {
-    border-right: 1px solid rgba(226, 220, 210, 0.5);
+    align-items: flex-start;
+    gap: 0.65rem;
   }
 
   .hotel-services__icon {
-    font-size: 1.25rem;
+    margin-top: 0.1rem;
+    font-size: 1.1rem;
     line-height: 1;
     flex-shrink: 0;
   }
 
   .hotel-services__text {
     color: #4a4a4a;
-    font-size: 0.875rem;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.55;
     text-align: left;
   }
 
-  .hotel-services__note {
-    margin: 1.25rem 0 0;
-    color: #8a8a8a;
-    font-size: 0.75rem;
-    font-style: italic;
-    text-align: center;
+  .hotel-services__footer {
+    padding: 2.25rem 1.25rem 2.75rem;
+    border-top: 1px solid #f1f1f1;
   }
 
   /* .hotel-gallery {
@@ -325,14 +287,14 @@ const hotelLd = {
   @media (min-width: 768px) {
     .hotel-services__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(3, auto);
+      grid-auto-flow: column;
+      column-gap: 3.5rem;
+      row-gap: 1.9rem;
     }
 
     .hotel-services__item {
-      border-right: 1px solid rgba(226, 220, 210, 0.5);
-    }
-
-    .hotel-services__item:nth-child(3n) {
-      border-right: 0;
+      gap: 0.75rem;
     }
 
     .hotel-gallery__header {

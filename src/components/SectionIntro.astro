@@ -1,24 +1,20 @@
 ---
 interface Props {
-  titleImage?: string;
-  titleText?: string;
+  titleText: string;
   lead?: string;
   align?: "center" | "left";
 }
 
-const { titleImage, titleText, lead, align = "center" } = Astro.props;
+const { titleText, lead, align = "center" } = Astro.props;
 const alignClass = align === "left" ? "text-left" : "text-center";
 ---
 
 <header class:list={["max-w-2xl mx-auto", alignClass]}>
-  {titleImage && <img src={titleImage} alt="" class="max-w-40 mx-auto" loading="lazy" />}
-  {
-    titleText && (
-      <h2 class="font-display text-4xl md:text-5xl tracking-tighter text-ink-dark mt-5 mb-2.5">
-        {titleText}
-      </h2>
-    )
-  }
-  {lead && <p class="mx-auto text-zinc-600">{lead}</p>}
+  <h2
+    class="font-display text-3xl md:text-4xl tracking-[0.15em] uppercase text-ink-dark mt-5 mb-2.5"
+  >
+    {titleText}
+  </h2>
+  {lead && <p class="mx-auto font-light text-zinc-600">{lead}</p>}
   <slot />
 </header>

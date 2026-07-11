@@ -1,5 +1,12 @@
 # Agent Instructions
 
+## Package Manager
+
+- This project uses **pnpm**. Always use pnpm commands instead of npm or yarn.
+  - `pnpm install`, `pnpm build`, `pnpm dev`, `pnpm preview`
+  - `pnpm format`, `pnpm format:check`
+  - `pnpm exec prettier` (instead of `npx prettier`)
+
 ## Code Quality
 
 - Follow clean code principles: clear naming, single responsibility, no magic numbers or strings.
