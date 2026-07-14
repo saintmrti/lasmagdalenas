@@ -56,10 +56,10 @@ export const images = {
     "/assets/2017_07_slidehome_21.jpg",
   ],
   restSlides: [
-    "/assets/2017_07_slide_restaurante_1.jpg",
-    "/assets/2017_07_slide_restaurante_2.jpg",
-    "/assets/2017_07_slide_restaurante_4-1.jpg",
-    "/assets/2017_07_slide_restaurante_3.jpg",
+    "/assets/2016_09_rest_home_7.jpg",
+    "/assets/2016_09_rest_home_3.jpg",
+    "/assets/2016_09_rest_home_6.jpg",
+    "/assets/2016_09_rest_home_4.jpg",
   ],
   eventoHome: "/assets/2016_09_eventoshome.jpg",
   promociones: [

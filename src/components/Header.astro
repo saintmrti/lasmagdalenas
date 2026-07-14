@@ -16,7 +16,7 @@ const currentPath = normalizePath(Astro.url.pathname);
         <a href={`tel:${site.phoneTel}`} class="desktop-help">
           ¿Necesitas ayuda? {site.phone}
         </a>
-        <a href="/hotel/#galeria-hotel" class="desktop-gallery">Galería</a>
+        <a href="/galeria/" class="desktop-gallery">Galería</a>
       </div>
 
       <div class="desktop-navrow">
@@ -97,7 +97,7 @@ const currentPath = normalizePath(Astro.url.pathname);
           })
         }
         <li>
-          <a href="/hotel/#galeria-hotel" class="mobile-menu__link">GALERÍA</a>
+          <a href="/galeria/" class="mobile-menu__link">GALERÍA</a>
         </li>
         <li class="pt-6">
           <a href={site.bookingUrl} class="btn-reserve" target="_blank" rel="noopener noreferrer">
@@ -361,7 +361,7 @@ const currentPath = normalizePath(Astro.url.pathname);
   .btn-reserve {
     display: inline-block;
     width: 100%;
-    padding: 14px 32px;
+    padding: 7px 20px;
     color: var(--color-ink-inverse);
     background-color: var(--color-accent);
     font-size: 13px;

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
+import SectionCafeteria from "../components/SectionCafeteria.astro";
 import SectionHotel from "../components/SectionHotel.astro";
 import SectionRestaurante from "../components/SectionRestaurante.astro";
 import RoomGrid from "../components/RoomGrid.astro";
@@ -86,6 +87,8 @@ const hotelLd = {
       cta="Ver Menú"
       ctaHref={homeContent.restaurante.ctaHref}
     />
+
+    <SectionCafeteria />
   </main>
 </BaseLayout>
 

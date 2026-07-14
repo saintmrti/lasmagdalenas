@@ -3,77 +3,95 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site";
 
-const galleryImages = [
-  "/assets/2016_09_habitaciones_home_20.jpg",
-  "/assets/2016_09_habitaciones_home_21.jpg",
-  "/assets/2016_09_habitaciones_home_22.jpg",
-  "/assets/2016_09_habitaciones_home_23.jpg",
-  "/assets/2016_09_habitaciones_home_24.jpg",
-  "/assets/2016_09_habitaciones_home_26.jpg",
-  "/assets/2016_09_rest_home_7.jpg",
-  "/assets/2016_09_rest_home_3.jpg",
-  "/assets/2016_09_rest_home_6.jpg",
-  "/assets/2016_09_rest_home_4.jpg",
-  "/assets/2016_09_eventoshome.jpg",
-  "/assets/2016_09_promociones-1.jpg",
-  "/assets/2017_07_slide_corredor_1.jpg",
-  "/assets/2017_07_slide_corredor_2.jpg",
-  "/assets/2017_07_slide_corredor_3.jpg",
-  "/assets/2017_07_slide_jardin_1.jpg",
-  "/assets/2017_07_slide_jardin_2.jpg",
-  "/assets/2017_07_slide_patio_1.jpg",
-  "/assets/2017_07_slide_patio_2.jpg",
+const hotelGallery = [
   "/assets/2017_07_slide_hotel_1-1.jpg",
-  "/assets/2017_07_slide_hotel_2-1.jpg",
   "/assets/2017_07_slide_hotel_3-1.jpg",
-  "/assets/2017_07_slide_tradiciones_1.jpg",
-  "/assets/2017_07_slide_tradiciones_2.jpg",
-  "/assets/2017_07_slide_cafeteria_1-1.jpg",
-  "/assets/2017_07_slide_cafeteria_2-1.jpg",
-  "/assets/2017_07_slide_restaurante_3.jpg",
-  "/assets/2017_07_slide_restaurante_4-1.jpg",
-  "/assets/2017_07_slide_restaurante_10.jpg",
-  "/assets/2017_07_slide_restaurante_11.jpg",
-  "/assets/2017_07_slidehome_19.jpg",
-  "/assets/2017_07_slidehome_20.jpg",
-  "/assets/2017_07_slidehome_21.jpg",
-  "/assets/2016_09_jardin_fondo.jpg",
-  "/assets/2016_09_cafeteria_fondo.jpg",
-  "/assets/2016_09_hotel-slider-1-870x500.jpg",
+  "/assets/2017_07_slide_corredor_1.jpg",
+  "/assets/2017_07_slide_hotel_2-1.jpg",
+  "/assets/2017_07_slide_corredor_2.jpg",
+  "/assets/2017_07_slide_hotel_4.jpg",
 ];
+
+const restauranteGallery = [
+  "/assets/2017_06_restaurante-1.jpg",
+  "/assets/2017_07_slide_restaurante_1.jpg",
+  "/assets/2017_06_restaurante-2.jpg",
+  "/assets/2017_07_slide_restaurante_2.jpg",
+  "/assets/2017_06_restaurante-3.jpg",
+  "/assets/2017_06_restaurante-4.jpg",
+];
+
+const xicoGallery = [
+  "/assets/2017_07_slide_tradiciones_3.jpg",
+  "/assets/2017_07_slide_tradiciones_1.jpg",
+  "/assets/2017_07_slide_tradiciones_4.jpg",
+  "/assets/2017_07_slide_tradiciones_2.jpg",
+  "/assets/2017_07_slide_tradiciones_5.jpg",
+  "/assets/2017_07_slide_tradiciones_6.jpg",
+];
+
+const galleryItems = [
+  ...hotelGallery.map((src) => ({ src, category: "hotel" })),
+  ...restauranteGallery.map((src) => ({ src, category: "restaurante" })),
+  ...xicoGallery.map((src) => ({ src, category: "xico" })),
+];
+
+const allImages = galleryItems.map((item) => item.src);
 
 const imageGalleryLd = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
   name: `Galería | ${site.name}`,
   description:
-    "Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: habitaciones, restaurante, eventos, jardines y cafetería.",
+    "Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: hotel, restaurante y Xico.",
   url: `${site.url}/galeria/`,
-  image: galleryImages.map((src) => (src.startsWith("http") ? src : `${site.url}${src}`)),
+  image: allImages.map((src) => (src.startsWith("http") ? src : `${site.url}${src}`)),
 };
 ---
 
 <BaseLayout
   title={`Galería | ${site.name}`}
-  description="Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: habitaciones, restaurante, eventos, jardines y cafetería de un Pueblo Mágico."
+  description="Galería de fotos de Las Magdalenas Hotel Boutique en Xico, Veracruz: hotel, restaurante y Xico de un Pueblo Mágico."
   canonicalPath="/galeria/"
   jsonLd={[imageGalleryLd]}
 >
   <main>
-    <PageHero title="GALERÍA" image={galleryImages[0]} />
     <h1 class="sr-only">Galería de Las Magdalenas Hotel Boutique</h1>
 
-    <section class="section">
+    <PageHero image={allImages[0]} height="50vh" />
+
+    <section class="gallery-section">
       <div class="container-x">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4">
+        <div class="gallery-filters" role="tablist" aria-label="Filtros de galería">
+          <button type="button" class="gallery-filter is-active" data-gallery-filter="all" role="tab" aria-selected="true">
+            All
+          </button>
+          <button type="button" class="gallery-filter" data-gallery-filter="hotel" role="tab" aria-selected="false">
+            Hotel
+          </button>
+          <button type="button" class="gallery-filter" data-gallery-filter="restaurante" role="tab" aria-selected="false">
+            Restaurante & Cava
+          </button>
+          <button type="button" class="gallery-filter" data-gallery-filter="xico" role="tab" aria-selected="false">
+            Xico
+          </button>
+        </div>
+
+        <div class="gallery-grid">
           {
-            galleryImages.map((src) => (
-              <img
-                src={src}
-                alt={`Las Magdalenas Hotel Boutique en Xico, Veracruz - ${src.split("/").pop()}`}
-                class="w-full aspect-square object-cover"
-                loading="lazy"
-              />
+            galleryItems.map((item) => (
+              <figure class="gallery-item" data-gallery-category={item.category}>
+                <img
+                  src={item.src}
+                  alt={item.category === "hotel"
+                    ? "Hotel Las Magdalenas"
+                    : item.category === "restaurante"
+                      ? "Restaurante El Veintidós"
+                      : "Xico, Pueblo Mágico"}
+                  class="gallery-item__image"
+                  loading="lazy"
+                />
+              </figure>
             ))
           }
         </div>
@@ -81,3 +99,136 @@ const imageGalleryLd = {
     </section>
   </main>
 </BaseLayout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>("[data-gallery-filter]");
+  const items = document.querySelectorAll<HTMLElement>("[data-gallery-category]");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.getAttribute("data-gallery-filter") ?? "all";
+
+      filters.forEach((f) => {
+        const isActive = f === filter;
+        f.classList.toggle("is-active", isActive);
+        f.setAttribute("aria-selected", String(isActive));
+      });
+
+      items.forEach((item) => {
+        const itemCategory = item.getAttribute("data-gallery-category");
+        const show = category === "all" || itemCategory === category;
+        item.classList.toggle("is-hidden", !show);
+      });
+    });
+  });
+</script>
+
+<style>
+  .gallery-section {
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 0 0 3rem;
+  }
+
+  .gallery-filter {
+    position: relative;
+    padding: 0 0 0.6rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .gallery-filter::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-accent);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery-filter:hover {
+    color: var(--color-accent);
+  }
+
+  .gallery-filter.is-active {
+    color: var(--color-accent);
+  }
+
+  .gallery-filter.is-active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    background: var(--color-surface-dark);
+    box-shadow: 0 1rem 2.5rem rgba(84, 63, 63, 0.12);
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-item.is-hidden {
+    display: none;
+  }
+
+  .gallery-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover .gallery-item__image {
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .gallery-section {
+      padding: 4.5rem 0 5.5rem;
+    }
+
+    .gallery-filters {
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+</style>

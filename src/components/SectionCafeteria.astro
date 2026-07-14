@@ -1,0 +1,80 @@
+---
+const cafeteriaSlides = [
+  "/assets/2016_09_cafeteria_fondo.jpg",
+  "/assets/2017_07_slide_cafeteria_7.jpg",
+  "/assets/2017_07_slide_cafeteria_12.jpg",
+  "/assets/2017_08_slide_cafeteria_13.jpg",
+  "/assets/2017_07_slide_cafeteria_10.jpg",
+  "/assets/2017_07_slide_cafeteria_8.jpg",
+];
+
+const cafeteriaLogo = "/assets/2017_06_cafeteria_logo@2x-253x300.png";
+---
+
+<section class="cafe-feature">
+  <div class="grid md:grid-cols-2">
+    <div
+      class="relative min-h-80 overflow-hidden md:min-h-128"
+      aria-label="Galería de Flor de Café"
+    >
+      {
+        cafeteriaSlides.map((src, index) => (
+          <img
+            src={src}
+            alt={`Flor de Café, cafetería en Xico, Veracruz - ${index + 1}`}
+            class="cafe-feature__slide absolute inset-0 h-full w-full object-cover"
+            style={`animation-delay: ${index * 5}s;`}
+            loading="lazy"
+          />
+        ))
+      }
+    </div>
+
+    <div class="flex min-h-80 items-center bg-[#eee4d8] px-6 py-14 md:min-h-128 md:px-12">
+      <div class="mx-auto max-w-xl text-center">
+        <img
+          src={cafeteriaLogo}
+          alt="Flor de Café - Cafetería & Pastelería"
+          class="mx-auto mb-8 h-auto w-28 md:w-44"
+          loading="lazy"
+        />
+        <p class="mb-6 font-display text-xl italic text-ink md:text-2xl">
+          Un café es siempre una buena idea.
+        </p>
+        <p class="m-0 font-light text-ink">
+          Su ambiente acogedor y la belleza del lugar hacen de Flor de Café, un espacio ideal para
+          disfrutar un buen café en compañía de tu pareja, amigos o familiares. Comparte tu momento
+          con un delicioso postre o pastel elaborados en casa.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cafe-feature__slide {
+    opacity: 0;
+    animation: cafe-fade 30s infinite;
+  }
+
+  @keyframes cafe-fade {
+    0%,
+    13% {
+      opacity: 1;
+    }
+    17%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cafe-feature__slide {
+      animation: none;
+    }
+
+    .cafe-feature__slide:not(:first-child) {
+      display: none;
+    }
+  }
+</style>

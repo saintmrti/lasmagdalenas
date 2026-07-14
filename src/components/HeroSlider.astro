@@ -9,19 +9,27 @@ interface Props {
 const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
 ---
 
-<section class="hero-slider" style={`--hero-height:${height};`}>
-  {
-    slides.map((src, index) => (
-      <div
-        class:list={["hero-slider__slide", index === 0 && "is-active"]}
-        style={`background-image:url(${src})`}
-        role={index === 0 ? "img" : undefined}
-        aria-label={index === 0 ? alt : undefined}
-        aria-hidden={index === 0 ? undefined : "true"}
-      />
-    ))
-  }
+<section class="hero-slider" data-hero-slider style={`--hero-height:${height};`}>
+  <div
+    class="hero-slider__track"
+    data-hero-track
+    style={`transform: translateX(0%)`}
+  >
+    {
+      slides.map((src, index) => (
+        <div
+          class="hero-slider__slide"
+          style={`background-image:url(${src})`}
+          role={index === 0 ? "img" : undefined}
+          aria-label={index === 0 ? alt : undefined}
+          aria-hidden={index === 0 ? undefined : "true"}
+        />
+      ))
+    }
+  </div>
+
   <div class="hero-slider__overlay" aria-hidden="true"></div>
+
   <div class="hero-slider__content">
     {
       decorated ? (
@@ -35,10 +43,130 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
       )
     }
   </div>
-  <div class="hero-slider__dots" aria-hidden="true">
-    {slides.map((_, i) => <span class:list={["hero-slider__dot", i === 0 && "is-active"]} />)}
+
+  <div class="hero-slider__dots" data-hero-dots aria-hidden="true">
+    {
+      slides.map((_, i) => (
+        <button
+          type="button"
+          class:list={["hero-slider__dot", i === 0 && "is-active"]}
+          data-hero-dot={i}
+          aria-label={`Ir a la imagen ${i + 1}`}
+        />
+      ))
+    }
   </div>
 </section>
+
+<script>
+  const SWIPE_THRESHOLD = 50;
+  const VELOCITY_THRESHOLD = 0.5;
+  const AUTOPLAY_INTERVAL = 5000;
+
+  const slider = document.querySelector<HTMLElement>("[data-hero-slider]");
+  const track = document.querySelector<HTMLElement>("[data-hero-track]");
+  const dots = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-hero-dot]")
+  );
+
+  if (slider && track && dots.length > 1) {
+    let currentIndex = 0;
+    let isDragging = false;
+    let dragOffset = 0;
+    let startX = 0;
+    let startTime = 0;
+    let autoplayId: number | undefined;
+
+    function slidesCount() {
+      return dots.length;
+    }
+
+    function render(animate: boolean) {
+      const width = slider.offsetWidth || 1;
+      const translatePercent =
+        -currentIndex * 100 + (dragOffset / width) * 100;
+      track.style.transition = animate
+        ? "transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)"
+        : "transform 0s ease";
+      track.style.transform = `translateX(${translatePercent}%)`;
+    }
+
+    function updateDots() {
+      dots.forEach((dot, i) =>
+        dot.classList.toggle("is-active", i === currentIndex)
+      );
+    }
+
+    function goTo(index: number) {
+      currentIndex = (index + slidesCount()) % slidesCount();
+      dragOffset = 0;
+      render(true);
+      updateDots();
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayId = window.setInterval(
+        () => goTo(currentIndex + 1),
+        AUTOPLAY_INTERVAL
+      );
+    }
+
+    function stopAutoplay() {
+      if (autoplayId) window.clearInterval(autoplayId);
+      autoplayId = undefined;
+    }
+
+    function dragStart(clientX: number) {
+      isDragging = true;
+      startX = clientX;
+      startTime = Date.now();
+      dragOffset = 0;
+      stopAutoplay();
+      slider.classList.add("is-grabbing");
+    }
+
+    function dragMove(clientX: number) {
+      if (!isDragging) return;
+      dragOffset = clientX - startX;
+      render(false);
+    }
+
+    function dragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.classList.remove("is-grabbing");
+
+      const elapsed = Date.now() - startTime || 1;
+      const velocity = Math.abs(dragOffset) / elapsed;
+
+      if (Math.abs(dragOffset) > SWIPE_THRESHOLD || velocity > VELOCITY_THRESHOLD) {
+        goTo(currentIndex + (dragOffset < 0 ? 1 : -1));
+      } else {
+        dragOffset = 0;
+        render(true);
+      }
+
+      startAutoplay();
+    }
+
+    slider.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+      slider.setPointerCapture(e.pointerId);
+      dragStart(e.clientX);
+    });
+
+    slider.addEventListener("pointermove", (e) => dragMove(e.clientX));
+    slider.addEventListener("pointerup", () => dragEnd());
+    slider.addEventListener("pointercancel", () => dragEnd());
+
+    dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+
+    window.addEventListener("resize", () => render(true));
+
+    startAutoplay();
+  }
+</script>
 
 <style>
   .hero-slider {
@@ -49,48 +177,54 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
     overflow: hidden;
     background: #000;
     margin-top: -90px;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+
+  .hero-slider.is-grabbing {
+    cursor: grabbing;
+  }
+
+  @media (max-width: 767px) {
+    .hero-slider {
+      height: calc(var(--hero-height, 100vh) / 2);
+      min-height: 280px;
+      margin-top: 0;
+    }
+  }
+
+  .hero-slider__track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
   }
 
   .hero-slider__slide {
-    position: absolute;
-    inset: 0;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    animation: hero-fade 18s infinite;
-  }
-
-  .hero-slider__slide:nth-child(1) {
-    animation-delay: 0s;
-  }
-
-  .hero-slider__slide:nth-child(2) {
-    animation-delay: 6s;
-  }
-
-  .hero-slider__slide:nth-child(3) {
-    animation-delay: 12s;
-  }
-
-  .hero-slider__slide:nth-child(4) {
-    animation-delay: 18s;
   }
 
   .hero-slider__overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.35) 100%);
+    pointer-events: none;
   }
 
   .hero-slider__content {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 2;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 20px;
     text-align: center;
+    pointer-events: none;
   }
 
   .hero-slider__decorated {
@@ -125,60 +259,17 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
   .hero-slider__dot {
     width: 10px;
     height: 10px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.4);
-    animation: hero-dot 18s infinite;
+    cursor: pointer;
+    transition: background 0.3s ease, width 0.3s ease;
   }
 
-  .hero-slider__dot:nth-child(1) {
-    animation-delay: 0s;
-  }
-
-  .hero-slider__dot:nth-child(2) {
-    animation-delay: 6s;
-  }
-
-  .hero-slider__dot:nth-child(3) {
-    animation-delay: 12s;
-  }
-
-  .hero-slider__dot:nth-child(4) {
-    animation-delay: 18s;
-  }
-
-  @keyframes hero-fade {
-    0% {
-      opacity: 0;
-    }
-    5% {
-      opacity: 1;
-    }
-    33% {
-      opacity: 1;
-    }
-    38% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes hero-dot {
-    0% {
-      background: rgba(255, 255, 255, 0.4);
-    }
-    5% {
-      background: rgba(255, 255, 255, 1);
-    }
-    33% {
-      background: rgba(255, 255, 255, 1);
-    }
-    38% {
-      background: rgba(255, 255, 255, 0.4);
-    }
-    100% {
-      background: rgba(255, 255, 255, 0.4);
-    }
+  .hero-slider__dot.is-active {
+    width: 28px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 1);
   }
 </style>

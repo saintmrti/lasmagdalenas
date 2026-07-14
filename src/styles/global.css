@@ -32,6 +32,12 @@
     padding-top: 90px;
   }
 
+  @media (max-width: 767px) {
+    main {
+      padding-top: calc(min(600px, 100vw) * 0.3463);
+    }
+  }
+
   img,
   picture,
   svg,
@@ -108,7 +114,7 @@
     }
   }
 
-  .btn--inverse {
+  /* .btn--inverse {
     color: var(--color-ink-inverse);
     border-color: var(--color-ink-inverse);
 
@@ -117,6 +123,24 @@
       background-color: var(--color-accent);
       color: var(--color-ink-inverse);
     }
+  } */
+
+  .btn--inverse {
+    display: inline-block;
+    padding: 10px 30px;
+    color: var(--color-ink-inverse);
+    background-color: var(--color-accent);
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .btn--inverse:hover {
+    background-color: #85898d;
   }
 
   .sr-only {
