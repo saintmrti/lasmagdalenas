@@ -6,20 +6,32 @@ interface Tab {
 
 interface Props {
   tabs: Tab[];
-  target?: string;
 }
 
-const { tabs, target = "[data-tab-section]" } = Astro.props;
+const { tabs } = Astro.props;
 ---
 
-<nav class="sticky-tabs" data-sticky-tabs>
-  <ul class="sticky-tabs__list">
+<nav aria-label="Categorías del menú" data-menu-tabs>
+  <ul
+    class="grid grid-cols-2 border border-line md:border-0 md:flex md:flex-nowrap md:justify-center md:gap-0"
+    role="tablist"
+  >
     {
       tabs.map((tab, i) => (
-        <li>
+        <li
+          class="border-b border-line last:border-b-0 odd:border-r md:odd:border-r md:last:border-b md:border-b-0 md:border-r-0"
+          role="presentation"
+        >
           <a
             href={`#${tab.id}`}
-            class:list={["sticky-tabs__link", i === 0 && "is-active"]}
+            id={`tab-${tab.id}`}
+            class:list={[
+              "block px-4 py-3 text-center text-sm font-light text-ink-soft transition-colors hover:text-ink md:border md:border-line md:border-b-0 md:px-6",
+              i === 0 && "is-active",
+            ]}
+            role="tab"
+            aria-controls={`panel-${tab.id}`}
+            aria-selected={i === 0 ? "true" : "false"}
             data-tab-link={tab.id}
           >
             {tab.label}
@@ -31,97 +43,50 @@ const { tabs, target = "[data-tab-section]" } = Astro.props;
 </nav>
 
 <script>
-  const nav = document.querySelector<HTMLElement>("[data-sticky-tabs]");
+  const nav = document.querySelector<HTMLElement>("[data-menu-tabs]");
   if (nav) {
     const links = nav.querySelectorAll<HTMLAnchorElement>("[data-tab-link]");
-    const targetSelector = nav.getAttribute("data-target") || "[data-tab-section]";
-    const sections = document.querySelectorAll<HTMLElement>(targetSelector);
+    const panels = document.querySelectorAll<HTMLElement>("[data-menu-panel]");
 
-    if (sections.length > 0) {
-      links.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const id = link.getAttribute("data-tab-link");
-          const section = document.getElementById(id ?? "");
-          if (section) {
-            const offset = nav.offsetHeight + 20;
-            const top = section.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top, behavior: "smooth" });
-          }
-        });
+    const activate = (id: string, updateHash = false) => {
+      panels.forEach((panel) => {
+        panel.hidden = panel.id !== `panel-${id}`;
       });
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const id = entry.target.id;
-              links.forEach((link) => {
-                link.classList.toggle("is-active", link.getAttribute("data-tab-link") === id);
-              });
-            }
-          });
-        },
-        {
-          rootMargin: `-${nav.offsetHeight + 40}px 0px -60% 0px`,
-          threshold: 0,
-        }
-      );
+      links.forEach((link) => {
+        const isActive = link.getAttribute("data-tab-link") === id;
+        link.classList.toggle("is-active", isActive);
+        link.setAttribute("aria-selected", String(isActive));
+      });
 
-      sections.forEach((section) => observer.observe(section));
-    }
+      if (updateHash) history.replaceState(null, "", `#${id}`);
+    };
+
+    links.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const id = link.getAttribute("data-tab-link");
+        if (id) activate(id, true);
+      });
+    });
+
+    const initialId = window.location.hash.slice(1);
+    if (initialId && document.getElementById(`panel-${initialId}`)) activate(initialId);
   }
 </script>
 
 <style>
-  .sticky-tabs {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-line);
-    padding: 12px 0;
-    transition: top 0.3s ease;
-  }
-
-  .sticky-tabs__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .sticky-tabs__link {
-    display: inline-block;
-    padding: 8px 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-ink-soft);
-    border: 1px solid transparent;
-    transition:
-      color 0.2s,
-      border-color 0.2s,
-      background 0.2s;
-  }
-
-  .sticky-tabs__link:hover {
-    color: var(--color-accent);
-  }
-
-  .sticky-tabs__link.is-active {
-    color: var(--color-accent);
-    border-color: var(--color-accent);
+  .is-active {
+    color: var(--color-ink);
   }
 
   @media (min-width: 768px) {
-    .sticky-tabs__link {
-      padding: 10px 28px;
-      font-size: 0.9rem;
+    .is-active {
+      position: relative;
+      z-index: 1;
+      margin-bottom: -1px;
+      color: var(--color-ink);
+      background: #ffffff;
     }
   }
 </style>

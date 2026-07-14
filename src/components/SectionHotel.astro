@@ -1,0 +1,27 @@
+---
+import { homeContent, images, site } from "../data/site";
+---
+
+<section class="section">
+  <div class="container-x">
+    <header class="max-w-2xl mx-auto text-center">
+      <a
+        href={site.bookingUrl}
+        class="btn--inverse md:hidden mb-6"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        RESERVAR
+      </a>
+      <img src={images.hotelTitle} alt="" class="max-w-40 mx-auto" loading="lazy" />
+      <h2 class="font-display text-4xl md:text-5xl text-ink-dark mt-5 mb-2.5">
+        {homeContent.hotel.title}
+      </h2>
+      <p class="mx-auto font-light text-zinc-600">{homeContent.hotel.description}</p>
+    </header>
+    <p class="max-w-3xl mx-auto font-light text-ink-dark text-center">
+      {homeContent.hotel.descriptionSecondary}
+    </p>
+    <slot />
+  </div>
+</section>

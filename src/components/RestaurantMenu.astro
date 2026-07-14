@@ -1,0 +1,49 @@
+---
+import { menuSections } from "../data/menu";
+import StickyTabs from "./StickyTabs.astro";
+
+const menuTabs = menuSections.map((section) => ({ id: section.id, label: section.label }));
+---
+
+<section class="section" id="menu-section">
+  <div class="container-x">
+    <h2 class="font-display text-4xl md:text-5xl text-ink-dark text-center mb-8 mt-0">Menú</h2>
+    <StickyTabs tabs={menuTabs} />
+  </div>
+
+  <div class="container-x">
+    {
+      menuSections.map((section, sectionIndex) => (
+        <div
+          id={`panel-${section.id}`}
+          class="border border-line px-5 py-8 md:px-10 md:py-10"
+          role="tabpanel"
+          aria-labelledby={`tab-${section.id}`}
+          data-menu-panel
+          hidden={sectionIndex !== 0}
+        >
+          <div class="border-t border-line/70 pt-7">
+            {section.subsections.map((sub) => (
+              <section class="border-b border-line/70 py-7 first:pt-0 last:border-b-0 last:pb-0 text-sm md:text-base">
+                <h3 class="mb-6 font-body font-semibold text-ink text-left">{sub.title}</h3>
+                <ul class="m-0 grid list-none gap-x-14 p-0 md:grid-cols-2">
+                  {sub.items.map((item) => (
+                    <li class="flex items-start justify-between gap-4 py-3 text-ink">
+                      <span class="font-light text-left">
+                        {item.name}.{item.description && ` (${item.description}).`}
+                      </span>
+                      <span class="shrink-0">{item.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+            {section.note && (
+              <p class="mt-7 text-center font-light text-shadow-ink">{section.note}</p>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSlider from "../components/HeroSlider.astro";
-import SectionIntro from "../components/SectionIntro.astro";
-import SectionDivider from "../components/SectionDivider.astro";
-import StickyTabs from "../components/StickyTabs.astro";
+import RestaurantMenu from "../components/RestaurantMenu.astro";
+import SectionCafeteria from "../components/SectionCafeteria.astro";
+import SectionRestaurante from "../components/SectionRestaurante.astro";
 import { images, site, social } from "../data/site";
-import { menuSections } from "../data/menu";
 
 const restSlides = [
   "/assets/2017_07_slide_restaurante_1.jpg",
@@ -20,19 +19,6 @@ const platillos = [
   "/assets/2017_06_restaurante-3.jpg",
   "/assets/2017_06_restaurante-4.jpg",
 ];
-
-const cafeteriaSlides = [
-  "/assets/2017_07_slide_cafeteria_7.jpg",
-  "/assets/2017_07_slide_cafeteria_12.jpg",
-  "/assets/2017_08_slide_cafeteria_13.jpg",
-  "/assets/2017_07_slide_cafeteria_10.jpg",
-  "/assets/2017_07_slide_cafeteria_8.jpg",
-  // "/assets/2017_07_slide_corredor_3.jpg",
-];
-
-const cafeteriaLogo = "/assets/2017_06_cafeteria_logo@2x-253x300.png";
-
-const menuTabs = menuSections.map((s) => ({ id: s.id, label: s.label }));
 
 const restaurantLd = {
   "@context": "https://schema.org",
@@ -72,85 +58,14 @@ const restaurantLd = {
     <h1 class="sr-only">El Veintidós - Restaurante en Xico, Veracruz</h1>
     <HeroSlider slides={restSlides} alt="El Veintidós Restaurante" height="60vh" />
 
-    <section class="section bg-white">
-      <div class="container-x">
-        <img
-          src={images.restLogo}
-          alt="El Veintidós Restaurante"
-          class="w-48 h-auto mx-auto mb-6"
-          loading="lazy"
-        />
-        <SectionDivider />
-        <SectionIntro
-          titleText="“RESCATANDO SABORES DEL PUEBLO”"
-          lead="Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos, tradicionales de Xico y españoles preparados con productos que se cosechan y se producen en el pueblo."
-        />
-        <div class="grid grid-cols-2 gap-4 max-w-4xl mx-auto my-12">
-          {
-            platillos.map((src, i) => (
-              <img
-                src={src}
-                alt={`Platillo de El Veintidós Restaurante en Xico, Veracruz - ${i + 1}`}
-                class="w-full aspect-[4/3] object-cover"
-                loading="lazy"
-              />
-            ))
-          }
-        </div>
-      </div>
-    </section>
+    <SectionRestaurante
+      logo={images.restLogo}
+      title={"RESCATANDO SABORES DEL PUEBLO"}
+      description="Nuestro restaurante ofrece un menú que nace del sincretismo de la cultura indígena y española que se dio en Xico. En El Veintidós podrás encontrar platillos prehispánicos, tradicionales de Xico y españoles preparados con productos que se cosechan y se producen en el pueblo."
+      images={platillos}
+    />
 
-    <section class="section section--soft" id="menu-section">
-      <div class="container-x">
-        <h2
-          class="font-display text-3xl tracking-[0.12em] uppercase text-accent-dark text-center mb-2 mt-0"
-        >
-          Menú
-        </h2>
-        <SectionDivider />
-      </div>
-
-      <StickyTabs tabs={menuTabs} />
-
-      <div class="container-x pt-12">
-        {
-          menuSections.map((section) => (
-            <div id={section.id} data-tab-section class="mb-16 scroll-mt-24">
-              <h3 class="font-display text-xl tracking-[0.1em] uppercase text-accent-dark text-center mb-8 mt-0">
-                {section.label}
-              </h3>
-              {section.subsections.map((sub) => (
-                <div class="mb-8">
-                  {sub.title && (
-                    <h4 class="font-display text-lg font-bold text-ink text-center mb-4 mt-0">
-                      {sub.title}
-                    </h4>
-                  )}
-                  <ul class="list-none p-0 m-0 max-w-2xl mx-auto">
-                    {sub.items.map((item) => (
-                      <li class="flex justify-between items-baseline gap-4 py-2 border-b border-line/50 last:border-0">
-                        <div class="flex-1">
-                          <span class="font-semibold text-ink">{item.name}</span>
-                          {item.description && (
-                            <span class="block text-ink-soft text-sm mt-0.5">
-                              {item.description}
-                            </span>
-                          )}
-                        </div>
-                        <span class="font-semibold text-accent-dark whitespace-nowrap">
-                          {item.price}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              {section.note && <p class="text-ink-soft italic text-center mt-4">{section.note}</p>}
-            </div>
-          ))
-        }
-      </div>
-    </section>
+    <RestaurantMenu />
 
     <section class="section">
       <div class="container-x text-center">
@@ -158,60 +73,18 @@ const restaurantLd = {
         <p class="text-ink-soft mb-1">Reservaciones:</p>
         <a
           href={`tel:${site.phoneTel}`}
-          class="font-display text-2xl text-accent hover:text-accent-dark transition-colors"
+          class="font-display text-2xl text-ink hover:text-accent-dark transition-colors"
         >
           +52 (228) 8130314
         </a>
-      </div>
-    </section>
 
-    <section class="section cafe-feature">
-      <div class="container-x">
-        <div class="cafe-feature__grid">
-          <div class="cafe-feature__content">
-            <div class="cafe-feature__logo-card">
-              <img
-                src={cafeteriaLogo}
-                alt="Flor de Café - Cafetería & Pastelería"
-                class="w-44 h-auto mx-auto"
-                loading="lazy"
-              />
-            </div>
-            <p class="font-display text-2xl text-ink italic text-center mb-8">
-              Un café es siempre una buena idea.
-            </p>
-            <p class="max-w-3xl mx-auto mb-0 text-shadow-ink-soft text-center">
-              Su ambiente acogedor y la belleza del lugar hacen de Flor de Café, un espacio ideal
-              para disfrutar un buen café en compañía de tu pareja, amigos o familiares. Comparte tu
-              momento con un delicioso postre o pastel elaborados en casa.
-            </p>
-          </div>
-
-          <div class="cafe-feature__gallery">
-            {
-              cafeteriaSlides.map((src, i) => (
-                <img
-                  src={src}
-                  alt={`Flor de Café, cafetería en Xico, Veracruz - ${i + 1}`}
-                  class={`cafe-feature__image cafe-feature__image--${i + 1}`}
-                  loading="lazy"
-                />
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container-x">
-        <h2
-          class="font-display text-lg tracking-[0.14em] uppercase text-accent-dark text-center mb-4 mt-0"
+        <h3
+          class="font-display text-lg tracking-[0.14em] uppercase text-ink text-center mb-4 mt-10"
         >
           SIGUENOS EN REDES
-        </h2>
+        </h3>
         <ul
-          class="list-none p-0 m-0 flex justify-center gap-6 uppercase tracking-[0.12em] text-sm"
+          class="list-none flex gap-3.5 justify-center p-0"
           aria-label="Redes del restaurante"
         >
           <li>
@@ -219,9 +92,15 @@ const restaurantLd = {
               href={social.restaurantFacebook}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-accent hover:text-accent-dark transition-colors"
+              aria-label="Facebook"
+              class="inline-flex items-center justify-center w-9 h-9 border border-line text-ink-soft hover:text-accent hover:border-accent transition-colors"
             >
-              Facebook
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07c0 5 3.66 9.13 8.44 9.93v-7.02H7.9v-2.91h2.54V9.84c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22c4.78-.8 8.43-4.93 8.43-9.93Z"
+                ></path>
+              </svg>
             </a>
           </li>
           <li>
@@ -229,9 +108,15 @@ const restaurantLd = {
               href={social.restaurantInstagram}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-accent hover:text-accent-dark transition-colors"
+              aria-label="Instagram"
+              class="inline-flex items-center justify-center w-9 h-9 border border-line text-ink-soft hover:text-accent hover:border-accent transition-colors"
             >
-              Instagram
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.74 3.74 0 0 1-1.38-.9 3.74 3.74 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 2.16c-3.14 0-3.51.01-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04-.06 1.23-.07 1.6-.07 4.74s.01 3.51.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.23.06 1.6.07 4.74.07s3.51-.01 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.06-1.23.07-1.6.07-4.74s-.01-3.51-.07-4.74c-.05-1.07-.23-1.65-.38-2.04a3.4 3.4 0 0 0-.83-1.27 3.4 3.4 0 0 0-1.27-.83c-.39-.15-.97-.33-2.04-.38C15.51 4.33 15.14 4.32 12 4.32Zm0 3.68a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 6.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2Zm5.1-6.76a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0Z"
+                ></path>
+              </svg>
             </a>
           </li>
           <li>
@@ -239,87 +124,21 @@ const restaurantLd = {
               href={social.restaurantTripadvisor}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-accent hover:text-accent-dark transition-colors"
+              aria-label="TripAdvisor"
+              class="inline-flex items-center justify-center w-9 h-9 border border-line text-ink-soft hover:text-accent hover:border-accent transition-colors"
             >
-              TripAdvisor
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M19.5 7.5h-15A1.5 1.5 0 0 0 3 9v6a1.5 1.5 0 0 0 1.5 1.5h.74a4 4 0 0 0 7.52 0h1.48a4 4 0 0 0 7.52 0h.24A1.5 1.5 0 0 0 21 15V9a1.5 1.5 0 0 0-1.5-1.5Zm-14 8.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm9 0a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
+                ></path>
+              </svg>
             </a>
           </li>
         </ul>
       </div>
     </section>
+
+    <SectionCafeteria />
   </main>
 </BaseLayout>
-
-<style>
-  .cafe-feature {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 82% 12%, rgba(231, 173, 68, 0.18), transparent 28rem),
-      linear-gradient(180deg, #f7f4f2 0%, #fff 100%);
-  }
-
-  .cafe-feature::before {
-    content: "";
-    position: absolute;
-    inset: 2rem;
-    pointer-events: none;
-    border: 1px solid rgba(114, 48, 95, 0.14);
-  }
-
-  .cafe-feature__grid {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: 2.5rem;
-    max-width: 68rem;
-    margin: 0 auto;
-  }
-
-  .cafe-feature__content {
-    padding: 2rem 1.5rem;
-    background: rgba(255, 255, 255, 0.78);
-    box-shadow: 0 1.5rem 3rem rgba(84, 63, 63, 0.09);
-  }
-
-  .cafe-feature__logo-card {
-    width: fit-content;
-    margin: 0 auto 1.5rem;
-    padding: 1.25rem 1.5rem;
-    background: #fff;
-    border: 1px solid rgba(231, 173, 68, 0.28);
-  }
-
-  .cafe-feature__gallery {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 10rem;
-    gap: 0.75rem;
-  }
-
-  .cafe-feature__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 0 1.25rem 2.5rem rgba(84, 63, 63, 0.14);
-  }
-
-  .cafe-feature__image--1 {
-    grid-row: span 2;
-  }
-
-  @media (min-width: 768px) {
-    .cafe-feature__grid {
-      grid-template-columns: 0.9fr 1.1fr;
-      align-items: center;
-    }
-
-    .cafe-feature__content {
-      padding: 3rem 2rem;
-    }
-
-    .cafe-feature__gallery {
-      grid-auto-rows: 11rem;
-    }
-  }
-</style>
