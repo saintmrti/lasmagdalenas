@@ -67,7 +67,14 @@ const contactPageLd = {
             </p>
           </div>
 
-          <form class="max-w-xl mx-auto flex flex-col gap-4" aria-label="Formulario de contacto">
+          <form
+            name="contacto"
+            method="POST"
+            data-netlify="true"
+            class="max-w-xl mx-auto flex flex-col gap-4"
+            aria-label="Formulario de contacto"
+          >
+            <input type="hidden" name="form-name" value="contacto" />
             <h3
               class="font-display text-xl tracking-[0.12em] uppercase text-accent-dark text-center mb-2 mt-0"
             >

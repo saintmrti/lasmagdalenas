@@ -603,7 +603,7 @@ export const menuSections: MenuSection[] = [
         ],
       },
       {
-        title: "Ron · Copa 2 oz.",
+        title: "Ron",
         items: [
           { name: "Bacardi Blanco", price: "$70" },
           { name: "Havana 7 años", price: "$120" },
