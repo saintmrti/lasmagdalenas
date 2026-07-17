@@ -112,14 +112,25 @@ import { site, images, social } from "../data/site";
 
   <div class="pt-2 text-center text-sm text-white/60">
     <div class="container-x">
-      <p class="m-0">
-        © 2017 {site.name}. Design by <a
-          href="https://linktr.ee/saintmrti/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-accent hover:text-accent-dark transition-colors">Saint-Martín</a
-        >
+<p class="footer-credit m-0">
+        © 2017 {site.name}.
+        <span class="footer-credit__design">Design by
+          <a
+            href="https://linktr.ee/saintmrti/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-credit__author text-accent hover:text-accent-dark transition-colors">Saint-Martín</a
+          >
+        </span>
       </p>
     </div>
   </div>
 </footer>
+
+<style>
+  @media (max-width: 475px) {
+    .footer-credit__design {
+      display: block;
+    }
+  }
+</style>

@@ -19,8 +19,8 @@ export const eventSpaces: EventSpace[] = [
     images: [
       "/assets/2017_07_slide_corredor_1.jpg",
       "/assets/2017_07_slide_corredor_2.jpg",
-      "/assets/2017_07_slide_corredor_3.jpg",
-      "/assets/2017_07_slide_corredor_4.jpg",
+      "/assets/eventos/eventos3.jpg",
+      "/assets/eventos/eventos1.jpeg",
     ],
     ctaLabel: "Solicitar Cotización",
     ctaHref: "/contacto/",
@@ -34,8 +34,7 @@ export const eventSpaces: EventSpace[] = [
     images: [
       "/assets/2017_07_slide_patio_7.jpg",
       "/assets/2017_07_slide_patio_8.jpg",
-      // "/assets/2017_07_slide_patio_9.jpg",
-      "/assets/2017_07_slide_patio_10.jpg",
+      "/assets/eventos/eventos2.jpeg",
       "/assets/2017_07_slide_patio_11.jpg",
     ],
     ctaLabel: "Solicitar Cotización",

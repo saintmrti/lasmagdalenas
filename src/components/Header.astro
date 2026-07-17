@@ -100,7 +100,12 @@ const currentPath = normalizePath(Astro.url.pathname);
           <a href="/galeria/" class="mobile-menu__link">GALERÍA</a>
         </li>
         <li class="pt-6">
-          <a href={site.bookingUrl} class="btn-reserve" target="_blank" rel="noopener noreferrer">
+          <a
+            href={site.bookingUrl}
+            class="btn-reserve w-full py-2 px-6"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             RESERVAR
           </a>
         </li>
@@ -358,21 +363,6 @@ const currentPath = normalizePath(Astro.url.pathname);
     color: #babcbe;
   }
 
-  .btn-reserve {
-    display: inline-block;
-    width: 100%;
-    padding: 7px 20px;
-    color: var(--color-ink-inverse);
-    background-color: var(--color-accent);
-    font-size: 13px;
-    text-align: center;
-    text-transform: uppercase;
-    transition:
-      background 0.2s,
-      color 0.2s,
-      border-color 0.2s;
-  }
-
   .btn-reserve:hover {
     background-color: #85898d;
   }
@@ -447,11 +437,6 @@ const currentPath = normalizePath(Astro.url.pathname);
       list-style: none;
       margin: 0;
       padding: 0;
-    }
-
-    .btn-reserve {
-      width: auto;
-      padding: 10px 30px;
     }
   }
 </style>
