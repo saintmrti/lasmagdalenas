@@ -603,42 +603,42 @@ export const menuSections: MenuSection[] = [
         ],
       },
       {
-        title: "Ron - Copa",
+        title: "Ron",
         items: [
           { name: "Bacardi Blanco", price: "$70" },
           { name: "Havana 7 años", price: "$120" },
         ],
       },
       {
-        title: "Vodka - Copa",
+        title: "Vodka",
         items: [
           { name: "Stolichnaya", price: "$80" },
           { name: "Absolut Azul", price: "$75" },
         ],
       },
       {
-        title: "Whiskey - Copa",
+        title: "Whiskey",
         items: [
           { name: "Black & White", price: "$70" },
           { name: "Buchanans 12 años", price: "$135" },
         ],
       },
       {
-        title: "Tequila - Copa",
+        title: "Tequila",
         items: [
           { name: "Jose Cuervo Tradicional Reposado", price: "$85" },
           { name: "Maestro Tequilero Dobel Diamante", price: "$145" },
         ],
       },
       {
-        title: "Brandy - Copa",
+        title: "Brandy",
         items: [
           { name: "Magno", price: "$85" },
           { name: "Torres 10", price: "$95" },
         ],
       },
       {
-        title: "Mezcal - Copa",
+        title: "Mezcal",
         items: [
           {
             name: "Santín Espadín Joven",
@@ -648,7 +648,7 @@ export const menuSections: MenuSection[] = [
         ],
       },
       {
-        title: "Licores y Cremas - Copa",
+        title: "Licores y Cremas",
         items: [
           {
             name: "Anís",
