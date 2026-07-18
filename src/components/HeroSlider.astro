@@ -10,11 +10,7 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
 ---
 
 <section class="hero-slider" data-hero-slider style={`--hero-height:${height};`}>
-  <div
-    class="hero-slider__track"
-    data-hero-track
-    style={`transform: translateX(0%)`}
-  >
+  <div class="hero-slider__track" data-hero-track style={`transform: translateX(0%)`}>
     {
       slides.map((src, index) => (
         <div
@@ -65,9 +61,7 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
 
   const slider = document.querySelector<HTMLElement>("[data-hero-slider]");
   const track = document.querySelector<HTMLElement>("[data-hero-track]");
-  const dots = Array.from(
-    document.querySelectorAll<HTMLButtonElement>("[data-hero-dot]")
-  );
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-hero-dot]"));
 
   if (slider && track && dots.length > 1) {
     let currentIndex = 0;
@@ -83,8 +77,7 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
 
     function render(animate: boolean) {
       const width = slider.offsetWidth || 1;
-      const translatePercent =
-        -currentIndex * 100 + (dragOffset / width) * 100;
+      const translatePercent = -currentIndex * 100 + (dragOffset / width) * 100;
       track.style.transition = animate
         ? "transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)"
         : "transform 0s ease";
@@ -92,9 +85,7 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
     }
 
     function updateDots() {
-      dots.forEach((dot, i) =>
-        dot.classList.toggle("is-active", i === currentIndex)
-      );
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === currentIndex));
     }
 
     function goTo(index: number) {
@@ -106,10 +97,7 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
 
     function startAutoplay() {
       stopAutoplay();
-      autoplayId = window.setInterval(
-        () => goTo(currentIndex + 1),
-        AUTOPLAY_INTERVAL
-      );
+      autoplayId = window.setInterval(() => goTo(currentIndex + 1), AUTOPLAY_INTERVAL);
     }
 
     function stopAutoplay() {
@@ -264,12 +252,14 @@ const { slides, alt = "", height = "100vh", decorated = false } = Astro.props;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    transition: background 0.3s ease, width 0.3s ease;
+    transition:
+      background 0.3s ease,
+      width 0.3s ease;
   }
 
   .hero-slider__dot.is-active {
-    width: 28px;
+    width: 10px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.8);
   }
 </style>
