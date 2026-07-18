@@ -7,9 +7,9 @@ const menuTabs = menuSections.map((section) => ({ id: section.id, label: section
 function subsectionSuffix(sectionId: string, title: string): string | null {
   if (sectionId !== "cava") return null;
   if (title.includes("Cerveza")) return null;
-  if (title.includes("Copa")) return "Copa";
+  if (title.includes("Copa")) return null;
   if (title.includes("Vino")) return "Botella";
-  return null;
+  return "Copa";
 }
 ---
 
