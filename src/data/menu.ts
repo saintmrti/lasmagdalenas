@@ -2,6 +2,7 @@ export interface MenuItem {
   name: string;
   price: string;
   description?: string;
+  divider?: boolean;
 }
 
 export interface MenuSubsection {
@@ -767,7 +768,7 @@ export const menuSections: MenuSection[] = [
             description: "Dulce o seco o campechano",
             price: "$75",
           },
-          { name: "Licor del 43", price: "$100" },
+          { name: "Licor del 43", price: "$100", divider: true },
           {
             name: "Copa de vino",
             description: "De la casa",
