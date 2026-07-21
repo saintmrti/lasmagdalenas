@@ -145,20 +145,31 @@ const currentPath = normalizePath(Astro.url.pathname);
 
   if (header) {
     let lastScrollY = window.scrollY;
+    let menuInView = false;
+
+    const menuSection = document.getElementById("menu-section");
+    if (menuSection) {
+      new IntersectionObserver(([entry]) => {
+        menuInView = entry.isIntersecting;
+        header.classList.toggle("is-hidden", menuInView);
+      }).observe(menuSection);
+    }
 
     window.addEventListener(
       "scroll",
       () => {
         const currentScrollY = window.scrollY;
 
-        if (
-          currentScrollY > lastScrollY &&
-          currentScrollY > 80 &&
-          !nav?.classList.contains("is-open")
-        ) {
-          header.classList.add("is-hidden");
-        } else if (currentScrollY < lastScrollY) {
-          header.classList.remove("is-hidden");
+        if (!menuInView) {
+          if (
+            currentScrollY > lastScrollY &&
+            currentScrollY > 80 &&
+            !nav?.classList.contains("is-open")
+          ) {
+            header.classList.add("is-hidden");
+          } else if (currentScrollY < lastScrollY) {
+            header.classList.remove("is-hidden");
+          }
         }
 
         lastScrollY = currentScrollY;
